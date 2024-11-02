@@ -26,7 +26,7 @@ export class RegisterComponent {
     this.authSrv.register(this.nombre, this.apellidos, this.email, this.password).subscribe({
       next: ()=>{
         this.snackBar.open('¡Registro exitoso! Por favor, inicie sesión', 'Cerrar',{
-          duration: 3000 
+          duration: 5000 
         })
 
         setTimeout(() =>{
@@ -36,7 +36,7 @@ export class RegisterComponent {
       error: (err) => {
         const errorMessage = err.error?.message || 'Error al registrar al usuario';
         this.snackBar.open('Error al registrar el usuario: '+errorMessage, 'Cerrar',{
-          duration: 3000
+          duration: 5000
         });
       }
     });

@@ -5,6 +5,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +18,22 @@ export class LoginComponent {
   email: string='';
   password: string='';
 
-  constructor (private authSrv: AuthService, private router: Router){
+  constructor (private authSrv: AuthService, private router: Router, private snackBar: MatSnackBar){
    
   }
 
   login(): void{
     this.authSrv.login(this.email, this.password).subscribe({
-      next: ()=> this.router.navigate(['/menu']),
-      error: (err) => alert('Error logeando')
+      next: ()=> {
+        this.router.navigate(['/menu']);
+      },
+      error: (err) =>{
+        const errorMessage = err.error?.message || 'Error al registrar al usuario';
+        this.snackBar.open('Error al loguear el usuario: '+errorMessage, 'Cerrar',
+        {
+          duration: 5000
+        });
+      }
     })
   }
 }

@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -24,7 +24,7 @@ export class LoginComponent {
   login(): void{
     this.authSrv.login(this.email, this.password).subscribe({
       next: ()=> this.router.navigate(['/menu']),
-      error: (err) => alert({'Error logeando': err})
+      error: (err) => alert('Error logeando')
     })
   }
 }

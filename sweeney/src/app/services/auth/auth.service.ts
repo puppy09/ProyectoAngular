@@ -11,6 +11,7 @@ import { Observable, tap } from 'rxjs';
 export class AuthService {
 
   private apiUrl = `${environment.apiUrl}/auth/login`;
+  private apiUrlReg = `${environment.apiUrl}/auth/register`;
   private tokenKey = 'authToken';
 
   constructor(private http: HttpClient) { }
@@ -26,6 +27,9 @@ export class AuthService {
     )
   }
 
+  register(email: string, password: string, nombre: string, apellidos: string): Observable<any>{
+    return this.http.post<any>(this.apiUrlReg,{nombre, apellidos, email, contra: password});
+  }
   private setToken(token: string): void{
     localStorage.setItem(this.tokenKey, token);
   }

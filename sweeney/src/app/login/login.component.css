@@ -19,6 +19,8 @@
   }
 
   .blue{
+    height: 50%;
+    width: 100%;
     max-width: 100%;
     max-height: 50%;
     background-color: #5D9DA8;
@@ -26,23 +28,30 @@
   }
 
   .logo{
-    width: 40%;
+    width: 30%;
     height: 60%;
     z-index: 2;
   }
 
+  .frase{
+    margin-top: 10%;
+  }
   .recuadro{
     justify-items: center;
     position: fixed;
     z-index: 100;
     padding: 10px;
+    height: 80%;
     border-radius: 15px;
     background-color: #E8E8E8;
     width: 35%;
-    margin-right: 200px;
-    margin-left: 50%;
-    top:10%
+    margin-left: 60%;
+    top:4%
 
+  }
+
+  .recuadro h5{
+    margin-top: 5%;
   }
 /* Styling for the form */
 .login-form {
@@ -54,9 +63,10 @@
 }
 
 .login-form label {
+  margin-top: 5%;
   display: block;
   text-align: left;
-  font-size: 14px;
+  font-size: 24px;
   color: #555;
   padding-top: 3%;
 }
@@ -80,7 +90,7 @@
   border: none;
   color: white;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 25px;
   cursor: pointer;
   margin-top: 10px;
   align-self: center;
@@ -91,8 +101,9 @@
 }
 
 .login-form a {
+  margin-top: 10%;
   display: block;
-  font-size: 10px;
+  font-size: 20px;
   color: #5D9DA8;
   text-decoration: none;
 }

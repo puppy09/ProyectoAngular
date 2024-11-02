@@ -1,1 +1,35 @@
-<p>register works!</p>
+<div class="blue">
+    <img  class="logo" src="/images/sweeney2.PNG" alt="Sweeney">
+</div>
+<h2 class="poppins-thin frase">Pequeños Ahorros, grandes metas</h2>
+
+<div class="recuadro">
+    <h5 class="poppins-thin">Bienvenido a Sweeney</h5>
+    <h1 class="poppins-thin">Regístrate</h1>
+    
+    <form class="login-form">
+        <a href="registro">¿Ya tienes una cuenta con nosotros?</a>
+        <div class="campos">
+            <div class="datos">
+                <label for="nombres">Ingresa tu(s) nombre(s):</label>
+                <input type="nombres" id="nombres" name="nombres" placeholder="Nombre (s)" [(ngModel)]="nombre" value="Juan"/>
+            </div>
+            <div class="datos">
+                <label for="apellidos">Ingresa tus apellidos:</label>
+                <input type="apellidos" id="apellidos" name="apellidos" placeholder="Apellidos" [(ngModel)]="apellidos" value="Perez"/>
+            </div>         
+        </div>
+        
+        <div class="campos">
+            <div class="datos">
+                <label for="email">Ingresa tu Correo electrónico:</label>
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" [(ngModel)]="email" value="gaby@gmail.com"/>
+            </div>
+            <div class="datos">
+                <label for="password">Ingresa tu Contraseña:</label>
+                <input type="password" id="password"  name="password" placeholder="Contraseña" [(ngModel)]="password" value="12345"/>
+            </div>
+        </div>
+        <button type="submit" (click)="register()">Regístrate</button>
+      </form>
+</div>

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environtment';
-import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, tap, throwError } from 'rxjs';
+import { catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +27,11 @@ export class AuthService {
     )
   }
 
-  register(email: string, password: string, nombre: string, apellidos: string): Observable<any>{
+  register(nombre: string, apellidos: string,email: string, password: string): Observable<any>{
     return this.http.post<any>(this.apiUrlReg,{nombre, apellidos, email, contra: password});
+    catchError((error: HttpErrorResponse) =>{
+      return throwError(()=> error);
+    })
   }
   private setToken(token: string): void{
     localStorage.setItem(this.tokenKey, token);

@@ -34,7 +34,8 @@ export class RegisterComponent {
         })
       }, 
       error: (err) => {
-        this.snackBar.open('Error al registrar el usuario: '+err.message, 'Cerrar',{
+        const errorMessage = err.error?.message || 'Error al registrar al usuario';
+        this.snackBar.open('Error al registrar el usuario: '+errorMessage, 'Cerrar',{
           duration: 3000
         });
       }

@@ -1,3 +1,16 @@
 <app-sidebar><p>Aios</p></app-sidebar>
 <p>Hola</p>
 
+@if (cuentas && cuentas.length > 0) {
+    <h4>Cuentas del Usuario</h4>
+    <ul>
+        @for (cuenta of cuentas; track $index) {
+            <li>Cuenta ID {{ cuenta.ID }}</li>
+            <li>No Cuenta {{cuenta.no_cuenta}}</li>
+            <li> Saldo {{cuenta.saldo}}</li>
+        }
+    </ul>
+}
+@else {
+    <p>Este user no tiene cuentas</p>
+}

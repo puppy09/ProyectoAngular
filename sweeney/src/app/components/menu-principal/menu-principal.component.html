@@ -1,6 +1,7 @@
 <app-sidebar><p>Aios</p></app-sidebar>
 <p>Hola</p>
 
+<h1>Cuentas</h1>
 @if (cuentas && cuentas.length > 0) {
     <h4>Cuentas del Usuario</h4>
     <ul>
@@ -16,4 +17,23 @@
 }
 @else {
     <p>Este user no tiene cuentas</p>
+}
+
+<h1>Movimientos</h1>
+@if (movimientos && movimientos.length > 0) {
+    <h4>Movimientos del Usuario</h4>
+    <ul>
+        @for (movimiento of movimientos; track $index) {
+            <li>ID Mov {{movimiento.id_movimiento}}</li>
+            <li>ID User {{movimiento.id_usuario}}</li>
+            <li>No Cuenta {{movimiento.no_cuenta}}</li>
+            <li>Descripcion {{movimiento.descripcion}}</li>
+            <li>monto {{movimiento.monto}}</li>
+            <li>fecha {{movimiento.fecha}}</li>
+            <li>tipoMov {{movimiento.movimientoDetail.tipo_movimiento}}</li>
+        }
+    </ul>
+}
+@else {
+    <p>Este user no tiene movimientos</p>
 }

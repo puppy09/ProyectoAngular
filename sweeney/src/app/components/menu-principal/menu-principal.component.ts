@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarComponent } from "../sidebar/sidebar.component";
-import { CuentasService } from '../services/cuentas/cuentas.service';
+import { SidebarComponent } from "../../sidebar/sidebar.component";
+import { CuentasService } from '../../services/cuentas/cuentas.service';
 @Component({
   selector: 'app-menu-principal',
   standalone: true,

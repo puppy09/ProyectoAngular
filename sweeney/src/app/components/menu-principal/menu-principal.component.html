@@ -5,9 +5,12 @@
     <h4>Cuentas del Usuario</h4>
     <ul>
         @for (cuenta of cuentas; track $index) {
-            <li>Cuenta ID {{ cuenta.ID }}</li>
+            <li>No ID {{ cuenta.ID }}</li>
             <li>No Cuenta {{cuenta.no_cuenta}}</li>
             <li> Saldo {{cuenta.saldo}}</li>
+            <li>Fecha de Vencimiento {{cuenta.fecha_vencimiento}}</li>
+            <li>Nombre {{cuenta.nombre}}</li>
+            <li>Estatus {{cuenta.estatusDetail.estatus}}</li>
         }
     </ul>
 }

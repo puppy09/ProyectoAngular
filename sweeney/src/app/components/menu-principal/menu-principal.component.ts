@@ -1,73 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarComponent } from "../../sidebar/sidebar.component";
+import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MovimientosService } from '../../services/movimientos/movimientos.service';
-
-interface Cuenta{
-  ID: number;
-  no_cuenta: string;
-  fecha_vencimiento: string;
-  saldo: number;
-  nombre: string;
-  id_usuario: number;
-  estatus: number;
-  estatusDetail: {
-    estatus: string;
-  };
-}
-
-interface Movimiento{
-  id_movimiento: string;
-  id_usuario: string;
-  id_pago: string;
-  no_cuenta: string;
-  descripcion: string;
-  tipo_movimiento: string;
-  monto: number;
-  fecha: Date;
-  movimientoDetail:{
-    tipo_movimiento: string;
-  }
-}
-
-interface Pagos{
-  id_pago: number;
-  id_usuario: number;
-  no_cuenta: string;
-  descripcion: string;
-  monto: number;
-  fecha: Date;
-  pagos_hechos: number;
-  total_pagos: number;
-  category:{
-    nombre: string;
-  },
-  negocio:{
-    nombre: string;
-  },
-  tipospago:{
-    tipo: string
-  },
-  estatuspago:{
-    estatus_pagos: string;
-  }
-}
+import { PagosService } from '../../services/pagos/pagos.service';
+import { CurrencyPipe } from '@angular/common';
+import {CarouselModule} from 'primeng/carousel';
 @Component({
   selector: 'app-menu-principal',
   standalone: true,
-  imports: [SidebarComponent],
+  imports: [SidebarComponent, CurrencyPipe, CarouselModule],
   templateUrl: './menu-principal.component.html',
   styleUrl: './menu-principal.component.css'
 })
 export class MenuPrincipalComponent  implements OnInit{
   cuentas: any;
   movimientos: any;
+  pagos: any;
 
-  constructor(private cuentasService: CuentasService, private movService: MovimientosService, private snackBar: MatSnackBar) {}
+  constructor(private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.fetchCuentas();
     this.fetchMovimientos();
+    this.fetchPagos();
   }
 
   fetchCuentas(): void {
@@ -91,10 +46,24 @@ export class MenuPrincipalComponent  implements OnInit{
       },
       (error)=>{
         const errorMessage = error.error?.message || 'Error al obtener movimientos';
-        this.snackBar.open('Error con movimientos '+errorMessage, 'Cerrar',{
+        this.snackBar.open('Error obteniendo mov '+errorMessage, 'Cerrar',{
           duration: 5000
         })
         console.error('Error fetching movimientos: ', error);
       })
+  }
+
+  fetchPagos(): void{
+    this.pagoSrv.getPagos().subscribe(
+    (data) =>{
+      this.pagos = data;
+    },
+    (error)=>{
+      const errorMessage = error.error?.message || 'Error al obtener pagos';
+        this.snackBar.open('Error Obteniendo Pagos '+errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+        console.error('Error fetching pagos: ', error);
+    })
   }
 }

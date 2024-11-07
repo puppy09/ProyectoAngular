@@ -1,39 +1,47 @@
-<app-sidebar><p>Aios</p></app-sidebar>
-<p>Hola</p>
-
-<h1>Cuentas</h1>
-@if (cuentas && cuentas.length > 0) {
-    <h4>Cuentas del Usuario</h4>
-    <ul>
-        @for (cuenta of cuentas; track $index) {
-            <li>No ID {{ cuenta.ID }}</li>
-            <li>No Cuenta {{cuenta.no_cuenta}}</li>
-            <li> Saldo {{cuenta.saldo}}</li>
-            <li>Fecha de Vencimiento {{cuenta.fecha_vencimiento}}</li>
-            <li>Nombre {{cuenta.nombre}}</li>
-            <li>Estatus {{cuenta.estatusDetail.estatus}}</li>
-        }
-    </ul>
-}
-@else {
-    <p>Este user no tiene cuentas</p>
-}
-
-<h1>Movimientos</h1>
-@if (movimientos && movimientos.length > 0) {
-    <h4>Movimientos del Usuario</h4>
-    <ul>
-        @for (movimiento of movimientos; track $index) {
-            <li>ID Mov {{movimiento.id_movimiento}}</li>
-            <li>ID User {{movimiento.id_usuario}}</li>
-            <li>No Cuenta {{movimiento.no_cuenta}}</li>
-            <li>Descripcion {{movimiento.descripcion}}</li>
-            <li>monto {{movimiento.monto}}</li>
-            <li>fecha {{movimiento.fecha}}</li>
-            <li>tipoMov {{movimiento.movimientoDetail.tipo_movimiento}}</li>
-        }
-    </ul>
-}
-@else {
-    <p>Este user no tiene movimientos</p>
-}
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="menuPrincipal">
+        <div class="infoContainer">
+            <div class="info">Balance general</div>
+            <div class="info">Gastos del mes</div>
+        </div>
+        <div class="account-carousel">
+            <p-carousel [value]="cuentas" [numVisible]="1" [numScroll]="1">
+                <ng-template pTemplate="item" let-cuenta>
+                    <div class="account-square">
+                        <p>{{ cuenta.nombre }}</p>
+                        <p>{{ cuenta.saldo | currency }}</p>
+                    </div>
+                </ng-template>
+              </p-carousel>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No. de Cuenta</th>
+                        <th>Transacción</th>
+                        <th>Tipo de Transacción</th>
+                        <th>Monto</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(movimientos && movimientos.length >0){
+                        @for (movimiento of movimientos; track $index) {
+                            <tr>
+                                <td>{{movimiento.no_cuenta}}</td>
+                                <td>{{movimiento.descripcion}}</td>
+                                <td>{{movimiento.movimientoDetail.tipo_movimiento}}</td>
+                                <td>{{movimiento.monto | currency}}</td>
+                                <td>{{movimiento.fecha}}</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

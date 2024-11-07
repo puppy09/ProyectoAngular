@@ -2,13 +2,14 @@
     <div class="sideBar">
         <app-sidebar></app-sidebar>
     </div>
+    <svg></svg>
     <div class="menuPrincipal">
         <div class="infoContainer">
             <div class="info">Balance general</div>
             <div class="info">Gastos del mes</div>
         </div>
         <div class="account-carousel">
-            <p-carousel [value]="cuentas" [numVisible]="1" [numScroll]="1">
+            <p-carousel [value]="cuentas" [numVisible]="2" [numScroll]="1">
                 <ng-template pTemplate="item" let-cuenta>
                     <div class="account-square">
                         <p>{{ cuenta.nombre }}</p>

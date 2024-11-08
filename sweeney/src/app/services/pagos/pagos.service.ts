@@ -16,5 +16,7 @@ export class PagosService {
     console.log(this.apiUrl);
     return this.http.get<Pagos|Pagos[]>(this.apiUrl);
   }
-  
+  getPagosByCuenta(noCuenta: string):Observable<Pagos|Pagos[]>{
+    return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}/by/cuenta`,{noCuenta});
+  }
 }

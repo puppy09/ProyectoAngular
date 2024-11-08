@@ -5,7 +5,7 @@
 .menuPrincipal{
     display: flex;
     flex-direction: column;
-    margin-left: 10%;
+    margin-left: 20%;
 }
 
 .sideBar{
@@ -74,11 +74,24 @@
     border-radius: 8px;
     text-align: center;
     font-weight: bold;
-    box-shadow: #e0e0e0;
+    box-shadow: inset;
+    cursor: pointer;
+  }
+
+  .account-square:hover{
+    /*background-color: #075271;*/
+    background-color: #5D9DA8;
+    color: white;
   }
   .poppins-thin {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
+    font-style: normal;
+  }
+
+  .poppins-bold {
+    font-family: "Poppins", serif;
+    font-weight: 700;
     font-style: normal;
   }
 

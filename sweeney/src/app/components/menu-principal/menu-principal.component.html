@@ -12,11 +12,12 @@
             </div>
             <div class="info">Gastos del mes</div>
         </div>
+        <h4 class="poppins-bold">Mis Cuentas</h4>
         <div class="account-carousel">
             <p-carousel [value]="cuentas" [numVisible]="2" [numScroll]="1">
                 <ng-template pTemplate="item" let-cuenta>
                     <div class="account-square" (click)="selectCuenta(cuenta.no_cuenta)">
-                        <p class="poppins-thin">{{ cuenta.nombre }}</p>
+                        <p class="poppins-bold">{{ cuenta.nombre }}</p>
                         <p class="poppins-thin">{{ cuenta.saldo | currency }}</p>
                     </div>
                 </ng-template>
@@ -26,11 +27,11 @@
             <table>
                 <thead>
                     <tr>
-                        <th>No. de Cuenta</th>
-                        <th>Transacción</th>
-                        <th>Tipo de Transacción</th>
-                        <th>Monto</th>
-                        <th>Fecha</th>
+                        <th class="poppins-bold">No. de Cuenta</th>
+                        <th class="poppins-bold">Transacción</th>
+                        <th class="poppins-bold">Tipo de Transacción</th>
+                        <th class="poppins-bold">Monto</th>
+                        <th class="poppins-bold">Fecha</th>
                     </tr>
                 </thead>
                 <tbody>

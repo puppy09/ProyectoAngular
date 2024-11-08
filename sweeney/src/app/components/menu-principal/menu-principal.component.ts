@@ -6,10 +6,12 @@ import { MovimientosService } from '../../services/movimientos/movimientos.servi
 import { PagosService } from '../../services/pagos/pagos.service';
 import { CurrencyPipe } from '@angular/common';
 import {CarouselModule} from 'primeng/carousel';
+import { HeaderComponent } from "../header/header.component";
+import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'app-menu-principal',
   standalone: true,
-  imports: [SidebarComponent, CurrencyPipe, CarouselModule],
+  imports: [SidebarComponent, CurrencyPipe, CarouselModule, HeaderComponent],
   templateUrl: './menu-principal.component.html',
   styleUrl: './menu-principal.component.css'
 })
@@ -17,12 +19,14 @@ export class MenuPrincipalComponent  implements OnInit{
   cuentas: any;
   movimientos: any;
   pagos: any;
+  usuario: any;
 
-  constructor(private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
+  constructor(private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.fetchCuentas();
     this.fetchMovimientos();
     this.fetchPagos();
+    this.userInfo();
   }
 
   fetchCuentas(): void {
@@ -65,5 +69,21 @@ export class MenuPrincipalComponent  implements OnInit{
         })
         console.error('Error fetching pagos: ', error);
     })
+  }
+
+  userInfo():void{
+    this.userSvc.userInfo().subscribe(
+      (data)=>{
+        this.usuario = data;
+        console.log(data);
+      },
+      (error)=>{
+        console.log("error obteniendo la informacion del usuario", error);
+        const errorMessage = error.error?.message || 'Error al obtener informacion del usuario';
+        this.snackBar.open('Error Obteniendo informacion del usuario '+errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+        console.error('Error fetching user: ', error);
+      })
   }
 }

@@ -17,12 +17,30 @@
     list-style-type: none;
 }
 
-.barra{
+.logo{
+    justify-content: center;
+}
+/*.barra{
+    position: fixed;
     background-color: #e8e8e8;
     height: 100%;
     max-width: 20%;
     justify-content: center;
+    z-index: 101;
+}*/
+.barra {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; /* Full viewport height */
+    max-width: 20%;
+    background-color: #e8e8e8;
+    z-index: 101; /* Higher than header's z-index */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .poppins-thin {
     font-family: "Poppins", sans-serif;
     font-weight: 400;

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 .container{
     display: flex;
 }
@@ -13,7 +14,7 @@
 }
 .table-container {
     width: 100%;  /* Fixed width for the container */
-    height: 40%; /* Fixed height for the container to create a square */
+    height: 30%; /* Fixed height for the container to create a square */
     overflow: auto; /* Add scrollbar if content overflows */
     border: 1px solid #ccc; /* Optional: Add a border to the box */
     padding: 10px; /* Optional: Add padding for inner spacing */
@@ -38,6 +39,7 @@
   }
 
   .infoContainer{
+    margin-top: 20%;
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
@@ -62,7 +64,7 @@
   }
 
   .account-square{
-    width: 100%;
+    width: 90%;
     height: 100px;
     background-color: #f0f0f0;
     display: flex;
@@ -72,4 +74,14 @@
     border-radius: 8px;
     text-align: center;
     font-weight: bold;
+    box-shadow: #e0e0e0;
+  }
+  .poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .division{
+    width: 100%;
   }

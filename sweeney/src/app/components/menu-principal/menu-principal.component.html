@@ -1,3 +1,5 @@
+<app-header></app-header>
+<hr class="division">
 <div class="container">
     <div class="sideBar">
         <app-sidebar></app-sidebar>
@@ -5,15 +7,17 @@
     <svg></svg>
     <div class="menuPrincipal">
         <div class="infoContainer">
-            <div class="info">Balance general</div>
+            <div class="info">Balance general
+                <p>{{usuario.ingresos_mensules}}</p>
+            </div>
             <div class="info">Gastos del mes</div>
         </div>
         <div class="account-carousel">
             <p-carousel [value]="cuentas" [numVisible]="2" [numScroll]="1">
                 <ng-template pTemplate="item" let-cuenta>
                     <div class="account-square">
-                        <p>{{ cuenta.nombre }}</p>
-                        <p>{{ cuenta.saldo | currency }}</p>
+                        <p class="poppins-thin">{{ cuenta.nombre }}</p>
+                        <p class="poppins-thin">{{ cuenta.saldo | currency }}</p>
                     </div>
                 </ng-template>
               </p-carousel>
@@ -33,13 +37,17 @@
                     @if(movimientos && movimientos.length >0){
                         @for (movimiento of movimientos; track $index) {
                             <tr>
-                                <td>{{movimiento.no_cuenta}}</td>
-                                <td>{{movimiento.descripcion}}</td>
-                                <td>{{movimiento.movimientoDetail.tipo_movimiento}}</td>
-                                <td>{{movimiento.monto | currency}}</td>
-                                <td>{{movimiento.fecha}}</td>
+                                <td class="poppins-thin">{{movimiento.no_cuenta}}</td>
+                                <td class="poppins-thin">{{movimiento.descripcion}}</td>
+                                <td class="poppins-thin">{{movimiento.movimientoDetail.tipo_movimiento}}</td>
+                                <td class="poppins-thin">{{movimiento.monto | currency}}</td>
+                                <td class="poppins-thin">{{movimiento.fecha}}</td>
                             </tr>
                         }
+                    }@else {
+                        <TR>
+                            <TD class="poppins-thin" colspan="5" style="text-align: center;">Este usuario aun no tiene movimientos registrados</TD>
+                        </TR>
                     }
                 </tbody>
             </table>

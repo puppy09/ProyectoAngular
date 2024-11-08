@@ -86,4 +86,20 @@ export class MenuPrincipalComponent  implements OnInit{
         console.error('Error fetching user: ', error);
       })
   }
+
+  selectCuenta(noCuenta: string):void{
+    this.movService.getMovimientosByCuenta(noCuenta).subscribe(
+      (data)=>{
+        this.movimientos = data;
+      },
+      (error)=>{
+        console.log("error obteniendo la pagos del usuario", error);
+        const errorMessage = error.error?.message || 'Error al obtener pagos del usuario';
+        this.snackBar.open('Error Obteniendo pagos del usuario '+errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+        console.error('Error fetching user: ', error);
+      }
+    )
+  }
 }

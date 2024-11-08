@@ -15,7 +15,7 @@
         <div class="account-carousel">
             <p-carousel [value]="cuentas" [numVisible]="2" [numScroll]="1">
                 <ng-template pTemplate="item" let-cuenta>
-                    <div class="account-square">
+                    <div class="account-square" (click)="selectCuenta(cuenta.no_cuenta)">
                         <p class="poppins-thin">{{ cuenta.nombre }}</p>
                         <p class="poppins-thin">{{ cuenta.saldo | currency }}</p>
                     </div>

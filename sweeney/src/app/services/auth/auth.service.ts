@@ -12,7 +12,6 @@ import { usuario } from '../../interfaces/user.interface';
 export class AuthService {
 
   private apiUrl = environment.apiUrl+'/auth';
-  private apiUrlReg = `${environment.apiUrl}/auth`;
   private tokenKey = 'authToken';
 
   constructor(private http: HttpClient) { }

@@ -1,5 +1,4 @@
 <app-header></app-header>
-<hr class="division">
 <div class="container">
     <div class="sideBar">
         <app-sidebar></app-sidebar>
@@ -37,13 +36,18 @@
                 <tbody>
                     @if(movimientos && movimientos.length >0){
                         @for (movimiento of movimientos; track $index) {
-                            <tr>
-                                <td class="poppins-thin">{{movimiento.no_cuenta}}</td>
-                                <td class="poppins-thin">{{movimiento.descripcion}}</td>
-                                <td class="poppins-thin">{{movimiento.movimientoDetail.tipo_movimiento}}</td>
-                                <td class="poppins-thin">{{movimiento.monto | currency}}</td>
-                                <td class="poppins-thin">{{movimiento.fecha}}</td>
-                            </tr>
+                            @defer () {
+                                <tr>
+                                    <td class="poppins-thin">{{movimiento.no_cuenta}}</td>
+                                    <td class="poppins-thin">{{movimiento.descripcion}}</td>
+                                    <td class="poppins-thin">{{movimiento.movimientoDetail.tipo_movimiento}}</td>
+                                    <td class="poppins-thin">{{movimiento.monto | currency}}</td>
+                                    <td class="poppins-thin">{{movimiento.fecha}}</td>
+                                </tr>
+                            }
+                            @placeholder {
+                                <td class="poppins-thin" colspan="5" style="text-align: center;">Cargando movimientos</td>
+                            }
                         }
                     }@else {
                         <TR>

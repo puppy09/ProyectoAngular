@@ -29,5 +29,8 @@ export class SidebarComponent {
   goToGastos(){
     this.router.navigate(['/gastos']);
   }
+  goToMenu(){
+    this.router.navigate(['/menu']);
+  }
 }
 

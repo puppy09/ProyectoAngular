@@ -17,4 +17,8 @@ export class CuentasService {
     console.log(this.apiUrl);
     return this.http.get<Cuentas|Cuentas[]>(this.apiUrl);
   }
+
+  getCuentasActivas():Observable<Cuentas|Cuentas[]>{
+    return this.http.get<Cuentas|Cuentas[]>(`${this.apiUrl}/activas`);
+  }
 }

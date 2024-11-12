@@ -15,4 +15,8 @@ export class CategoriasService {
   getCategorias():Observable<categoria|categoria[]>{
     return this.http.get<categoria|categoria[]>(this.apiUrl);
   }
+
+  getCategoriasActivas():Observable<categoria|categoria[]>{
+    return this.http.get<categoria|categoria[]>(`${this.apiUrl}/activas`);
+  }
 }

@@ -22,5 +22,9 @@ export class PagosService {
   postPago(num_cuenta: string, descripcion: string, monto:number,categoria:number,subcategoria:number):Observable<Pagos|Pagos[]>{
     return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}`,{num_cuenta,descripcion,monto,categoria,subcategoria});
   }
+  postPagoProgramado(num_cuenta: string, descripcion: string, monto:number,categoria:number,subcategoria:number, dia_pago:number, total_pagos: number):Observable<Pagos|Pagos[]>{
+    return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}`,{num_cuenta,descripcion,monto,categoria,subcategoria, dia_pago, total_pagos});
+  }
+
  
 }

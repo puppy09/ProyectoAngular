@@ -148,6 +148,5 @@ export class MovimientosFormComponent implements OnInit{
             duration: 5000
           })
       })}
-}
-
+  }
 }

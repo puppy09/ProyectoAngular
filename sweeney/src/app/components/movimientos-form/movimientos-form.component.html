@@ -5,6 +5,8 @@
     </div>
     <div class="new-mov">
         <h4 class="poppins-bold">Registra un nuevo Movimiento</h4>
+        
+        
         <form [formGroup]="pagosForm" (ngSubmit)="submitForm()">
             <label for="cuenta">Cuenta:</label>
             <select name="" id="cuenta" formControlName="no_cuenta">
@@ -49,7 +51,7 @@
             <input type="text" formControlName="diaPago">
             <label for="totalPagos">Total Pagos:</label>
             <input type="text" formControlName="totalPagos">
-       <button type="submit" (click)="submitForm()">Registrar Pago</button>
+       <button type="submit">Registrar Pago</button>
         </form>
     </div>
     

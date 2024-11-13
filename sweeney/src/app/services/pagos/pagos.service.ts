@@ -20,10 +20,11 @@ export class PagosService {
     return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}/by/cuenta`,{noCuenta});
   }
   postPago(num_cuenta: string, descripcion: string, monto:number,categoria:number,subcategoria:number):Observable<Pagos|Pagos[]>{
+    console.log("posteando pago");
     return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}`,{num_cuenta,descripcion,monto,categoria,subcategoria});
   }
   postPagoProgramado(num_cuenta: string, descripcion: string, monto:number,categoria:number,subcategoria:number, dia_pago:number, total_pagos: number):Observable<Pagos|Pagos[]>{
-    return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}`,{num_cuenta,descripcion,monto,categoria,subcategoria, dia_pago, total_pagos});
+    return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}/programado`,{num_cuenta,descripcion,monto,categoria,subcategoria, dia_pago, total_pagos});
   }
 
  

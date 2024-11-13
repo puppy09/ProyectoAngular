@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,33 +8,43 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SubcategoriasService } from '../../services/subcategorias/subcategorias.service';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
 import { PagosService } from '../../services/pagos/pagos.service';
+import {MatRadioModule} from '@angular/material/radio';
+
 @Component({
   selector: 'app-movimientos-form',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, ReactiveFormsModule],
+  imports: [HeaderComponent, SidebarComponent, ReactiveFormsModule, MatRadioModule],
   templateUrl: './movimientos-form.component.html',
   styleUrl: './movimientos-form.component.css'
 })
 export class MovimientosFormComponent implements OnInit{
 
+  pagosForm: FormGroup = new FormGroup({});
   cuentas: any;
   categorias: any;
+  selectedCategory = '';
   subcategorias: any;
 
-  constructor(private pagoSvc: PagosService,  private catSrv: CategoriasService, private snackBar: MatSnackBar, private  subSrv: SubcategoriasService, private cuenSrv: CuentasService, private pagosForm: FormGroup){}
+
+  constructor(private pagoSvc: PagosService,  private catSrv: CategoriasService, private snackBar: MatSnackBar, private  subSrv: SubcategoriasService, private cuenSrv: CuentasService){}
+  
+  
   ngOnInit(): void {
     this.pagosForm = new FormGroup({
-      num_cuenta: new FormControl('', Validators.required),
+      no_cuenta: new FormControl('', Validators.required),
       categoria: new FormControl('', Validators.required),
       subcategoria: new FormControl('', Validators.required),
-      descipcion: new FormControl('', Validators.required),
-      montos: new FormControl('', [Validators.required, Validators.min(0)]),
-      tipoMovimiento: new FormControl('unica', Validators.required),
+      descripcion: new FormControl('', Validators.required),
+      monto: new FormControl('', [Validators.required, Validators.min(0)]),
+      tipoMovimiento: new FormControl('', Validators.required),
       diaPago: new FormControl({ value:'', disabled:true}),
       totalPagos: new FormControl({value:'', disabled: true})
     });
 
-    
+    this.loadActiveCategorias();
+    this.loadActiveCuentas();
+    //this.loadSubcategorias(4);
+
     this.pagosForm.get('tipoMovimiento')?.valueChanges.subscribe(value=>{
       if(value === 'unica'){
         this.pagosForm.get('diaPago')?.disable();
@@ -44,10 +54,6 @@ export class MovimientosFormComponent implements OnInit{
         this.pagosForm.get('diaPago')?.enable();
         this.pagosForm.get('totalPagos')?.enable();
       }
-    });
-
-    this.pagosForm.get('categoria')?.valueChanges.subscribe(categoryId => {
-      this.loadSubcategorias(categoryId);
     });
   }
 
@@ -79,10 +85,12 @@ export class MovimientosFormComponent implements OnInit{
       });
   }
 
-  loadSubcategorias(categoryId: number):void{
-    this.subSrv.getSubcategoriasByCat(categoryId).subscribe(
+  loadSubcategorias(event: any):void{
+    this.selectedCategory = event.target.value;
+    console.log(this.selectedCategory);
+    this.subSrv.getSubcategoriasByCat(this.selectedCategory).subscribe(
       (data)=>{
-        this.subcategorias = data;
+        this.subcategorias=data;
       },
       (error)=>{
         const errorMessage = error.error?.message || 'Error al obtener subcategorias';
@@ -90,16 +98,25 @@ export class MovimientosFormComponent implements OnInit{
           duration: 5000
         })
         console.error('Error fetching subcategorias: ', error);
-      });
+      }
+    )
   }
 
+  /*onChangeValue(event: any){
+    console.log("evento:"+event);
+    this.selectedCategory = event.target.value;
+    console.log(event.target.value);
+  }*/
   submitForm(){
-    if(this.pagosForm.valid){
+    //if(this.pagosForm.valid){
+      //console.log("es valido");
       const formData = this.pagosForm.value;
+      console.log("Monto:"+formData.monto);
       if(formData.tipoMovimiento ===  'unica'){
+        console.log("peticion 1");
         this.pagoSvc.postPago(
-          formData.num_cuenta,
-          formData.descipcion,
+          formData.no_cuenta,
+          formData.descripcion,
           formData.monto,
           formData.categoria,
           formData.subcategoria
@@ -113,14 +130,15 @@ export class MovimientosFormComponent implements OnInit{
           })
         });
       }else{
+        console.log("error")
         this.pagoSvc.postPagoProgramado(
-          formData.num_cuenta,
-          formData.descipcion,
+          formData.no_cuenta,
+          formData.descripcion,
           formData.monto,
           formData.categoria,
           formData.subcategoria,
-          formData.dia_pago,
-          formData.total_pagos
+          formData.diaPago,
+          formData.totalPagos
         ).subscribe(response =>{
           this.snackBar.open('Pago Programdo con exito', 'Cerrar',{
             duration: 5000
@@ -130,4 +148,6 @@ export class MovimientosFormComponent implements OnInit{
             duration: 5000
           })
       })}
-}}}
+}
+
+}

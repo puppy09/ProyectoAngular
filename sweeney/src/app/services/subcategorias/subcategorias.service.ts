@@ -12,7 +12,10 @@ export class SubcategoriasService {
   constructor(private http: HttpClient) { }
   private apiUrl = `${environment.apiUrl}/subcategory`;
 
-  getSubcategoriasByCat(catId:number):Observable<subcategoria|subcategoria[]>{
-    return this.http.get<subcategoria|subcategoria[]>(`${this.apiUrl}/catId`);
+  getSubcategoriasByCat(catId:string):Observable<subcategoria|subcategoria[]>{
+    const url2 = this.apiUrl+"/"+catId;
+    console.log('hola catId');
+    console.log(catId);
+    return this.http.get<subcategoria|subcategoria[]>(url2);
   }
 }

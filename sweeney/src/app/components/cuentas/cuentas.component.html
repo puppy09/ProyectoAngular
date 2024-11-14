@@ -12,7 +12,9 @@
                         <p>{{cuenta.saldo | currency}}</p>
                         <p>{{cuenta.estatusDetail.estatus}}</p>
                         <div class="opc">
-                            <button mat-button [matMenuTriggerFor]="menu">Opciones</button>
+                            <button mat-icon-button [matMenuTriggerFor]="menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item (click)="activarCuentas(cuenta.ID)">Activar Cuenta</button>
                                 <button mat-menu-item (click)="desactivarCuentas(cuenta.ID)">Desactivar Cuenta</button>

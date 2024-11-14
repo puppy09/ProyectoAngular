@@ -10,7 +10,7 @@
         <form [formGroup]="pagosForm" (ngSubmit)="submitForm()">
             <label for="cuenta">Cuenta:</label>
             <select name="" id="cuenta" formControlName="no_cuenta">
-                @if(cuentas.length>0){
+                @if(cuentas){
                     @for (cuenta of cuentas; track $index) {
                         <option value={{cuenta.no_cuenta}}>{{ cuenta.no_cuenta }}</option>
                     }
@@ -23,7 +23,7 @@
             <input type="text" formControlName="descripcion">
             <label for="categoria">Categoria:</label>
             <select name="" id="categoria" formControlName="categoria" (change)="loadSubcategorias($event)">
-                @if(categorias.length>0){
+                @if(categorias){
                     @for (categoria of categorias; track $index) {
                         <option value={{categoria.ID}}>{{ categoria.nombre }}</option>
                     }
@@ -34,9 +34,15 @@
             </select>
             <label for="subcategoria">Subcategoria:</label>
             <select name="" id="subcategoria" formControlName="subcategoria">
-                @for (subcategoria of subcategorias; track $index) {
-                    <option value={{subcategoria.id_negocio}}>{{ subcategoria.negocio.nombre }}</option>
+                @if(subcategorias){
+                    @for (subcategoria of subcategorias; track $index) {
+                        <option value={{subcategoria.id_negocio}}>{{ subcategoria.negocio.nombre }}</option>
+                    }
                 }
+                @if(!categorias||!subcategorias) {
+                    <option value="">No hay subcategorias</option>
+                }
+                
             </select>
             <label for="monto">Monto:</label>
             <input type="text" formControlName="monto">

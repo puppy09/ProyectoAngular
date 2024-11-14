@@ -1,0 +1,54 @@
+.container{
+    display: flex;
+    width: 100vw;
+}
+.sideBar{
+    position: fixed;
+    height: 100%;
+}
+.cuentas{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
+    margin-top: 10%;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.info{
+    width: 50%;
+    height: 100px;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+
+.account-square{
+    width: 100%;
+    height: 130px;
+    padding-right: 10px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: inset;
+    cursor: pointer;
+}
+
+.cuentasContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates two equal-width columns */
+    gap: 16px; /* Adjust the gap between the items */
+    width: 95%; /* Ensure container spans full width */
+    box-sizing: border-box;
+}

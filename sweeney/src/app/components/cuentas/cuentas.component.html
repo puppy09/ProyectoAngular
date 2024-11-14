@@ -1,2 +1,26 @@
-<p>cuentas works!</p>
-<p>Hola</p>
+<app-header></app-header>
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="cuentas">
+        <div class="cuentasContainer">
+            @if(!cuentas||cuentas.length>0){
+                @for(cuenta of cuentas; track $index){
+                    <div class="account-square">
+                        <p>{{cuenta.nombre}}</p>
+                        <p>{{cuenta.saldo | currency}}</p>
+                        <p>{{cuenta.estatusDetail.estatus}}</p>
+                    </div>
+                }
+            }
+            @else {
+                <div class="info">
+                    <p>hola</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

@@ -43,7 +43,6 @@ export class MovimientosFormComponent implements OnInit{
 
     this.loadActiveCategorias();
     this.loadActiveCuentas();
-    //this.loadSubcategorias(4);
 
     this.pagosForm.get('tipoMovimiento')?.valueChanges.subscribe(value=>{
       if(value === 'unica'){
@@ -63,10 +62,6 @@ export class MovimientosFormComponent implements OnInit{
         this.cuentas = data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener cuentas';
-        this.snackBar.open('Error con cuentas activas '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
         console.error('Error fetching cuentas: ', error);
       });
   }
@@ -77,10 +72,6 @@ export class MovimientosFormComponent implements OnInit{
         this.categorias = data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener categorias';
-        this.snackBar.open('Error con categorias activas '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
         console.error('Error fetching categorias: ', error);
       });
   }
@@ -93,23 +84,13 @@ export class MovimientosFormComponent implements OnInit{
         this.subcategorias=data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener subcategorias';
-        this.snackBar.open('Error con subcategorias '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
         console.error('Error fetching subcategorias: ', error);
       }
     )
   }
 
-  /*onChangeValue(event: any){
-    console.log("evento:"+event);
-    this.selectedCategory = event.target.value;
-    console.log(event.target.value);
-  }*/
   submitForm(){
-    //if(this.pagosForm.valid){
-      //console.log("es valido");
+    if(this.pagosForm.valid){
       const formData = this.pagosForm.value;
       console.log("Monto:"+formData.monto);
       if(formData.tipoMovimiento ===  'unica'){
@@ -148,5 +129,7 @@ export class MovimientosFormComponent implements OnInit{
             duration: 5000
           })
       })}
-  }
+  }else{
+    alert("Formulario Invalido");
+  }}
 }

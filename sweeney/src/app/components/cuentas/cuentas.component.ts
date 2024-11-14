@@ -49,4 +49,17 @@ export class CuentasComponent {
         })
       })
   }
+
+  desactivarCuentas(cuentaId: string): void{
+    this.cueSrv.desactivarCuenta(cuentaId).subscribe(
+      (data)=>{
+        this.loadCuentas();
+      },
+      (error)=>{
+        const errorMessage = error.error?.message || 'Error al obtener cuentas';
+        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+      })
+  }
 }

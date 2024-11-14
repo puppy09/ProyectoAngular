@@ -25,4 +25,8 @@ export class CuentasService {
   activarCuenta(cuentaId: string):Observable<Cuentas|Cuentas[]>{
     return this.http.patch<Cuentas|Cuentas[]>(`${this.apiUrl}/activar/${cuentaId}`,{});
   }
+
+  desactivarCuenta(cuentaId: string):Observable<Cuentas|Cuentas[]>{
+    return this.http.patch<Cuentas|Cuentas[]>(`${this.apiUrl}/desactivar/${cuentaId}`,{})
+  }
 }

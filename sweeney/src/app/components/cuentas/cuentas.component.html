@@ -15,7 +15,7 @@
                             <button mat-button [matMenuTriggerFor]="menu">Opciones</button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item (click)="activarCuentas(cuenta.ID)">Activar Cuenta</button>
-                                <button mat-menu-item>Desactivar Cuenta</button>
+                                <button mat-menu-item (click)="desactivarCuentas(cuenta.ID)">Desactivar Cuenta</button>
                                 <button mat-menu-item>Editar Cuenta</button>
                             </mat-menu>
                         </div>

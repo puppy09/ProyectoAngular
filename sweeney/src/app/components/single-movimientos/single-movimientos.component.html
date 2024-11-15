@@ -1,0 +1,49 @@
+<div class="movimientosContainer">
+    <h4 class="poppins-bold">Mis Movimientos</h4>
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th class="poppins-bold">No. de Cuenta</th>
+                <th class="poppins-bold">Transacción</th>
+                <th class="poppins-bold">Tipo de Transacción</th>
+                <th class="poppins-bold">Monto</th>
+                <th class="poppins-bold">Fecha</th>
+                <th class="poppins-bold">Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(movimientos && movimientos.length >0){
+                @for (movimiento of movimientos; track $index) {
+                    @defer () {
+                        <tr>
+                            <td class="poppins-thin">{{movimiento.no_cuenta}}</td>
+                            <td class="poppins-thin">{{movimiento.descripcion}}</td>
+                            <td class="poppins-thin">{{movimiento.movimientoDetail.tipo_movimiento}}</td>
+                            <td class="poppins-thin">{{movimiento.monto | currency}}</td>
+                            <td class="poppins-thin">{{movimiento.fecha}}</td>
+                            <td>
+                                <button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>Modificar Pago</button>
+                                    <button mat-menu-item>Desactivar Cuenta</button>
+                                    <button mat-menu-item>Editar Cuenta</button>
+                                </mat-menu>
+                            </td>
+                        </tr>
+                    }
+                    @placeholder {
+                        <td class="poppins-thin" colspan="5" style="text-align: center;">Cargando movimientos</td>
+                    }
+                }
+            }@else {
+                <TR>
+                    <TD class="poppins-thin" colspan="5" style="text-align: center;">Este usuario aun no tiene movimientos registrados</TD>
+                </TR>
+            }
+        </tbody>
+    </table>
+</div>
+</div>

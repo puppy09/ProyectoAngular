@@ -9,41 +9,12 @@
         </div>
         <button class="round-button" (click)="goToAdd()">+</button>
         <p class="po">Da clic para añadir un movimiento</p>
-        <h4 class="poppins-bold">Mis Movimientos</h4>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="poppins-bold">No. de Cuenta</th>
-                        <th class="poppins-bold">Transacción</th>
-                        <th class="poppins-bold">Tipo de Transacción</th>
-                        <th class="poppins-bold">Monto</th>
-                        <th class="poppins-bold">Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if(movimientos && movimientos.length >0){
-                        @for (movimiento of movimientos; track $index) {
-                            @defer () {
-                                <tr>
-                                    <td class="poppins-thin">{{movimiento.no_cuenta}}</td>
-                                    <td class="poppins-thin">{{movimiento.descripcion}}</td>
-                                    <td class="poppins-thin">{{movimiento.movimientoDetail.tipo_movimiento}}</td>
-                                    <td class="poppins-thin">{{movimiento.monto | currency}}</td>
-                                    <td class="poppins-thin">{{movimiento.fecha}}</td>
-                                </tr>
-                            }
-                            @placeholder {
-                                <td class="poppins-thin" colspan="5" style="text-align: center;">Cargando movimientos</td>
-                            }
-                        }
-                    }@else {
-                        <TR>
-                            <TD class="poppins-thin" colspan="5" style="text-align: center;">Este usuario aun no tiene movimientos registrados</TD>
-                        </TR>
-                    }
-                </tbody>
-            </table>
+        <div class="botones">
+            <button (click)="navigateToMovimientos()" class="poppins-bold">Ver Mis Movimientos</button>
+            <button class="poppins-bold">Ver Mis Pagos</button>
         </div>
+        
+        <router-outlet></router-outlet>
     </div>
+    
 </div>

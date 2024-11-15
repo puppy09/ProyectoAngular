@@ -27,5 +27,12 @@ export class PagosService {
     return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}/programado`,{num_cuenta,descripcion,monto,categoria,subcategoria, dia_pago, total_pagos});
   }
 
+  updPago(pagoId: string,num_cuenta: string, descripcion: string, monto: number, categoria: number, subcategoria: number):Observable<Pagos|Pagos[]>{
+    return this.http.put<Pagos|Pagos[]>(`${this.apiUrl}/update/${pagoId}`,{no_cuenta: num_cuenta,descripcion,monto,categoria,subcategoria});
+  }
+
+  updPagoProgramado(pagoId: string, num_cuenta: string, descripcion: string, monto: number, categoria: number, subcategoria: number, dia_pago:number, total_pagos:number):Observable<Pagos|Pagos[]>{
+    return this.http.put<Pagos|Pagos[]>(`${this.apiUrl}/programado/update/${pagoId}`,{no_cuenta: num_cuenta,descripcion,monto,categoria,subcategoria, dia_pago, total_pagos});
+  }
  
 }

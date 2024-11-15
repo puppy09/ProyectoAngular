@@ -4,19 +4,22 @@ import { SidebarComponent } from "../sidebar/sidebar.component";
 import { MovimientosService } from '../../services/movimientos/movimientos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CurrencyPipe } from '@angular/common';
-import { routes } from '../../app.routes';
-import { Route, Router, ActivatedRoute, RouterModule } from '@angular/router';
-import { MovimientosFormComponent } from '../movimientos-form/movimientos-form.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { Movimientos } from '../../interfaces/movimientos.interface';
 
 @Component({
   selector: 'app-movimientos',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, CurrencyPipe, RouterModule],
+  imports: [HeaderComponent, SidebarComponent, CurrencyPipe, RouterModule,MatMenuModule, MatIconModule, MatButtonModule],
   templateUrl: './movimientos.component.html',
   styleUrl: './movimientos.component.css'
 })
 export class MovimientosComponent implements OnInit{
   movimientos: any;
+  selectedComponent: string = '';
 
   constructor(private route: ActivatedRoute, private movSrv: MovimientosService, private snackBar: MatSnackBar, private router:Router){}
 
@@ -41,4 +44,18 @@ export class MovimientosComponent implements OnInit{
   goToAdd():void{
     this.router.navigate(['movimientos','agregar']);
   }
+
+  update(pago: Movimientos){
+    this.router.navigate(['pagos','modificar',pago.id_movimiento],{state: {pago: pago}});
+  }
+
+ /*navigateTo(child: string): void{
+    this,this.router.navigate([child], { relativeTo: this.router.url})
+ }*/
+ navigateToMovimientos(): void {
+  this.router.navigate(['single/movimientos'], { relativeTo: this.route });
+}
+ /*navigateTo(child: string): void {
+  this.router.navigate([child], { relativeTo: this.route }); // Use `this.route` for relative navigation
+}*/
 }

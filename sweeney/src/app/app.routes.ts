@@ -8,16 +8,26 @@ import { GruposComponent } from './components/grupos/grupos.component';
 import { GastosComponent } from './components/gastos/gastos.component';
 import { Page404Component } from './components/page404/page404.component';
 import { MovimientosFormComponent } from './components/movimientos-form/movimientos-form.component';
+import { PagosUpdateFormComponent } from './components/pagosUpdateForm/pagos-update-form/pagos-update-form.component';
+import { SingleMovimientosComponent } from './components/single-movimientos/single-movimientos.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
     {path: 'menu', component: MenuPrincipalComponent},
     {path: 'registro',component:RegisterComponent},
     {path: 'cuentas', component: CuentasComponent},
-    {path: 'movimientos',component:MovimientosComponent},
+    {path: 'movimientos',component:MovimientosComponent,
+        children:[
+            {
+                path: 'single/movimientos',
+                component: SingleMovimientosComponent
+            }
+        ]
+    },
     {path: 'movimientos/agregar',component:MovimientosFormComponent},
     {path: 'grupos',component:GruposComponent},
     {path: 'gastos',component:GastosComponent},
+    {path: 'pagos/modificar/:id', component: PagosUpdateFormComponent},
     {path: 'page404', component:Page404Component},
     {
         path: '**', redirectTo: 'page404'

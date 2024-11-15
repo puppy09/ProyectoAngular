@@ -1,0 +1,45 @@
+<form [formGroup]="pagosForm">
+    <label for="cuenta">Cuenta:</label>
+    <select name="" id="cuenta" formControlName="no_cuenta">
+        @if(cuentas){
+            @for (cuenta of cuentas; track $index) {
+                <option value={{cuenta.no_cuenta}}>{{ cuenta.no_cuenta }}</option>
+            }
+        }
+        @else {
+            <option value="">No hay cuentas activas</option>
+        }                
+    </select>
+    <label for="descripcion">Descripcion:</label>
+    <input type="text" formControlName="descripcion">
+    <label for="categoria">Categoria:</label>
+    <select name="" id="categoria" formControlName="categoria" (change)="loadSubcategorias($event)">
+        @if(categorias){
+            @for (categoria of categorias; track $index) {
+                <option value={{categoria.ID}}>{{ categoria.nombre }}</option>
+            }
+        }
+        @else {
+            <option value="">No hay categorias activas</option>
+        }  
+    </select>
+    <label for="subcategoria">Subcategoria:</label>
+    <select name="" id="subcategoria" formControlName="subcategoria">
+        @if(subcategorias){
+            @for (subcategoria of subcategorias; track $index) {
+                <option value={{subcategoria.id_negocio}}>{{ subcategoria.negocio.nombre }}</option>
+            }
+        }
+        @if(!subcategorias) {
+            <option value="">No hay subcategorias</option>
+        }
+        
+    </select>
+    <label for="monto">Monto:</label>
+    <input type="text" formControlName="monto">
+    <label for="diaPago">Dia de Pago:</label>
+    <input type="text" formControlName="diaPago">
+    <label for="totalPagos">Total Pagos:</label>
+    <input type="text" formControlName="totalPagos">
+<button type="submit">Registrar Pago</button>
+</form>

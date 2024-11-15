@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PagosProgService } from '../../services/pagosProg/pagos-prog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-single-pagos-programados',
@@ -8,5 +10,27 @@ import { Component } from '@angular/core';
   styleUrl: './single-pagos-programados.component.css'
 })
 export class SinglePagosProgramadosComponent {
+
+  pagosPro: any;
+  constructor(private pagProSvc: PagosProgService, private snackBar: MatSnackBar){}
+  
+  ngOnInit(){
+    this.getPagosProgramados();
+  }
+
+  getPagosProgramados(){
+    this.pagProSvc.getPagoProgramado().subscribe(
+      (data)=>{
+        this.pagosPro=data;
+        console.log(this.pagosPro);
+      },
+      (error)=>{
+        const errorMessage = error.error?.message || 'Error al obtener pagos programados';
+        this.snackBar.open('Error con pagos programados '+errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+        console.error('Error fetching pagos programados: ', error);
+      })
+  }
 
 }

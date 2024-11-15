@@ -1,1 +1,43 @@
-<p>single-pagos-programados works!</p>
+<div class="pagoProContainer">
+    <h4 class="poppins-bold">Mis Pagos Programados</h4>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="poppins-bold">No. de Cuenta</th>
+                    <th class="poppins-bold">Descripcion</th>
+                    <th class="poppins-bold">Monto</th>
+                    <th class="poppins-bold">Categoria</th>
+                    <th class="poppins-bold">Subcategoria</th>
+                    <th class="poppins-bold">Día Programado</th>
+                    <th class="poppins-bold">Pagos Hechos</th>
+                    <th class="poppins-bold">Total de Pagos</th>
+                    <th class="poppins-bold">Estatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(pagosPro && pagosPro.length>0){
+                    @for(pagos of pagosPro; track $index){
+                        <tr>
+                            <td class="poppins-thin">{{pagos.no_cuenta}}</td>
+                            <td class="poppins-thin">{{pagos.descripcion}}</td>
+                            <td class="poppins-thin">{{pagos.monto}}</td>
+                            <td class="poppins-thin">{{pagos.category.nombre}}</td>
+                            <td class="poppins-thin">{{pagos.negocio.nombre}}</td>
+                            <td class="poppins-thin">{{pagos.dia_programado}}</td>
+                            <td class="poppins-thin">{{pagos.pagos_hechos}}</td>
+                            <td class="poppins-thin">{{pagos.total_pagos}}</td>
+                            <td class="poppins-thin">{{pagos.estatuspago.estatus_pagos}}</td>
+                        </tr>
+                    }
+                    
+                }
+                @else {
+                    <TR>
+                        <TD class="poppins-thin" colspan="9" style="text-align: center;">Este usuario aun no tiene pagos registrados</TD>
+                    </TR>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

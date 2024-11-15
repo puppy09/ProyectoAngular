@@ -11,6 +11,7 @@ import { MovimientosFormComponent } from './components/movimientos-form/movimien
 import { PagosUpdateFormComponent } from './components/pagosUpdateForm/pagos-update-form/pagos-update-form.component';
 import { SingleMovimientosComponent } from './components/single-movimientos/single-movimientos.component';
 import { SinglePagosComponent } from './components/single-pagos/single-pagos.component';
+import { SinglePagosProgramadosComponent } from './components/single-pagos-programados/single-pagos-programados.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -26,6 +27,10 @@ export const routes: Routes = [
             {
                 path: 'single/pagos',
                 component: SinglePagosComponent
+            },
+            {
+                path: 'single/pagosProgramados',
+                component: SinglePagosProgramadosComponent
             }
         ]
     },

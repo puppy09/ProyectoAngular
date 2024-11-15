@@ -45,13 +45,6 @@ export class MovimientosComponent implements OnInit{
     this.router.navigate(['movimientos','agregar']);
   }
 
-  update(pago: Movimientos){
-    this.router.navigate(['pagos','modificar',pago.id_movimiento],{state: {pago: pago}});
-  }
-
- /*navigateTo(child: string): void{
-    this,this.router.navigate([child], { relativeTo: this.router.url})
- }*/
   navigateToMovimientos(): void {
     this.router.navigate(['single/movimientos'], { relativeTo: this.route });
   }
@@ -59,7 +52,8 @@ export class MovimientosComponent implements OnInit{
   navigateToPagos(): void{
     this.router.navigate(['single/pagos'], {relativeTo: this.route});
   }
- /*navigateTo(child: string): void {
-  this.router.navigate([child], { relativeTo: this.route }); // Use `this.route` for relative navigation
-}*/
+
+  navigateToPagosProgramados(): void{
+    this.router.navigate(['single/pagosProgramados'],{relativeTo: this.route})
+  }
 }

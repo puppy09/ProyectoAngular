@@ -8,6 +8,7 @@
                     <th class="poppins-bold">Descripcion</th>
                     <th class="poppins-bold">Categoria</th>
                     <th class="poppins-bold">Subcategoria</th>
+                    <th class="poppins-bold">Monto</th>
                     <th class="poppins-bold">Tipo de Pago</th>
                     <th class="poppins-bold">Estatus de Pago</th>
                     <th class="poppins-bold">Fecha</th>
@@ -22,6 +23,7 @@
                             <td class="poppins-thin">{{pago.descripcion}}</td>
                             <td class="poppins-thin">{{pago.category.nombre}}</td>
                             <td class="poppins-thin">{{pago.negocio.nombre}}</td>
+                            <td class="poppins-thin">{{pago.monto}}</td>
                             <td class="poppins-thin">{{pago.tipospago.tipo}}</td>
                             <td class="poppins-thin">{{pago.estatuspago.estatus_pagos}}</td>
                             <td class="poppins-thin">{{pago.fecha}}</td>
@@ -31,7 +33,7 @@
                                 </button>
                                 <mat-menu #menu="matMenu">
                                     <button mat-menu-item>Editar Pago</button>
-                                    <button mat-menu-item>Reembolsar Pago</button>
+                                    <button mat-menu-item (click)="reembolsarPago(pago.id_pago)">Reembolsar Pago</button>
                                 </mat-menu>
                             </td>
                         </tr>

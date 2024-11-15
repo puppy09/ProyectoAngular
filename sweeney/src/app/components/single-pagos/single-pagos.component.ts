@@ -34,5 +34,19 @@ export class SinglePagosComponent {
         console.error('Error fetching pagos: ', error);
       })
   }
+  reembolsarPago(pagoId: string):void{
+    this.pagoSrv.reembolsarPago(pagoId).subscribe(
+      (data)=>{
+        this.getPagos();
+        this.snackBar.open('Pago Reembolsado', 'Cerrar',{
+          duration: 5000
+        });
+      },
+      (error)=>{
+        this.snackBar.open('Error Reembolsando Pago','Cerrar',{
+          duration: 5000
+        })
+      })
+  }
 
 }

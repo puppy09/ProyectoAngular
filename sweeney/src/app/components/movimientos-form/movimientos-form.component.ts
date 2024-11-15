@@ -9,6 +9,7 @@ import { SubcategoriasService } from '../../services/subcategorias/subcategorias
 import { CuentasService } from '../../services/cuentas/cuentas.service';
 import { PagosService } from '../../services/pagos/pagos.service';
 import {MatRadioModule} from '@angular/material/radio';
+import { PagosProgService } from '../../services/pagosProg/pagos-prog.service';
 
 @Component({
   selector: 'app-movimientos-form',
@@ -26,7 +27,7 @@ export class MovimientosFormComponent implements OnInit{
   subcategorias: any;
 
 
-  constructor(private pagoSvc: PagosService,  private catSrv: CategoriasService, private snackBar: MatSnackBar, private  subSrv: SubcategoriasService, private cuenSrv: CuentasService){}
+  constructor(private pagoProSvc: PagosProgService,private pagoSvc: PagosService,  private catSrv: CategoriasService, private snackBar: MatSnackBar, private  subSrv: SubcategoriasService, private cuenSrv: CuentasService){}
   
   
   ngOnInit(): void {
@@ -112,7 +113,7 @@ export class MovimientosFormComponent implements OnInit{
         });
       }else{
         console.log("error")
-        this.pagoSvc.postPagoProgramado(
+        this.pagoProSvc.postPagoProgramado(
           formData.no_cuenta,
           formData.descripcion,
           formData.monto,

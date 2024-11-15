@@ -1,1 +1,48 @@
-<p>single-pagos works!</p>
+<div class="pagosContainer">
+    <h4 class="poppins-bold">Mis Pagos</h4>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="poppins-bold">No. de Cuenta</th>
+                    <th class="poppins-bold">Descripcion</th>
+                    <th class="poppins-bold">Categoria</th>
+                    <th class="poppins-bold">Subcategoria</th>
+                    <th class="poppins-bold">Tipo de Pago</th>
+                    <th class="poppins-bold">Estatus de Pago</th>
+                    <th class="poppins-bold">Fecha</th>
+                    <th class="poppins-bold">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(pagos && pagos.length>0){
+                    @for(pago of pagos; track $index){
+                        <tr>
+                            <td class="poppins-thin">{{pago.no_cuenta}}</td>
+                            <td class="poppins-thin">{{pago.descripcion}}</td>
+                            <td class="poppins-thin">{{pago.category.nombre}}</td>
+                            <td class="poppins-thin">{{pago.negocio.nombre}}</td>
+                            <td class="poppins-thin">{{pago.tipospago.tipo}}</td>
+                            <td class="poppins-thin">{{pago.estatuspago.estatus_pagos}}</td>
+                            <td class="poppins-thin">{{pago.fecha}}</td>
+                            <td>
+                                <button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>Editar Pago</button>
+                                    <button mat-menu-item>Reembolsar Pago</button>
+                                </mat-menu>
+                            </td>
+                        </tr>
+                    }
+                }
+                @else {
+                    <TR>
+                        <TD class="poppins-thin" colspan="8" style="text-align: center;">Este usuario aun no tiene pagos registrados</TD>
+                    </TR>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

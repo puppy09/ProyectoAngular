@@ -24,7 +24,7 @@ export class MovimientosComponent implements OnInit{
   constructor(private route: ActivatedRoute, private movSrv: MovimientosService, private snackBar: MatSnackBar, private router:Router){}
 
   ngOnInit(): void {
-   this.getMov(); 
+   this.navigateToMovimientos();
   }
 
   getMov():void{
@@ -52,9 +52,13 @@ export class MovimientosComponent implements OnInit{
  /*navigateTo(child: string): void{
     this,this.router.navigate([child], { relativeTo: this.router.url})
  }*/
- navigateToMovimientos(): void {
-  this.router.navigate(['single/movimientos'], { relativeTo: this.route });
-}
+  navigateToMovimientos(): void {
+    this.router.navigate(['single/movimientos'], { relativeTo: this.route });
+  }
+
+  navigateToPagos(): void{
+    this.router.navigate(['single/pagos'], {relativeTo: this.route});
+  }
  /*navigateTo(child: string): void {
   this.router.navigate([child], { relativeTo: this.route }); // Use `this.route` for relative navigation
 }*/

@@ -10,6 +10,7 @@ import { Page404Component } from './components/page404/page404.component';
 import { MovimientosFormComponent } from './components/movimientos-form/movimientos-form.component';
 import { PagosUpdateFormComponent } from './components/pagosUpdateForm/pagos-update-form/pagos-update-form.component';
 import { SingleMovimientosComponent } from './components/single-movimientos/single-movimientos.component';
+import { SinglePagosComponent } from './components/single-pagos/single-pagos.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -21,6 +22,10 @@ export const routes: Routes = [
             {
                 path: 'single/movimientos',
                 component: SingleMovimientosComponent
+            },
+            {
+                path: 'single/pagos',
+                component: SinglePagosComponent
             }
         ]
     },

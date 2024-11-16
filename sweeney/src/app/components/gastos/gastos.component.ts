@@ -34,4 +34,28 @@ export class GastosComponent {
         });
       })
   }
+  activarCategoria(categoryId: string){
+    this.gasSvc.activarCategoria(categoryId).subscribe(
+      (data)=>{
+        this.loadCategorias();
+      },
+      (error)=>{
+        const errorMessage = error.error?.message || 'Error activando categoria';
+        this.snackBar.open('Error con categorias '+errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+      })
+  }
+  desactivarCategoria(categoryId: string){
+    this.gasSvc.desactivarCategoria(categoryId).subscribe(
+      (data)=>{
+        this.loadCategorias();
+      },
+      (error)=>{
+        const errorMessage = error.error?.message || 'Error desactivando categoria';
+        this.snackBar.open('Error con categorias '+errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+      })
+  }
 }

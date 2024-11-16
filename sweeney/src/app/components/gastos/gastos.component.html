@@ -20,10 +20,10 @@
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item>Ver Subcategorias</button>
                                 @if(categoria.estatus===1){
-                                    <button mat-menu-item >Desactivar Categoria</button>
+                                    <button mat-menu-item (click)="desactivarCategoria(categoria.ID)">Desactivar Categoria</button>
                                 }
                                 @else {
-                                    <button mat-menu-item>Activar Categoria</button>
+                                    <button mat-menu-item (click)="activarCategoria(categoria.ID)">Activar Categoria</button>
                                 }
                                 <button mat-menu-item>Editar Categoria</button>
                             </mat-menu>

@@ -23,4 +23,8 @@ export class CategoriasService {
   activarCategoria(categoryId: string):Observable<categoria|categoria[]>{
     return this.http.patch<categoria|categoria[]>(`${this.apiUrl}/activar/${categoryId}`,{});
   }
+
+  desactivarCategoria(categoryId: string):Observable<categoria|categoria[]>{
+    return this.http.patch<categoria|categoria[]>(`${this.apiUrl}/desactivar/${categoryId}`,{});
+  }
 }

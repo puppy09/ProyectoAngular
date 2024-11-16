@@ -20,15 +20,30 @@ export class MenuPrincipalComponent  implements OnInit{
   movimientos: any;
   pagos: any;
   usuario: any;
-
+  saldo:any;
   constructor(private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.fetchCuentas();
     this.fetchMovimientos();
     this.fetchPagos();
     this.userInfo();
+    this.getSldos();
   }
 
+  getSldos(): void{
+    this.cuentasService.getSaldoTotal().subscribe(
+      (data)=>{
+        console.log(data);
+        this.saldo = data;
+      },
+      (error)=>{
+        const errorMessage = error.error?.message || 'Error al obtener saldo';
+        this.snackBar.open(errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+      }
+    )
+  }
   fetchCuentas(): void {
     this.cuentasService.getCuentas().subscribe(
       (data) => {

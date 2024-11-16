@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { CuentasService } from '../../../services/cuentas/cuentas.service';
 import { CategoriasService } from '../../../services/categorias/categorias.service';
 import { SubcategoriasService } from '../../../services/subcategorias/subcategorias.service';
 import { DataServiceService } from '../../../services/dataService/data-service.service';
+import { SidebarComponent } from '../../sidebar/sidebar.component';
+import { HeaderComponent } from '../../header/header.component';
 @Component({
   selector: 'app-pagos-update-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SidebarComponent, HeaderComponent],
   templateUrl: './pagos-update-form.component.html',
   styleUrl: './pagos-update-form.component.css'
 })

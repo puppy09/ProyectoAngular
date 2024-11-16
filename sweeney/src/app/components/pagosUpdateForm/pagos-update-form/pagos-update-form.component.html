@@ -4,12 +4,12 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="upd-pago">
-        <form [formGroup]="pagosForm">
+        <form [formGroup]="pagosForm" (ngSubmit)="submitForm()">
             <label for="cuenta">Cuenta:</label>
             <select name="" id="cuenta" formControlName="no_cuenta">
                 @if(cuentas){
                     @for (cuenta of cuentas; track $index) {
-                        <option value={{cuenta.no_cuenta}}>{{ cuenta.no_cuenta }}</option>
+                        <option value={{cuenta.no_cuenta}}>{{ cuenta.nombre }}</option>
                     }
                 }
                 @else {
@@ -47,7 +47,7 @@
             <input type="text" formControlName="diaPago">
             <label for="totalPagos">Total Pagos:</label>
             <input type="text" formControlName="totalPagos">
-        <button type="submit">Registrar Pago</button>
+        <button type="submit">Actualizar Pago</button>
         </form>        
     </div>
 </div>

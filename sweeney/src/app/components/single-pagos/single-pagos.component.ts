@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { DataServiceService } from '../../services/dataService/data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-pagos',
@@ -16,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class SinglePagosComponent {
 
   pagos: any;
-  constructor(private pagoSrv: PagosService, private snackBar: MatSnackBar){}
+  constructor(private dataSvc:DataServiceService, private router: Router, private pagoSrv: PagosService, private snackBar: MatSnackBar){}
   ngOnInit():void{
     this.getPagos();
   }
@@ -49,4 +51,9 @@ export class SinglePagosComponent {
       })
   }
 
+  
+  setPago(pago: any){
+    this.dataSvc.setPagoData(pago);
+    this.router.navigate(['pagos/modificar',pago.id_pago])
+  }
 }

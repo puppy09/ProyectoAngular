@@ -32,7 +32,7 @@
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item>Editar Pago</button>
+                                    <button mat-menu-item (click)="setPago(pago)">Editar Pago</button>
                                     <button mat-menu-item (click)="reembolsarPago(pago.id_pago)">Reembolsar Pago</button>
                                 </mat-menu>
                             </td>

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CuentasService } from '../../../services/cuentas/cuentas.service';
 import { CategoriasService } from '../../../services/categorias/categorias.service';
 import { SubcategoriasService } from '../../../services/subcategorias/subcategorias.service';
+import { DataServiceService } from '../../../services/dataService/data-service.service';
 @Component({
   selector: 'app-pagos-update-form',
   standalone: true,
@@ -19,9 +20,7 @@ export class PagosUpdateFormComponent {
   categorias: any;
   subcategorias: any;
   
-  constructor(private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService, private  catSrv: CategoriasService, private subSrv: SubcategoriasService){}
-
-  ngOnInit(){
+  constructor(private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService, private  catSrv: CategoriasService, private subSrv: SubcategoriasService){
     this.pagosForm = this.fb.group({
       no_cuenta: new FormControl('', Validators.required),
       categoria: new FormControl('', Validators.required),
@@ -32,23 +31,27 @@ export class PagosUpdateFormComponent {
       diaPago: new FormControl({ value:'', disabled:true}),
       totalPagos: new FormControl({value:'', disabled: true})
     })
-    this.loadActiveCategorias();
-    this.loadActiveCuentas();
-
-    const navigation = this.route.getCurrentNavigation();
-    const pago = navigation?.extras.state?.['pago'];
+    
+    const pago = this.dataSvc.getPagoData();
     if(pago){
       console.log(pago);
       this.pagosForm.patchValue({
         no_cuenta: pago.no_cuenta,
         categoria: pago.categoria,
-        subcategoria: pago.categoria,
+        subcategoria: pago.subcategoria,
         descripcion: pago.descripcion,
-        monto:pago.monto
+        monto: pago.monto
       });
-    }
-    else{
+    }else{
       console.log("No hay pago");
+    }
+  }
+
+  ngOnInit(){
+    this.loadActiveCategorias();
+    this.loadActiveCuentas();
+    if(this.pagosForm.value.categoria){
+      this.loadSubcategorias({target: {value: this.pagosForm.value.categoria}});
     }
   }
 

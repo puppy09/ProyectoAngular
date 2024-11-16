@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { DataServiceService } from '../../services/dataService/data-service.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-pagos-programados',
@@ -15,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class SinglePagosProgramadosComponent {
 
   pagosPro: any;
-  constructor(private pagProSvc: PagosProgService, private snackBar: MatSnackBar){}
+  constructor(private router: Router, private dataSvc: DataServiceService, private pagProSvc: PagosProgService, private snackBar: MatSnackBar){}
   
   ngOnInit(){
     this.getPagosProgramados();
@@ -35,5 +37,4 @@ export class SinglePagosProgramadosComponent {
         console.error('Error fetching pagos programados: ', error);
       })
   }
-
 }

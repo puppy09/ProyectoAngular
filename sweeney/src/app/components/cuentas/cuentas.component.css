@@ -33,7 +33,7 @@
 
 
 .account-square{
-    width: 100%;
+    width: 50%;
     height: 150px;
     padding-right: 10px;
     background-color: #f0f0f0;
@@ -46,6 +46,14 @@
     font-weight: bold;
     box-shadow: inset;
     cursor: pointer;
+    -webkit-box-shadow: 14px 9px 25px -3px rgba(0,0,0,0.42);
+    -moz-box-shadow: 14px 9px 25px -3px rgba(0,0,0,0.42);
+    box-shadow: 14px 9px 25px -3px rgba(0,0,0,0.42);
+}
+.account-square:hover{
+  /*background-color: #075271;*/
+  background-color: #5D9DA8;
+  color: white;
 }
   .poppins-thin {
     font-family: "Poppins", sans-serif;
@@ -55,7 +63,7 @@
 .cuentasContainer{
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Creates two equal-width columns */
-    gap: 16px; /* Adjust the gap between the items */
+    gap: 10px; /* Adjust the gap between the items */
     width: 95%; /* Ensure container spans full width */
     box-sizing: border-box;
 }

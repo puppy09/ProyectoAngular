@@ -1,1 +1,39 @@
-<p>gastos works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="gastos">
+        <button class="round-button">+</button>
+        <p>Da clic para añadir un nuevo gasto</p>
+        <div class="gastosContainer">
+            @if(categorias && categorias.length>0){
+                @for(categoria of categorias; track $index){
+                    <div class="category-square">
+                        <p>{{categoria.nombre}}</p>
+                        <p class="poppins-thin">{{categoria.presupuesto}}%</p>
+                        <p class="poppins-thin">{{categoria.estatusDetail.estatus}}</p>
+                        <div class="opc">
+                            <button mat-icon-button [matMenuTriggerFor]="menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Ver Subcategorias</button>
+                                @if(categoria.estatus===1){
+                                    <button mat-menu-item >Desactivar Categoria</button>
+                                }
+                                @else {
+                                    <button mat-menu-item>Activar Categoria</button>
+                                }
+                                <button mat-menu-item>Editar Categoria</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                }
+            }
+            @else {
+                <p class="poppins-thin">Aun no tienes categorias de gastos agregadas</p>
+            }
+        </div>
+    </div>
+</div>

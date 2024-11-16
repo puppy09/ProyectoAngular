@@ -1,0 +1,74 @@
+.container{
+    display: flex;
+    width: 100vw;
+}
+.sideBar{
+    position: fixed;
+    height: 100%;
+}
+.gastosContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates two equal-width columns */
+    gap: 10px; /* Adjust the gap between the items */
+    width: 95%; /* Ensure container spans full width */
+    box-sizing: border-box;
+}
+.round-button {
+    width: 35px;           /* Set the width */
+    height: 35px;          /* Set the height (same as width for a perfect circle) */
+    border-radius: 50%;    /* Rounds the button fully */
+    border: none;          /* Optional: removes the border */
+    background-color: #5D9DA8; /* Button color */
+    color: white;          /* Text color */
+    font-size: 24px;       /* Adjust font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .round-button:hover {
+    background-color: #66adb9; /* Darken color on hover */
+  }
+  .poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+.category-square{
+    width: 50%;
+    height: 150px;
+    padding-right: 10px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: inset;
+    cursor: pointer;
+    -webkit-box-shadow: 14px 9px 25px -3px rgba(0,0,0,0.42);
+    -moz-box-shadow: 14px 9px 25px -3px rgba(0,0,0,0.42);
+    box-shadow: 14px 9px 25px -3px rgba(0,0,0,0.42);
+}
+.category-square:hover{
+    /*background-color: #075271;*/
+    background-color: #5D9DA8;
+    color: white;
+  }
+.gastos{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
+    margin-top: 10%;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.opc{
+    margin-left: 70%;
+    display: flex;
+}

@@ -95,7 +95,6 @@ export class MovimientosFormComponent implements OnInit{
       const formData = this.pagosForm.value;
       console.log("Monto:"+formData.monto);
       if(formData.tipoMovimiento ===  'unica'){
-        console.log("peticion 1");
         this.pagoSvc.postPago(
           formData.no_cuenta,
           formData.descripcion,

@@ -66,7 +66,7 @@ export class CuentasFormComponent {
                 duration: 5000
               })
             });
-    }else{
+        }else{
       this.cuenSvc.postCuentas(
         formData.no_cuenta,
         formData.fecha_venci,
@@ -82,9 +82,9 @@ export class CuentasFormComponent {
             duration: 5000
           })
       });
-    }
-  }else{
-  alert("Formulario Invalido");
+        }
+    }else{
+    alert("Formulario Invalido");
   }
-}
+  }
 }

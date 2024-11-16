@@ -22,11 +22,15 @@ export class CuentasService {
     return this.http.get<Cuentas|Cuentas[]>(`${this.apiUrl}/activas`);
   }
 
-  activarCuenta(cuentaId: string):Observable<Cuentas|Cuentas[]>{
-    return this.http.patch<Cuentas|Cuentas[]>(`${this.apiUrl}/activar/${cuentaId}`,{});
+  activarCuenta(cuentaId: string):Observable<Cuentas>{
+    return this.http.patch<Cuentas>(`${this.apiUrl}/activar/${cuentaId}`,{});
   }
 
-  desactivarCuenta(cuentaId: string):Observable<Cuentas|Cuentas[]>{
-    return this.http.patch<Cuentas|Cuentas[]>(`${this.apiUrl}/desactivar/${cuentaId}`,{})
+  desactivarCuenta(cuentaId: string):Observable<Cuentas>{
+    return this.http.patch<Cuentas>(`${this.apiUrl}/desactivar/${cuentaId}`,{});
+  }
+
+  postCuentas(no_cuenta: string, fecha_venci: string, nombre: string, saldo: number, estatus: number):Observable<Cuentas>{
+    return this.http.post<Cuentas>(`${this.apiUrl}`,{no_cuenta, fecha_vencimiento: fecha_venci, nombre, saldo, estatus});
   }
 }

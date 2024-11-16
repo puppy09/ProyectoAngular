@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="new-cuenta">
+        <h4 class="poppins-bold">Registra una nueva Cuenta</h4>
+
+        <form [formGroup]="cuentasForm" (ngSubmit)="submitForm()">
+            <label for="no_cuenta">Número de Cuenta:</label>
+            <input type="text" placeholder="Ingrese numero de cuenta" formControlName="no_cuenta">
+
+            <label for="fecha_venci">Fecha de Vencimiento:</label>
+            <input type="text" placeholder="MM/YY" formControlName="fecha_venci" maxlength="5" (input)="formatFechaVencimiento($event)">
+
+            <label for="alias">Alias:</label>
+            <input type="text" placeholder="Alias" formControlName="alias">
+
+            <div>
+                <mat-radio-group formControlName="addSaldo">
+                    <label for="">¿Desea agregar un saldo?</label>
+                    <mat-radio-button value="si">Sí</mat-radio-button>
+                    <mat-radio-button value="no">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <label for="saldo">Saldo:</label>
+            <input type="number" formControlName="saldo" min="0">
+            <button type="submit">Registrar Cuenta</button>
+        </form>
+    </div>
+</div>

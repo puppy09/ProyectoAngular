@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { PagosProgService } from '../../services/pagosProg/pagos-prog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-single-pagos-programados',
   standalone: true,
-  imports: [],
+  imports: [MatIconModule, MatMenuModule, MatButtonModule],
   templateUrl: './single-pagos-programados.component.html',
   styleUrl: './single-pagos-programados.component.css'
 })

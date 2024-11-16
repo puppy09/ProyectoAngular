@@ -13,6 +13,7 @@
                     <th class="poppins-bold">Pagos Hechos</th>
                     <th class="poppins-bold">Total de Pagos</th>
                     <th class="poppins-bold">Estatus</th>
+                    <th class="poppins-bold">Info.</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,14 @@
                             <td class="poppins-thin">{{pagos.pagos_hechos}}</td>
                             <td class="poppins-thin">{{pagos.total_pagos}}</td>
                             <td class="poppins-thin">{{pagos.estatuspago.estatus_pagos}}</td>
+                            <td>
+                                <button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>Editar Pago</button>
+                                </mat-menu>
+                            </td>
                         </tr>
                     }
                     

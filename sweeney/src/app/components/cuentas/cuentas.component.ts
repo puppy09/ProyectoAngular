@@ -7,6 +7,7 @@ import { CurrencyPipe } from '@angular/common';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cuentas',
@@ -18,7 +19,7 @@ import {MatIconModule} from '@angular/material/icon';
 export class CuentasComponent {
 
   cuentas: any;
-  constructor(private cueSrv: CuentasService, private snackBar: MatSnackBar){}
+  constructor(private cueSrv: CuentasService, private snackBar: MatSnackBar, private router: Router){}
 
   ngOnInit(): void{
     this.loadCuentas();
@@ -61,5 +62,9 @@ export class CuentasComponent {
           duration: 5000
         })
       })
+  }
+
+  gotoAdd():void{
+    this.router.navigate(['cuentas','agregar']);
   }
 }

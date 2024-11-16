@@ -131,6 +131,6 @@ export class MovimientosFormComponent implements OnInit{
           })
       })}
   }else{
-    alert("Formulario Invalido");
+    alert("Formulario Invalido o fondos insuficientes");
   }}
 }

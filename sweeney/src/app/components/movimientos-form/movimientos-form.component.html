@@ -12,7 +12,7 @@
             <select name="" id="cuenta" formControlName="no_cuenta">
                 @if(cuentas){
                     @for (cuenta of cuentas; track $index) {
-                        <option value={{cuenta.no_cuenta}}>{{ cuenta.no_cuenta }}</option>
+                        <option value={{cuenta.no_cuenta}}>{{ cuenta.nombre }}</option>
                     }
                 }
                 @else {

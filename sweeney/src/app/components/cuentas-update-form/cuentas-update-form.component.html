@@ -1,1 +1,22 @@
-<p>cuentas-update-form works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="upd-cuenta">
+        <form [formGroup]="cuentasForm" (ngSubmit)="submitForm()">
+            <label for="no_cuenta">Número de Cuenta:</label>
+            <input type="text" placeholder="Ingrese numero de cuenta" formControlName="no_cuenta">
+
+            <label for="fecha_venci">Fecha de Vencimiento:</label>
+            <input type="text" placeholder="MM/YY" formControlName="fecha_venci" maxlength="5" (input)="formatFechaVencimiento($event)">
+
+            <label for="alias">Alias:</label>
+            <input type="text" placeholder="Alias" formControlName="alias">
+
+            <label for="saldo">Saldo:</label>
+            <input type="number" formControlName="saldo" min="0">
+            <button type="submit">Registrar Cuenta</button>
+        </form>
+    </div>
+</div>

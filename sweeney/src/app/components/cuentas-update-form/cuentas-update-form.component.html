@@ -4,7 +4,7 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="upd-cuenta">
-        <form [formGroup]="cuentasForm" (ngSubmit)="submitForm()">
+        <form [formGroup]="cuentasForm" (ngSubmit)="submitForm(cuenta.ID)">
             <label for="no_cuenta">Número de Cuenta:</label>
             <input type="text" placeholder="Ingrese numero de cuenta" formControlName="no_cuenta">
 
@@ -16,7 +16,7 @@
 
             <label for="saldo">Saldo:</label>
             <input type="number" formControlName="saldo" min="0">
-            <button type="submit">Registrar Cuenta</button>
+            <button type="submit">Actualizar Cuenta</button>
         </form>
     </div>
 </div>

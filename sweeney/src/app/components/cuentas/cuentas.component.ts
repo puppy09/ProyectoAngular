@@ -8,6 +8,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { DataServiceService } from '../../services/dataService/data-service.service';
 
 @Component({
   selector: 'app-cuentas',
@@ -19,7 +20,7 @@ import { Router } from '@angular/router';
 export class CuentasComponent {
 
   cuentas: any;
-  constructor(private cueSrv: CuentasService, private snackBar: MatSnackBar, private router: Router){}
+  constructor(private dataSvc:DataServiceService, private cueSrv: CuentasService, private snackBar: MatSnackBar, private router: Router){}
 
   ngOnInit(): void{
     this.loadCuentas();
@@ -66,5 +67,9 @@ export class CuentasComponent {
 
   gotoAdd():void{
     this.router.navigate(['cuentas','agregar']);
+  }
+  setCuenta(cuenta:any){
+    this.dataSvc.setCuentaData(cuenta);
+    this.router.navigate(['cuentas/modificar',cuenta.ID])
   }
 }

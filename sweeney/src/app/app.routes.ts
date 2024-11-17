@@ -13,6 +13,7 @@ import { SingleMovimientosComponent } from './components/single-movimientos/sing
 import { SinglePagosComponent } from './components/single-pagos/single-pagos.component';
 import { SinglePagosProgramadosComponent } from './components/single-pagos-programados/single-pagos-programados.component';
 import { CuentasFormComponent } from './components/cuentas-form/cuentas-form.component';
+import { CuentasUpdateFormComponent } from './components/cuentas-update-form/cuentas-update-form.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -40,6 +41,7 @@ export const routes: Routes = [
     {path: 'gastos',component:GastosComponent},
     {path: 'pagos/modificar/:id', component: PagosUpdateFormComponent},
     {path: 'cuentas/agregar', component:CuentasFormComponent},
+    {path: 'cuentas/modificar/:id', component:CuentasUpdateFormComponent},
     {path: 'page404', component:Page404Component},
     {
         path: '**', redirectTo: 'page404'

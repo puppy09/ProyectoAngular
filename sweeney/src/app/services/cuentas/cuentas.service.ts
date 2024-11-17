@@ -33,7 +33,12 @@ export class CuentasService {
   postCuentas(no_cuenta: string, fecha_venci: string, nombre: string, saldo: number, estatus: number):Observable<Cuentas>{
     return this.http.post<Cuentas>(`${this.apiUrl}`,{no_cuenta, fecha_vencimiento: fecha_venci, nombre, saldo, estatus});
   }
+  
   getSaldoTotal():Observable<JSON>{
     return this.http.get<JSON>(`${this.apiUrl}/sumatoria`);
+  }
+
+  updCuenta(cuentaId: number, fecha_vencimiento: string, nombre: string, saldo:number):Observable<Cuentas|Cuentas[]>{
+    return this.http.put<Cuentas>(`${this.apiUrl}/${cuentaId}`,{fecha_vencimiento,nombre,saldo});
   }
 }

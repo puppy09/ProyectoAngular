@@ -19,6 +19,7 @@
                                 <mat-icon>more_vert</mat-icon>
                             </button>
                             <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="addFondos()">Añadir Fondos</button>
                                 @if(cuenta.estatus===1){
                                     <button mat-menu-item (click)="desactivarCuentas(cuenta.ID)">Desactivar Cuenta</button>
                                 }

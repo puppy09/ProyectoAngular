@@ -19,4 +19,8 @@ export class MovimientosService {
   getMovimientosByCuenta(noCuenta: string):Observable<Movimientos|Movimientos[]>{
     return this.http.post<Movimientos|Movimientos[]>(`${this.apiUrl}/by/cuenta`,{noCuenta});
   }
+
+  postFondos(no_cuenta: string, descripcion: string, monto: number):Observable<Movimientos>{
+    return this.http.post<Movimientos>(`${this.apiUrl}`,{monto, no_cuenta, descripcion});
+  }
 }

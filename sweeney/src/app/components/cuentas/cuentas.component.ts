@@ -68,12 +68,14 @@ export class CuentasComponent {
   gotoAdd():void{
     this.router.navigate(['cuentas','agregar']);
   }
-  setCuenta(cuenta:any, tipo:string){
+
+  setCuenta(cuenta:any){
     this.dataSvc.setCuentaData(cuenta);
-    if(tipo="mod"){
       this.router.navigate(['cuentas/modificar',cuenta.ID])
-    }else{
-      this.router.navigate(['movimientos/añadir',cuenta.ID])
-    } 
+      
+  }
+  setCuenta2(cuenta:any){
+    this.dataSvc.setCuentaData(cuenta);
+    this.router.navigate(['movimientos/fondos/añadir',cuenta.ID])
   }
 }

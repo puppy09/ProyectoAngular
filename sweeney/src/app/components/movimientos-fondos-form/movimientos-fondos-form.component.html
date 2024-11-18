@@ -1,1 +1,27 @@
-<p>movimientos-fondos-form works!</p>
+<form [formGroup]="movimientoForm" (ngSubmit)="submitForm()" action="">
+    <label for="cuenta">Cuenta:</label>
+    <select name="" id="cuenta" formControlName="no_cuenta">
+        @if(cuentas){
+            @for (cuenta of cuentas; track $index) {
+                <option value={{cuenta.no_cuenta}}>{{ cuenta.nombre }}</option>
+            }
+        }
+        @else {
+            <option value="">No hay cuentas activas</option>
+        }  
+    </select>
+    <label for="descripcion">Descripcion:</label>
+    <input type="text" formControlName="descripcion">
+    <label for="monto">Monto:</label>
+    <input type="text" formControlName="monto">
+    <div>
+        <mat-radio-group formControlName="tipoMovimiento">
+            <label for="">¿Desea Programar este Movimiento?</label>
+            <mat-radio-button value="unica">No</mat-radio-button>
+            <mat-radio-button value="programado">Sí</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <label for="diaPago">Dia de Pago:</label>
+    <input type="number" formControlName="diaPago">
+    <button type="submit">Registrar Movimiento</button>
+</form>

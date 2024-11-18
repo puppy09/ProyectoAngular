@@ -19,14 +19,14 @@
                                 <mat-icon>more_vert</mat-icon>
                             </button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item (click)="setCuenta(cuenta,'add')">Añadir Fondos</button>
+                                <button mat-menu-item (click)="setCuenta2(cuenta)">Añadir Fondos</button>
                                 @if(cuenta.estatus===1){
                                     <button mat-menu-item (click)="desactivarCuentas(cuenta.ID)">Desactivar Cuenta</button>
                                 }
                                 @else {
                                     <button mat-menu-item (click)="activarCuentas(cuenta.ID)">Activar Cuenta</button>
                                 }
-                                <button mat-menu-item (click)="setCuenta(cuenta,'mod')">Editar Cuenta</button>
+                                <button mat-menu-item (click)="setCuenta(cuenta)">Editar Cuenta</button>
                             </mat-menu>
                         </div>
                     </div>    

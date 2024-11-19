@@ -44,12 +44,17 @@
     gap: 10px;
     margin-bottom: 20px;
   }
+  .infoContainer2{
+    margin-top: 20%;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 
   .info{
     width: 50%;
     height: 100px;
     background-color: #e0e0e0;
-    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;

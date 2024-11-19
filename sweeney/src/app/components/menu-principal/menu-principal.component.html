@@ -5,24 +5,37 @@
     </div>
     <svg></svg>
     <div class="menuPrincipal">
+        <div class="infoContainer2">
+            <div class="info">
+                <p>Ingresos Mensuales Esperados</p>
+                <p class="poppins-thin">{{usuario.ingresos_mensules | currency}}</p>
+            </div>
+        </div>
         <div class="infoContainer">
             <div class="info">
                 <p>Balance general</p>
-                <p>{{saldo.sumaCuentas}}</p>
+                <p class="poppins-thin">{{saldo.sumaCuentas | currency}}</p>
             </div>
             <div class="info">Gastos del mes</div>
         </div>
         <h4 class="poppins-bold">Mis Cuentas</h4>
         <div class="account-carousel">
-            <p-carousel [value]="cuentas" [numVisible]="2" [numScroll]="1">
-                <ng-template pTemplate="item" let-cuenta>
-                    <div class="account-square" (click)="selectCuenta(cuenta.no_cuenta)">
-                        <p class="poppins-bold">{{ cuenta.nombre }}</p>
-                        <p class="poppins-thin">{{ cuenta.saldo | currency }}</p>
-                    </div>
-                </ng-template>
-              </p-carousel>
-        </div><h4 class="poppins-bold">Mis Movimientos</h4>
+            @if(cuentas && cuentas.length>0){
+                <p-carousel [value]="cuentas" [numVisible]="2" [numScroll]="2">
+                    <ng-template pTemplate="item" let-cuenta>
+                        <div class="account-square" (click)="selectCuenta(cuenta.no_cuenta)">
+                            <p class="poppins-bold">{{ cuenta.nombre }}</p>
+                            <p class="poppins-thin">{{ cuenta.saldo | currency }}</p>
+                        </div>
+                    </ng-template>
+                  </p-carousel>
+            }
+            @else {
+                <p class="poppins-thin">No hay cuentas agregadas</p>
+            }
+            
+        </div>
+        <h4 class="poppins-bold">Mis Movimientos</h4>
         <div class="table-container">
             <table>
                 <thead>

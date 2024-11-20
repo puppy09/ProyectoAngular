@@ -29,10 +29,7 @@ export class PagosUpdateFormComponent {
       categoria: new FormControl('', Validators.required),
       subcategoria: new FormControl('', Validators.required),
       descripcion: new FormControl('', Validators.required),
-      monto: new FormControl('', [Validators.required, Validators.min(0)]),
-      tipoMovimiento: new FormControl('', Validators.required),
-      diaPago: new FormControl({ value:'', disabled:true}),
-      totalPagos: new FormControl({value:'', disabled: true})
+      monto: new FormControl('', [Validators.required, Validators.min(0)])
     })
     
     this.pago = this.dataSvc.getPagoData();

@@ -21,6 +21,6 @@ export class PagosProgService {
     return this.http.get<pagosProgramados|pagosProgramados[]>(this.apiUrl);
   }
   updPagoProgramado(pagoId: string, num_cuenta: string, descripcion: string, monto: number, categoria: number, subcategoria: number, dia_pago:number, total_pagos:number):Observable<pagosProgramados|pagosProgramados[]>{
-    return this.http.put<pagosProgramados|pagosProgramados[]>(`${this.apiUrl}/programado/update/${pagoId}`,{no_cuenta: num_cuenta,descripcion,monto,categoria,subcategoria, dia_pago, total_pagos});
+    return this.http.put<pagosProgramados|pagosProgramados[]>(`${this.apiUrl}/update/${pagoId}`,{no_cuenta: num_cuenta,descripcion,monto,categoria,subcategoria, dia_pago, total_pagos});
   }
 }

@@ -4,7 +4,7 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="upd-pago">
-        <form [formGroup]="pagosForm" (ngSubmit)="submitForm()">
+        <form [formGroup]="pagosProForms" (ngSubmit)="submitForm()">
             <label for="cuenta">Cuenta:</label>
             <select name="" id="cuenta" formControlName="no_cuenta">
                 @if(cuentas){
@@ -43,8 +43,13 @@
             </select>
             <label for="monto">Monto:</label>
             <input type="number" formControlName="monto" min="0">
+            <label for="dia_programado">Dia Programado: </label>
+            <input type="number" formControlName="dia_programado" min="1" max="30">
+            <label for="total_pagos">Total de Pagos: </label>
+            <input type="number" formControlName="total_pagos" min="2">
             <button (click)="cancel()">Cancelar</button>
         <button type="submit">Actualizar Pago</button>
         </form>        
     </div>
 </div>
+

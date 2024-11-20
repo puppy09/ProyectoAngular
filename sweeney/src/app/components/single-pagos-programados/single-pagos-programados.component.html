@@ -18,23 +18,23 @@
             </thead>
             <tbody>
                 @if(pagosPro && pagosPro.length>0){
-                    @for(pagos of pagosPro; track $index){
+                    @for(pagoPro of pagosPro; track $index){
                         <tr>
-                            <td class="poppins-thin">{{pagos.no_cuenta}}</td>
-                            <td class="poppins-thin">{{pagos.descripcion}}</td>
-                            <td class="poppins-thin">{{pagos.monto}}</td>
-                            <td class="poppins-thin">{{pagos.category.nombre}}</td>
-                            <td class="poppins-thin">{{pagos.negocio.nombre}}</td>
-                            <td class="poppins-thin">{{pagos.dia_programado}}</td>
-                            <td class="poppins-thin">{{pagos.pagos_hechos}}</td>
-                            <td class="poppins-thin">{{pagos.total_pagos}}</td>
-                            <td class="poppins-thin">{{pagos.estatuspago.estatus_pagos}}</td>
+                            <td class="poppins-thin">{{pagoPro.no_cuenta}}</td>
+                            <td class="poppins-thin">{{pagoPro.descripcion}}</td>
+                            <td class="poppins-thin">{{pagoPro.monto}}</td>
+                            <td class="poppins-thin">{{pagoPro.category.nombre}}</td>
+                            <td class="poppins-thin">{{pagoPro.negocio.nombre}}</td>
+                            <td class="poppins-thin">{{pagoPro.dia_programado}}</td>
+                            <td class="poppins-thin">{{pagoPro.pagos_hechos}}</td>
+                            <td class="poppins-thin">{{pagoPro.total_pagos}}</td>
+                            <td class="poppins-thin">{{pagoPro.estatuspago.estatus_pagos}}</td>
                             <td>
                                 <button mat-icon-button [matMenuTriggerFor]="menu">
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item>Editar Pago</button>
+                                    <button mat-menu-item (click)="setPago(pagoPro)">Editar Pago</button>
                                 </mat-menu>
                             </td>
                         </tr>

@@ -37,4 +37,10 @@ export class SinglePagosProgramadosComponent {
         console.error('Error fetching pagos programados: ', error);
       })
   }
+
+  setPago(pago: any){
+    console.log(pago);
+    this.dataSvc.setPagoData(pago);
+    this.router.navigate(['pagos/programados/modificar', pago.id_pagoprogramado]);
+  }
 }

@@ -16,6 +16,7 @@ import { CuentasFormComponent } from './components/cuentas-form/cuentas-form.com
 import { CuentasUpdateFormComponent } from './components/cuentas-update-form/cuentas-update-form.component';
 import { MovimientosFondosFormComponent } from './components/movimientos-fondos-form/movimientos-fondos-form.component';
 import { GastosFormComponent } from './components/gastos-form/gastos-form.component';
+import { PagosProUpdFormComponent } from './components/pagos-pro-upd-form/pagos-pro-upd-form.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -45,6 +46,7 @@ export const routes: Routes = [
     {path: 'gastos',component:GastosComponent},
     {path: 'gastos/agregar', component:GastosFormComponent},
     {path: 'pagos/modificar/:id', component: PagosUpdateFormComponent},
+    {path: 'pagos/programados/modificar/:id',component:PagosProUpdFormComponent},
     {path: 'cuentas/agregar', component:CuentasFormComponent},
     {path: 'cuentas/modificar/:id', component:CuentasUpdateFormComponent},
     {path: 'page404', component:Page404Component},

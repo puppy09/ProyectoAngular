@@ -7,17 +7,18 @@ import { PercentPipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-gastos',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, PercentPipe, MatMenuModule,MatButtonModule, MatIconModule],
+  imports: [HeaderComponent, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule],
   templateUrl: './gastos.component.html',
   styleUrl: './gastos.component.css'
 })
 export class GastosComponent {
 
   categorias:any;
-  constructor(private gasSvc: CategoriasService, private snackBar: MatSnackBar){}
+  constructor(private router:Router, private gasSvc: CategoriasService, private snackBar: MatSnackBar){}
 
   ngOnInit():void{
     this.loadCategorias();
@@ -57,5 +58,9 @@ export class GastosComponent {
           duration: 5000
         })
       })
+  }
+
+  goToAdd(){
+    this.router.navigate(['gastos','agregar']);
   }
 }

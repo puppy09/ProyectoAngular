@@ -18,4 +18,8 @@ export class SubcategoriasService {
     console.log(catId);
     return this.http.get<subcategoria|subcategoria[]>(url2);
   }
+
+  postSubcategoria(catId: number, marca: number):Observable<subcategoria|subcategoria[]>{
+      return this.http.post<subcategoria|subcategoria[]>(`${this.apiUrl}`,{categoria:catId, marca});
+  }
 }

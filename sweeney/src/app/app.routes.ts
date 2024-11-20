@@ -15,6 +15,7 @@ import { SinglePagosProgramadosComponent } from './components/single-pagos-progr
 import { CuentasFormComponent } from './components/cuentas-form/cuentas-form.component';
 import { CuentasUpdateFormComponent } from './components/cuentas-update-form/cuentas-update-form.component';
 import { MovimientosFondosFormComponent } from './components/movimientos-fondos-form/movimientos-fondos-form.component';
+import { GastosFormComponent } from './components/gastos-form/gastos-form.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -42,6 +43,7 @@ export const routes: Routes = [
     {path: 'movimientos/fondos/añadir/:id', component:MovimientosFondosFormComponent},
     {path: 'grupos',component:GruposComponent},
     {path: 'gastos',component:GastosComponent},
+    {path: 'gastos/agregar', component:GastosFormComponent},
     {path: 'pagos/modificar/:id', component: PagosUpdateFormComponent},
     {path: 'cuentas/agregar', component:CuentasFormComponent},
     {path: 'cuentas/modificar/:id', component:CuentasUpdateFormComponent},

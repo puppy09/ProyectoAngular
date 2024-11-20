@@ -4,7 +4,7 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="gastos">
-        <button class="round-button">+</button>
+        <button class="round-button" (click)="goToAdd()">+</button>
         <p>Da clic para añadir un nuevo gasto</p>
         <div class="gastosContainer">
             @if(categorias && categorias.length>0){

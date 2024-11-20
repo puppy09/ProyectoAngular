@@ -1,13 +1,15 @@
-
+<header><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"></header>
 <div class="barra">
     <div class="logo">
-        <img src="images/sweeney.png" alt="" width="50%">
-        <h4>Sweeney</h4>
+        <img src="images/sweeney.png" alt="" width="25%">
+        <h4 class="poppins-semibold">Sweeney</h4>
     </div>
-    <button class="botones poppins-semibold" (click)="goToMenu()">Resumen</button>
-    <button class="botones poppins-semibold" (click)="goToMovimientos()">Mis Movimientos</button>
-    <button class="botones poppins-semibold" (click)="goToGrupos()">Mis Grupos</button>
-    <button class="botones poppins-semibold" (click)="goToCuentas()">Mis Cuentas</button>
-    <button class="botones poppins-semibold" (click)="goToGastos()">Mis Gastos</button>
-    <button class="botones poppins-semibold" (click)="cerrarSesion()">Cerrar Sesion</button>
+    <button class="botones poppins-semibold" (click)="goToMenu()"><fa-icon [icon]="faHouse"></fa-icon> Resumen</button>
+    <button class="botones poppins-semibold" (click)="goToCuentas()"><i class="fa-solid fa-piggy-bank"></i> Mis Cuentas</button>
+    <button class="botones poppins-semibold" (click)="goToMovimientos()"><i class="fa-solid fa-money-check-dollar"></i> Mis Movimientos</button>
+    <button class="botones poppins-semibold" (click)="goToGastos()"><i class="fa-solid fa-file-invoice-dollar"></i> Mis Gastos</button>
+    <button class="botones poppins-semibold" (click)="goToGrupos()"><i class="fa-solid fa-user-group"></i> Mis Grupos</button>
+    
+    
+    <button class="botones logout poppins-semibold" (click)="cerrarSesion()"><i class="fa-solid fa-right-from-bracket"></i></button>
 </div>

@@ -10,6 +10,8 @@
                 <p>Ingresos Mensuales Esperados</p>
                 <p class="poppins-thin">{{usuario.ingresos_mensules | currency}}</p>
             </div>
+            <button class="round-button" (click)="gotoAdd()">+</button>
+            <p>¿Deseas programar un ingreso mensual? Da clic aquí</p>
         </div>
         <div class="infoContainer">
             <div class="info">
@@ -26,6 +28,14 @@
                         <div class="account-square" (click)="selectCuenta(cuenta.no_cuenta)">
                             <p class="poppins-bold">{{ cuenta.nombre }}</p>
                             <p class="poppins-thin">{{ cuenta.saldo | currency }}</p>
+                            <div class="opc">
+                                <button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="setCuenta2(cuenta)">Añadir Fondos</button>
+                                </mat-menu>
+                            </div>
                         </div>
                     </ng-template>
                   </p-carousel>

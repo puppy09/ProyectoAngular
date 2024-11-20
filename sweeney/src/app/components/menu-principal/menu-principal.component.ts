@@ -8,10 +8,15 @@ import { CurrencyPipe } from '@angular/common';
 import {CarouselModule} from 'primeng/carousel';
 import { HeaderComponent } from "../header/header.component";
 import { AuthService } from '../../services/auth/auth.service';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+import { DataServiceService } from '../../services/dataService/data-service.service';
 @Component({
   selector: 'app-menu-principal',
   standalone: true,
-  imports: [SidebarComponent, CurrencyPipe, CarouselModule, HeaderComponent],
+  imports: [SidebarComponent, CurrencyPipe, CarouselModule, HeaderComponent, MatMenuModule, MatIconModule, MatButtonModule],
   templateUrl: './menu-principal.component.html',
   styleUrl: './menu-principal.component.css'
 })
@@ -21,7 +26,7 @@ export class MenuPrincipalComponent  implements OnInit{
   pagos: any;
   usuario: any;
   saldo:any;
-  constructor(private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
+  constructor(private dataSvc:DataServiceService, private router:Router, private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.fetchCuentas();
     this.fetchMovimientos();
@@ -116,5 +121,13 @@ export class MenuPrincipalComponent  implements OnInit{
         console.error('Error fetching user: ', error);
       }
     )
+  }
+
+  gotoAdd():void{
+    this.router.navigate(['movimientos','fondos','añadir']);
+  }
+  setCuenta2(cuenta:any){
+    this.dataSvc.setCuentaData(cuenta);
+    this.router.navigate(['movimientos/fondos/añadir',cuenta.ID])
   }
 }

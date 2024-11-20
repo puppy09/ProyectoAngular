@@ -38,6 +38,7 @@ export const routes: Routes = [
         ]
     },
     {path: 'movimientos/agregar',component:MovimientosFormComponent},
+    {path: 'movimientos/fondos/añadir', component:MovimientosFondosFormComponent},
     {path: 'movimientos/fondos/añadir/:id', component:MovimientosFondosFormComponent},
     {path: 'grupos',component:GruposComponent},
     {path: 'gastos',component:GastosComponent},

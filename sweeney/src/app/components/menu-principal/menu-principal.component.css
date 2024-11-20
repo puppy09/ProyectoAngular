@@ -39,7 +39,6 @@
   }
 
   .infoContainer{
-    margin-top: 20%;
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
@@ -51,6 +50,9 @@
     margin-bottom: 20px;
   }
 
+  .opc{
+    margin-left: 70%;
+}
   .info{
     width: 50%;
     height: 100px;
@@ -70,7 +72,7 @@
 
   .account-square{
     width: 90%;
-    height: 100px;
+    height: 120px;
     background-color: #f0f0f0;
     display: flex;
     flex-direction: column;
@@ -102,4 +104,22 @@
 
   .division{
     width: 100%;
+  }
+
+  .round-button {
+    width: 35px;           /* Set the width */
+    height: 35px;          /* Set the height (same as width for a perfect circle) */
+    border-radius: 50%;    /* Rounds the button fully */
+    border: none;          /* Optional: removes the border */
+    background-color: #5D9DA8; /* Button color */
+    color: white;          /* Text color */
+    font-size: 24px;       /* Adjust font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .round-button:hover {
+    background-color: #66adb9; /* Darken color on hover */
   }

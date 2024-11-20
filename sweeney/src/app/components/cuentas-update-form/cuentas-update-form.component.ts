@@ -7,6 +7,7 @@ import { CuentasService } from '../../services/cuentas/cuentas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { DataServiceService } from '../../services/dataService/data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cuentas-update-form',
@@ -19,13 +20,13 @@ export class CuentasUpdateFormComponent {
   cuentasForm: FormGroup = new FormGroup({});
   cuenta: any;
 
-  constructor(private cuentaSvc: CuentasService,  private fb:FormBuilder, private dataSvc: DataServiceService, private snackBar: MatSnackBar){
+  constructor(private router:Router, private cuentaSvc: CuentasService,  private fb:FormBuilder, private dataSvc: DataServiceService, private snackBar: MatSnackBar){
     this.cuentasForm = this.fb.group({
       no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
       fecha_venci: new FormControl('', Validators.required),
       alias: new FormControl('', Validators.required),
       addSaldo: new FormControl('', Validators.required),
-      saldo: new FormControl('', Validators.required)
+      saldo: new FormControl({value:'', disabled:true}, [Validators.required])
     })
 
     this.cuenta = this.dataSvc.getCuentaData();
@@ -52,6 +53,9 @@ export class CuentasUpdateFormComponent {
     this.cuentasForm.get('fecha_venci')?.setValue(value); // Sync with form control
   }
 
+  cancel(){
+    this.router.navigate(['/cuentas']);
+  }
   submitForm(cuentaId:number){
     //if(this.cuentasForm.valid){
       const formData=this.cuentasForm.value;

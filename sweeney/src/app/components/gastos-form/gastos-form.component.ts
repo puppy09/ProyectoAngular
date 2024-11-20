@@ -3,10 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriasService } from '../../services/categorias/categorias.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 @Component({
   selector: 'app-gastos-form',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent],
+  imports: [ReactiveFormsModule, HeaderComponent, SidebarComponent],
   templateUrl: './gastos-form.component.html',
   styleUrl: './gastos-form.component.css'
 })

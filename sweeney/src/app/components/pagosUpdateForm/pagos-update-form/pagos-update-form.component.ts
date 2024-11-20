@@ -23,7 +23,7 @@ export class PagosUpdateFormComponent {
   categorias: any;
   subcategorias: any;
   pago: any;
-  constructor(private snackBar: MatSnackBar, private pagoSvc: PagosService,  private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService, private  catSrv: CategoriasService, private subSrv: SubcategoriasService){
+  constructor(private router:Router, private snackBar: MatSnackBar, private pagoSvc: PagosService,  private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService, private  catSrv: CategoriasService, private subSrv: SubcategoriasService){
     this.pagosForm = this.fb.group({
       no_cuenta: new FormControl('', Validators.required),
       categoria: new FormControl('', Validators.required),
@@ -89,6 +89,9 @@ export class PagosUpdateFormComponent {
         console.error('Error fetching subcategorias: ', error);
       }
     )
+  }
+  cancel(){
+    this.router.navigate(['/movimientos']);
   }
 
   submitForm(){

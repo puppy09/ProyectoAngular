@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cuentas-form',
   standalone: true,
@@ -16,7 +17,7 @@ import { MatRadioModule } from '@angular/material/radio';
 export class CuentasFormComponent {
 
   cuentasForm: FormGroup = new FormGroup({});
-  constructor(private cuenSvc: CuentasService, private snackBar: MatSnackBar){}
+  constructor(private router: Router, private cuenSvc: CuentasService, private snackBar: MatSnackBar){}
 
   ngOnInit(): void{
     this.cuentasForm = new FormGroup({
@@ -48,6 +49,9 @@ export class CuentasFormComponent {
     this.cuentasForm.get('fecha_venci')?.setValue(value); // Sync with form control
   }
 
+  cancel(){
+    this.router.navigate(['/cuentas']);
+  }
   submitForm(): void{
     if(this.cuentasForm.valid){
       const formData = this.cuentasForm.value;

@@ -11,7 +11,7 @@
     font-style: normal;
   }
   .table-container {
-    width: 100%;  /* Fixed width for the container */
+    width: 90%;  /* Fixed width for the container */
     max-height: 300px; /* Fixed height for the container to create a square */
     overflow: auto; /* Add scrollbar if content overflows */
     border: 1px solid #ccc; /* Optional: Add a border to the box */

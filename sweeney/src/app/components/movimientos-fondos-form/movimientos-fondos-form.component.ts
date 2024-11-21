@@ -6,10 +6,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { MatRadioModule } from '@angular/material/radio';
 import { MovimientosService } from '../../services/movimientos/movimientos.service';
+import { HeaderComponent } from '../header/header.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 @Component({
   selector: 'app-movimientos-fondos-form',
   standalone: true,
-  imports: [MatRadioModule,ReactiveFormsModule],
+  imports: [MatRadioModule,ReactiveFormsModule, HeaderComponent, SidebarComponent],
   templateUrl: './movimientos-fondos-form.component.html',
   styleUrl: './movimientos-fondos-form.component.css'
 })
@@ -18,7 +20,7 @@ movimientoForm: FormGroup = new FormGroup({});
 cuentas: any;
 cuenta: any;
 
-constructor(private movService: MovimientosService, private snackBar: MatSnackBar,  private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService){
+constructor(private router: Router, private movService: MovimientosService, private snackBar: MatSnackBar,  private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService){
   this.movimientoForm = this.fb.group({
     no_cuenta: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
@@ -61,7 +63,6 @@ ngOnInit(){
 
   submitForm(){
     if(this.movimientoForm.valid){
-      console.log("VAMOS BIEN");
       const formData = this.movimientoForm.value;
       if(formData.tipoMovimiento==='unica'){
         this.movService.postFondos(
@@ -72,8 +73,9 @@ ngOnInit(){
               this.snackBar.open('Movimiento Registrado con éxito', 'Cerrar',{
               duration: 5000
               })
+              this.router.navigate(['/cuentas']);
           }, error=>{
-              const errorMessage = error.error?.message || 'Error al programar ingresp';
+              const errorMessage = error.error?.message || 'Error al programar ingreso';
               this.snackBar.open('Error programando pago'+errorMessage, 'Cerrar',{
               duration: 5000
               });
@@ -88,6 +90,7 @@ ngOnInit(){
             this.snackBar.open('Movimiento Registrado con éxito', 'Cerrar',{
               duration: 5000
           })
+          this.router.navigate(['/cuentas']);
         }, error=>{
             const errorMessage = error.error?.message || 'Error al programar ingresp';
             this.snackBar.open('Error programando pago'+errorMessage, 'Cerrar',{

@@ -1,0 +1,28 @@
+<div class="fondosContainer">
+    <h4 class="poppins-bold">Mis Fondos Programados</h4>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="poppins-bold">No. de Cuenta</th>
+                    <th class="poppins-bold">Descripcion</th>
+                    <th class="poppins-bold">Monto</th>
+                    <th class="poppins-bold">Día de Pago</th>
+                    <th class="poppins-bold">Estatus</th>
+                    <th class="poppins-bold">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(movimientos&&movimientos.length>0){
+                    @for (movimiento of movimientos; track $index) {
+                        <tr>
+                            <td class="poppins-thin">
+                                
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

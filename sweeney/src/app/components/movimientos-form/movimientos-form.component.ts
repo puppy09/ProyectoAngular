@@ -108,7 +108,9 @@ export class MovimientosFormComponent implements OnInit{
         ).subscribe(response =>{
               this.snackBar.open('Pago Registrado con exito', 'Cerrar',{
           duration: 5000
-        })}, error =>{
+        })
+        this.router.navigate(['/movimientos']);
+        }, error =>{
             const errorMessage = error.error?.message || 'Error al registrar pago';
             this.snackBar.open('Error registrando pago'+errorMessage, 'Cerrar',{
             duration: 5000

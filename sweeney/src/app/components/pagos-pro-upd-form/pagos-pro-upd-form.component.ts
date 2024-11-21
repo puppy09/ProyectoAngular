@@ -113,7 +113,9 @@ export class PagosProUpdFormComponent {
     ).subscribe(response=>{
       this.snackBar.open('Pago Actualizado con exito', 'Cerrar',{
         duration: 5000
-      })}, error=>{
+      })
+      this.router.navigate(['/movimientos']);
+      }, error=>{
         console.log(error);
         const errorMessage = error.error?.message || 'Error al actualizar pago';
             this.snackBar.open('Error actualizando pago'+errorMessage, 'Cerrar',{

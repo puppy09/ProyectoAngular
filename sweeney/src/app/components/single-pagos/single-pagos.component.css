@@ -10,30 +10,31 @@
     font-weight: 700;
     font-style: normal;
   }
-  .table-container {
-    width: 90%;  /* Fixed width for the container */
-    max-height: 300px; /* Fixed height for the container to create a square */
-    overflow: auto; /* Add scrollbar if content overflows */
-    border: 1px solid #ccc; /* Optional: Add a border to the box */
-    padding: 10px; /* Optional: Add padding for inner spacing */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for style */
+  /*.table-container {
+    width: 90%;
+    max-height: 300px;
+    overflow: auto;
+    border: 1px solid #ccc; 
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
     z-index: 1;
-  }
+  }*/
   
   table {
-    width: 100%; /* Make table fill the width of the container */
+    width: 100%;
     border-collapse: collapse;
-    height: 70%; /* Optional: Collapse borders for a clean look */
+    max-height: 300px;
+    overflow: auto;
   }
   
   th, td {
     padding: 3px;
-    border: 1px solid #ddd; /* Optional: Border for table cells */
-    text-align: left; /* Align text in cells */
+    border: 1px solid #ddd; 
+    text-align: left;
   }
   th{
     position: sticky;
     top:0;
     z-index: 1;
-    background-color: #f5f5f5;
+    /*background-color: #f5f5f5;*/
   }

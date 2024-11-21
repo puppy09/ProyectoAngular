@@ -32,4 +32,7 @@ export class PagosService {
     return this.http.patch<Pagos|Pagos[]>(`${this.apiUrl}/reembolsar/${pagoId}`,{});
   }
  
+  getTotalGastado():Observable<JSON>{
+    return this.http.get<JSON>(`${this.apiUrl}/gastado`);
+  }
 }

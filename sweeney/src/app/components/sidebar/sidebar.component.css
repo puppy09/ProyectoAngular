@@ -23,7 +23,7 @@
 }
 
 .logo{
-    justify-content: center;
+    display: flex;
 }
 .barra {
     position: fixed;

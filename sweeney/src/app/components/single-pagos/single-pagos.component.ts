@@ -7,11 +7,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { Router } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-single-pagos',
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule, MatIconModule],
+  imports: [MatButtonModule, MatMenuModule, MatIconModule, CurrencyPipe],
   templateUrl: './single-pagos.component.html',
   styleUrl: './single-pagos.component.css'
 })

@@ -26,13 +26,15 @@ export class MenuPrincipalComponent  implements OnInit{
   pagos: any;
   usuario: any;
   saldo:any;
-  constructor(private dataSvc:DataServiceService, private router:Router, private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
+  totalGastado: any;
+  constructor(private pagSvc: PagosService, private dataSvc:DataServiceService, private router:Router, private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.fetchCuentas();
     this.fetchMovimientos();
     this.fetchPagos();
     this.userInfo();
     this.getSldos();
+    this.infoGastos();
   }
 
   getSldos(): void{
@@ -80,6 +82,7 @@ export class MenuPrincipalComponent  implements OnInit{
   fetchPagos(): void{
     this.pagoSrv.getPagos().subscribe(
     (data) =>{
+      console.log(data);
       this.pagos = data;
     },
     (error)=>{
@@ -119,6 +122,20 @@ export class MenuPrincipalComponent  implements OnInit{
           duration: 5000
         })
         console.error('Error fetching user: ', error);
+      }
+    )
+  }
+
+  infoGastos():void{
+    this.pagSvc.getTotalGastado().subscribe(
+      (data)=>{
+        this.totalGastado=data
+        console.log(this.totalGastado);
+      },(error)=>{
+        console.log("Error Obteniendo total gastado");
+        this.snackBar.open("Error Obteniendo Total Gastado","Cerrar",{
+          duration: 3000
+        });
       }
     )
   }

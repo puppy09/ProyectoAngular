@@ -1,52 +1,41 @@
-<div class="pagoProContainer">
-    <h4 class="poppins-bold">Mis Pagos Programados</h4>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th class="poppins-bold">No. de Cuenta</th>
-                    <th class="poppins-bold">Descripcion</th>
-                    <th class="poppins-bold">Monto</th>
-                    <th class="poppins-bold">Categoria</th>
-                    <th class="poppins-bold">Subcategoria</th>
-                    <th class="poppins-bold">Día Programado</th>
-                    <th class="poppins-bold">Pagos Hechos</th>
-                    <th class="poppins-bold">Total de Pagos</th>
-                    <th class="poppins-bold">Estatus</th>
-                    <th class="poppins-bold">Info.</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if(pagosPro && pagosPro.length>0){
-                    @for(pagoPro of pagosPro; track $index){
-                        <tr>
-                            <td class="poppins-thin">{{pagoPro.no_cuenta}}</td>
-                            <td class="poppins-thin">{{pagoPro.descripcion}}</td>
-                            <td class="poppins-thin">{{pagoPro.monto}}</td>
-                            <td class="poppins-thin">{{pagoPro.category.nombre}}</td>
-                            <td class="poppins-thin">{{pagoPro.negocio.nombre}}</td>
-                            <td class="poppins-thin">{{pagoPro.dia_programado}}</td>
-                            <td class="poppins-thin">{{pagoPro.pagos_hechos}}</td>
-                            <td class="poppins-thin">{{pagoPro.total_pagos}}</td>
-                            <td class="poppins-thin">{{pagoPro.estatuspago.estatus_pagos}}</td>
-                            <td>
-                                <button mat-icon-button [matMenuTriggerFor]="menu">
-                                    <mat-icon>more_vert</mat-icon>
-                                </button>
-                                <mat-menu #menu="matMenu">
-                                    <button mat-menu-item (click)="setPago(pagoPro)">Editar Pago</button>
-                                </mat-menu>
-                            </td>
-                        </tr>
-                    }
-                    
+<div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg max-h-[300px]">
+    <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
+        <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
+            <tr>
+                <th scope="col" class="px-6 py-3 poppins-bold">No. de Cuenta</th>
+                <th scope="col" class="px-6 py-3">Descripcion</th>
+                <th scope="col" class="px-6 py-3">Categoria</th>
+                <th scope="col" class="px-6 py-3">Subcategoria</th>
+                <th scope="col" class="px-6 py-3">Día Programado</th>
+                <th scope="col" class="px-6 py-3">Monto</th>
+                <th scope="col" class="px-6 py-3">Pagos Hechos</th>
+                <th scope="col" class="px-6 py-3">Estatus</th>
+                <th scope="col" class="px-6 py-3">Fecha</th>
+                <th scope="col" class="px-6 py-3">Info.</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(pagosPro&&pagosPro.length>0){
+                @for(pagoPro of pagosPro; track $index){
+                    <tr class="bg-white border-b dark:bg-[#ffffff] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
+                        <td class="px-6 py-4 poppins-light">{{pagoPro.no_cuenta}}</td>
+                        <td class="px-6 py-4">{{pagoPro.descripcion}}</td>
+                        <td class="px-6 py-4">{{pagoPro.category.nombre}}</td>
+                        <td class="px-6 py-4">{{pagoPro.negocio.nombre}}</td>
+                        <td class="px-6 py-4">{{pagoPro.dia_programado}}</td>
+                        <td class="px-6 py-4">{{pagoPro.monto | currency}}</td>
+                        <td class="px-6 py-4">{{pagoPro.pagos_hechos}}/{{pagoPro.total_pagos}}</td>
+                        <td class="px-6 py-4">{{pagoPro.estatuspago.estatus_pagos}}</td>
+                        <td class="px-6 py-4">{{pagoPro.fecha}}</td>
+                        <td class="px-6 py-4"><button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="setPago(pagoPro)">Editar Pago</button>
+                        </mat-menu></td>
+                    </tr>
                 }
-                @else {
-                    <TR>
-                        <TD class="poppins-thin" colspan="9" style="text-align: center;">Este usuario aun no tiene pagos registrados</TD>
-                    </TR>
-                }
-            </tbody>
-        </table>
-    </div>
+            }            
+        </tbody>
+    </table>
 </div>

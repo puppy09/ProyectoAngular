@@ -30,7 +30,7 @@
     top: 0;
     left: 0;
     height: 100vh; /* Full viewport height */
-    max-width: 20%;
+    max-width: 15%;
     background-color: #e8e8e8;
     z-index: 101; /* Higher than header's z-index */
     display: flex;

@@ -6,11 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { Route, Router } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-single-pagos-programados',
   standalone: true,
-  imports: [MatIconModule, MatMenuModule, MatButtonModule],
+  imports: [MatIconModule, MatMenuModule, MatButtonModule, CurrencyPipe],
   templateUrl: './single-pagos-programados.component.html',
   styleUrl: './single-pagos-programados.component.css'
 })

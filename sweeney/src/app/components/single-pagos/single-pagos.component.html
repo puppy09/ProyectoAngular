@@ -1,6 +1,7 @@
+<h4 class="poppins-bold">Mis Pagos</h4>
 <div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg max-h-[300px]">
-    <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
-        <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#5D9DA8] dark:text-[#ebf3f4]">
+    <table class="w-full text-sm text-left rtl:text-right text-azulinoSweeney dark:text-[#000000]">
+        <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
             <tr>
                 <th scope="col" class="px-6 py-3 poppins-bold">No. de Cuenta</th>
                 <th scope="col" class="px-6 py-3">Descripcion</th>
@@ -16,7 +17,7 @@
         <tbody>
             @if(pagos&&pagos.length>0){
                 @for(pago of pagos; track $index){
-                    <tr class="bg-white border-b dark:bg-[#dee4df] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
+                    <tr class="bg-white border-b dark:bg-[#ffffff] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
                         <td class="px-6 py-4 poppins-light">{{pago.no_cuenta}}</td>
                         <td class="px-6 py-4">{{pago.descripcion}}</td>
                         <td class="px-6 py-4">{{pago.category.nombre}}</td>

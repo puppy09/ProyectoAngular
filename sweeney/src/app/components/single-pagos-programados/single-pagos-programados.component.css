@@ -21,9 +21,10 @@
   }
   
   table {
-    width: 100%; /* Make table fill the width of the container */
+    width: 100%;
     border-collapse: collapse;
-    height: 70%; /* Optional: Collapse borders for a clean look */
+    max-height: 300px;
+    overflow: auto;
   }
   
   th, td {

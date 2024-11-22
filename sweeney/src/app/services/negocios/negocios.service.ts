@@ -13,5 +13,7 @@ export class NegociosService {
   constructor(private http: HttpClient) { }
   private apiUrl = `${environment.apiUrl}/negocios`;
 
-  getRubros():Observable
+  getRubros():Observable<negocioRubro[]>{
+    return this.http.get<negocioRubro[]>(`${this.apiUrl}/rubros`);
+  }
 }

@@ -6,7 +6,8 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       'white': '#ffffff',
-      'azulinoSweeney': '#5D9DA8'
+      'azulinoSweeney': '#5D9DA8',
+      'blanquitoComponentes':'#ebf3f4'
     },
     extend: {},
   },

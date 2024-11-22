@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { DataServiceService } from '../../services/dataService/data-service.service';
+import 'flowbite';
 
 @Component({
   selector: 'app-cuentas',

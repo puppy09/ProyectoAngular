@@ -19,7 +19,8 @@ export class GastosFormComponent {
   ngOnInit(): void{
     this.gastosForm = new FormGroup({
       nombre: new FormControl('', Validators.required),
-      presupuesto: new FormControl('', [Validators.required, Validators.min(0)])
+      presupuesto: new FormControl('', [Validators.required, Validators.min(0)]),
+      
     });
   }
 }

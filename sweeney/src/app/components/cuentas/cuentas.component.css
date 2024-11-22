@@ -58,7 +58,7 @@
     height: 35px;          /* Set the height (same as width for a perfect circle) */
     border-radius: 50%;    /* Rounds the button fully */
     border: none;          /* Optional: removes the border */
-    background-color: #5D9DA8; /* Button color */
+    background-color: #ffaa64; /* Button color */
     color: white;          /* Text color */
     font-size: 24px;       /* Adjust font size */
     display: flex;
@@ -68,5 +68,5 @@
   }
   
   .round-button:hover {
-    background-color: #66adb9; /* Darken color on hover */
+    background-color: #ff8a3d; /* Darken color on hover */
   }

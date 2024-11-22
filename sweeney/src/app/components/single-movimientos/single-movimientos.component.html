@@ -1,43 +1,6 @@
 <div class="movimientosContainer">
     <h4 class="poppins-bold">Mis Movimientos</h4>
-<!-- <div class="table-container">
-    <table>
-        <thead>
-            <tr>
-                <th class="poppins-bold">No. de Cuenta</th>
-                <th class="poppins-bold">Transacción</th>
-                <th class="poppins-bold">Tipo de Transacción</th>
-                <th class="poppins-bold">Monto</th>
-                <th class="poppins-bold">Fecha</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if(movimientos && movimientos.length >0){
-                @for (movimiento of movimientos; track $index) {
-                    @defer () {
-                        <tr>
-                            <td class="poppins-thin">{{movimiento.no_cuenta}}</td>
-                            <td class="poppins-thin">{{movimiento.descripcion}}</td>
-                            <td class="poppins-thin">{{movimiento.movimientoDetail.tipo_movimiento}}</td>
-                            <td class="poppins-thin">{{movimiento.monto | currency}}</td>
-                            <td class="poppins-thin">{{movimiento.fecha}}</td>
-                        </tr>
-                    }
-                    @placeholder {
-                        <td class="poppins-thin" colspan="5" style="text-align: center;">Cargando movimientos</td>
-                    }
-                }
-            }@else {
-                <TR>
-                    <TD class="poppins-thin" colspan="5" style="text-align: center;">Este usuario aun no tiene movimientos registrados</TD>
-                </TR>
-            }
-        </tbody>
-    </table>
-</div>
-</div> -->
-
-<div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg max-h-[300px]">
+<div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[150%] sm:max-h-[300px]">
     <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
         <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
             <tr>

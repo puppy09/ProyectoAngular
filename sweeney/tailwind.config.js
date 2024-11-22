@@ -9,7 +9,12 @@ module.exports = {
       'azulinoSweeney': '#5D9DA8',
       'blanquitoComponentes':'#ebf3f4'
     },
-    extend: {},
+    extend: {
+      width:{
+        '300':'150%',
+        '200': '130%'      
+    },
   },
   plugins: [],
+}
 }

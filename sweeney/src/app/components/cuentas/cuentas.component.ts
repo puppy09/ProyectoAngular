@@ -9,12 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { DataServiceService } from '../../services/dataService/data-service.service';
+import { CarouselModule } from 'primeng/carousel';
 import 'flowbite';
 
 @Component({
   selector: 'app-cuentas',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, CurrencyPipe, MatMenuModule, MatButtonModule, MatIconModule],
+  imports: [HeaderComponent, SidebarComponent, CurrencyPipe, MatMenuModule, MatButtonModule, MatIconModule, CarouselModule],
   templateUrl: './cuentas.component.html',
   styleUrl: './cuentas.component.css'
 })

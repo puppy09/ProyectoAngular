@@ -6,10 +6,11 @@ import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { NegociosService } from '../../services/negocios/negocios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
 @Component({
   selector: 'app-gastos-form',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent, SidebarComponent],
+  imports: [ReactiveFormsModule, HeaderComponent, SidebarComponent, MatRadioModule],
   templateUrl: './gastos-form.component.html',
   styleUrl: './gastos-form.component.css'
 })
@@ -26,13 +27,26 @@ export class GastosFormComponent {
     this.gastosForm = new FormGroup({
       nombre: new FormControl('', Validators.required),
       presupuesto: new FormControl('', [Validators.required, Validators.min(0)]),
-      tipo_megocio: new FormControl('',[Validators.required]),
-      negocio: new FormControl('',[Validators.required]),
-      nuevoNegocio: new FormControl('',[Validators.required]),
+      tipo_negocio: new FormControl('',[Validators.required]),
+      negocios: new FormControl('',[Validators.required]),
+      addNuevo: new FormControl('', [Validators.required]),
+      nuevoNegocio: new FormControl({value: '', disabled:true},[Validators.required])
     });
     this.loadRubros();
+
+    this.gastosForm.get('addNuevo')?.valueChanges.subscribe(value=>{
+      if(value === 'si'){
+        this.gastosForm.get('negocios')?.disable();
+        this.gastosForm.get('nuevoNegocio')?.enable();
+      }
+      else{
+        this.gastosForm.get('nuevoNegocio')?.disable();
+        this.gastosForm.get('negocios')?.enable();
+      }
+    });
   }
 
+  
   loadRubros(){
       this.negSvc.getRubros().subscribe(
         (data)=>{
@@ -59,6 +73,9 @@ export class GastosFormComponent {
           duration: 5000
       })
     })
+  }
+  addNegocio(negocio: any){
+    
   }
   submit(){
     

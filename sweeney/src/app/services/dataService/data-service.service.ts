@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class DataServiceService {
 
   private pagoData: any
+  private pagoProData: any
   private cuentaData: any
   constructor() { }
 
@@ -22,7 +23,7 @@ export class DataServiceService {
     this.pagoData=null;
   }
 
-  //Servicios de Pagos Programados
+  //Servicios de Cuentas
   setCuentaData(data: any){
     this.cuentaData=data;
   }
@@ -33,5 +34,18 @@ export class DataServiceService {
 
   clearCuentaData(){
     this.cuentaData=null;
+  }
+
+  //Servicios de Pagos Programados
+  setPagoProData(data: any){
+    this.pagoProData=data;
+  }
+  
+  getPagoProData(){
+    return this.pagoProData;
+  }
+
+  clearPagoProData(){
+    this.pagoProData=null;
   }
 }

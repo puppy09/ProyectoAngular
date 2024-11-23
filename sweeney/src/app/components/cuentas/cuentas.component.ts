@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { CarouselModule } from 'primeng/carousel';
 import 'flowbite';
+import { MovimientosProgService } from '../../services/movimientosProg/movimientos-prog.service';
 
 @Component({
   selector: 'app-cuentas',
@@ -22,7 +23,8 @@ import 'flowbite';
 export class CuentasComponent {
 
   cuentas: any;
-  constructor(private dataSvc:DataServiceService, private cueSrv: CuentasService, private snackBar: MatSnackBar, private router: Router){}
+  movimientosProgramados: any;
+  constructor(private movPro: MovimientosProgService, private dataSvc:DataServiceService, private cueSrv: CuentasService, private snackBar: MatSnackBar, private router: Router){}
 
   ngOnInit(): void{
     this.loadCuentas();
@@ -80,4 +82,17 @@ export class CuentasComponent {
     this.dataSvc.setCuentaData(cuenta);
     this.router.navigate(['movimientos/fondos/añadir',cuenta.ID])
   }
+
+  loadMovimientosProgramados(){
+    this.movPro.getMovimientosProg().subscribe(
+      (data)=>{
+        this.movimientosProgramados = data;
+      },(error)=>{
+        const errorMessage = error.error?.message || 'Error al obtener pagos programados';
+        this.snackBar.open('Error con pagos programados '+errorMessage, 'Cerrar',{
+          duration: 5000
+      }
+    )
+  })
+}
 }

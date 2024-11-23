@@ -10,9 +10,13 @@ import { Observable } from 'rxjs';
 export class GruposCreadosService {
 
   constructor(private http: HttpClient) { }
-  private apiUrl = `${environment.apiUrl}/grupos/creados`;
+  private apiUrl = `${environment.apiUrl}/grupos`;
 
   getGruposCreados(): Observable<gruposCreados|gruposCreados[]>{
-    return this.http.get<gruposCreados|gruposCreados[]>(this.apiUrl);
+    return this.http.get<gruposCreados|gruposCreados[]>(`${(this.apiUrl)}/creados`);
+  }
+
+  getGruposMiembro(): Observable<gruposCreados|gruposCreados[]>{
+    return this.http.get<gruposCreados|gruposCreados[]>(`${(this.apiUrl)}/miembro`);
   }
 }

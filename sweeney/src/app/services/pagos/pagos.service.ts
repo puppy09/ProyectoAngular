@@ -20,7 +20,7 @@ export class PagosService {
     return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}/by/cuenta`,{noCuenta});
   }
   postPago(num_cuenta: string, descripcion: string, monto:number,categoria:number,subcategoria:number):Observable<Pagos|Pagos[]>{
-    console.log("posteando pago");
+    console.log("numeor de cuenta" + num_cuenta);
     return this.http.post<Pagos|Pagos[]>(`${this.apiUrl}`,{num_cuenta,descripcion,monto,categoria,subcategoria});
   }
   

@@ -95,7 +95,7 @@ export class MovimientosFormComponent implements OnInit{
     this.router.navigate(['/movimientos']);
   }
   submitForm(){
-    if(this.pagosForm.valid){
+    //if(this.pagosForm.valid){
       const formData = this.pagosForm.value;
       console.log("Monto:"+formData.monto);
       if(formData.tipoMovimiento ===  'unica'){
@@ -135,7 +135,8 @@ export class MovimientosFormComponent implements OnInit{
             duration: 5000
           })
       })}
-  }else{
-    alert("Formulario Invalido o fondos insuficientes");
-  }}
+  //}else{
+    //alert("Formulario Invalido o fondos insuficientes");
+  //}}
+  }
 }

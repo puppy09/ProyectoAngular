@@ -3,6 +3,7 @@ import { subcategoria } from '../../interfaces/subcategorias.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environtment';
 import { Observable } from 'rxjs';
+import { asignarNegociosPayload } from '../../interfaces/asignarNegociosPayload.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class SubcategoriasService {
 
   postSubcategoria(catId: number, marca: number):Observable<subcategoria|subcategoria[]>{
       return this.http.post<subcategoria|subcategoria[]>(`${this.apiUrl}`,{categoria:catId, marca});
+  }
+
+  asignarNegocios(payload: asignarNegociosPayload): Observable<any>{
+    return this.http.post(`${this.apiUrl}/crear/asociaciones`, payload);
   }
 }

@@ -21,6 +21,7 @@
             </select>
             <label for="negocio">Negocio</label>
             <select name="negocios" idnegocios>
+                
                 @if(negocios&&negocios.length>0){
                     @for(negocio of negocios; track $index){
                         <option value={{negocio.id_negocio}}>{{ negocio.nombre}}</option>

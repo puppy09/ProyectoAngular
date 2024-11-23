@@ -60,4 +60,7 @@ export class GastosFormComponent {
       })
     })
   }
+  submit(){
+    
+  }
 }

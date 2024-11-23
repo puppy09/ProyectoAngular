@@ -1,28 +1,52 @@
-<div class="fondosContainer">
-    <h4 class="poppins-bold">Mis Fondos Programados</h4>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th class="poppins-bold">No. de Cuenta</th>
-                    <th class="poppins-bold">Descripcion</th>
-                    <th class="poppins-bold">Monto</th>
-                    <th class="poppins-bold">Día de Pago</th>
-                    <th class="poppins-bold">Estatus</th>
-                    <th class="poppins-bold">Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if(movimientos&&movimientos.length>0){
-                    @for (movimiento of movimientos; track $index) {
-                        <tr>
-                            <td class="poppins-thin">
-                                
-                            </td>
+<h4 class="poppins-bold">Mis Fondos Programados</h4>
+<div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[120%] sm:max-h-[300px]">
+    <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
+        <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
+            <tr>
+                <th scope="col" class="px-6 py-3 poppins-bold">No. de Cuenta</th>
+                <th scope="col" class="px-6 py-3">descripcion</th>
+                <th scope="col" class="px-6 py-3">Monto</th>
+                <th scope="col" class="px-6 py-3">Día de depósito</th>
+                <th scope="col" class="px-6 py-3">Estatus</th>
+                <th scope="col" class="px-6 py-3">Info.</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(movimientosProgramados && movimientosProgramados.length>0){
+                @for(movimiento of movimientosProgramados; track $index){
+                   
+                    @defer () {
+                        <tr class="bg-white border-b dark:bg-[#ffffff] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
+                            <td class="px-6 py-4 poppins-light">{{movimiento.no_cuenta}}</td>
+                            <td class="px-6 py-4">{{movimiento.descripcion}}</td>
+                            <td class="px-6 py-4">{{movimiento.monto | currency}}</td>
+                            <td class="px-6 py-4">{{movimiento.dia}}</td>
+                            <td class="px-6 py-4">{{movimiento.estatusDetail.estatus}}
+                                <td class="px-6 py-4"><button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="setMovimiento(movimiento)">Editar Pago</button>
+                                    @if(movimiento.estatus===1){
+                                        <button mat-menu-item (click)="desactivarMovimiento(movimiento.id_movimientoProgramado)">Desactivar Movimiento</button>
+                                    }
+                                    @else {
+                                        <button mat-menu-item (click)="activarMovimiento(movimiento.id_movimientoProgramado)">Activar Movimiento</button>
+                                    }
+                                </mat-menu></td>
                         </tr>
                     }
+                    @placeholder {
+                        <td class="poppins-thin" colspan="5" style="text-align: center;">Cargando movimientos</td>
+                    }
+                    
                 }
-            </tbody>
-        </table>
-    </div>
+            }
+            @else {
+                <TR>
+                    <TD class="poppins-thin" colspan="5" style="text-align: center;">Este usuario aun no tiene movimientos programados registrados</TD>
+                </TR>
+            }            
+        </tbody>
+    </table>
 </div>

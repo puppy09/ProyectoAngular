@@ -17,6 +17,8 @@ import { CuentasUpdateFormComponent } from './components/cuentas-update-form/cue
 import { MovimientosFondosFormComponent } from './components/movimientos-fondos-form/movimientos-fondos-form.component';
 import { GastosFormComponent } from './components/gastos-form/gastos-form.component';
 import { PagosProUpdFormComponent } from './components/pagos-pro-upd-form/pagos-pro-upd-form.component';
+import { MovProUpdFormComponent } from './components/mov-pro-upd-form/mov-pro-upd-form.component';
+import { SingleMovimientosProgramadosComponent } from './components/single-movimientos-programados/single-movimientos-programados.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -36,12 +38,17 @@ export const routes: Routes = [
             {
                 path: 'single/pagosProgramados',
                 component: SinglePagosProgramadosComponent
+            },
+            {
+                path: 'single/movimientosProgramados',
+                component: SingleMovimientosProgramadosComponent
             }
         ]
     },
     {path: 'movimientos/agregar',component:MovimientosFormComponent},
     {path: 'movimientos/fondos/añadir', component:MovimientosFondosFormComponent},
     {path: 'movimientos/fondos/añadir/:id', component:MovimientosFondosFormComponent},
+    {path: 'movimientos/programados/modificar/:id',component:MovProUpdFormComponent},
     {path: 'grupos',component:GruposComponent},
     {path: 'gastos',component:GastosComponent},
     {path: 'gastos/agregar', component:GastosFormComponent},

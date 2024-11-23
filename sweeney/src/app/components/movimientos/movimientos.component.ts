@@ -56,4 +56,7 @@ export class MovimientosComponent implements OnInit{
   navigateToPagosProgramados(): void{
     this.router.navigate(['single/pagosProgramados'],{relativeTo: this.route})
   }
+  navigateToMovimientosProgramados(): void{
+    this.router.navigate(['single/movimientosProgramados'],{relativeTo: this.route})
+  }
 }

@@ -15,4 +15,11 @@ export class MovimientosProgService {
   getMovimientosProg(): Observable<MovProgramados|MovProgramados[]>{
     return this.http.get<MovProgramados|MovProgramados[]>(this.apiUrl);
   }
+  activarMov(id_movimientoprogramado: string):Observable<MovProgramados>{
+    return this.http.patch<MovProgramados>(`${(this.apiUrl)}/activar/${id_movimientoprogramado}`,{});
+  }
+  desactivarMov(id_movimientoprogramado:string):Observable<MovProgramados>
+  {
+    return this.http.patch<MovProgramados>(`${(this.apiUrl)}/desactivar/${id_movimientoprogramado}`,{});
+  }
 }

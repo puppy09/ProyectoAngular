@@ -1,32 +1,27 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { MovimientosProgService } from '../../services/movimientosProg/movimientos-prog.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { CurrencyPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-single-movimientos-programados',
+  selector: 'app-movimientos-programados',
   standalone: true,
-  imports: [MatMenuModule,MatButtonModule,MatIconModule,CurrencyPipe],
-  templateUrl: './single-movimientos-programados.component.html',
-  styleUrl: './single-movimientos-programados.component.css'
+  imports: [MatMenuModule,MatButtonModule,MatIconModule],
+  templateUrl: './movimientos-programados.component.html',
+  styleUrl: './movimientos-programados.component.css'
 })
-export class SingleMovimientosProgramadosComponent {
-  movimientos: any;
-  movimientosProgramados:any;
-  constructor(private snackBar: MatSnackBar, private dataSvc: DataServiceService, private router:Router, private movPro: MovimientosProgService){}
+export class MovimientosProgramadosComponent {
 
-  ngOnInit(){
-    this.loadMovimientosProgramados();
-  }
+  movimientosProgramados: any;
+  constructor(private movPro: MovimientosProgService, private dataSvc:DataServiceService, private snackBar: MatSnackBar, private router: Router){}
   loadMovimientosProgramados(){
     this.movPro.getMovimientosProg().subscribe(
       (data)=>{
-        console.log(data);
         this.movimientosProgramados = data;
       },(error)=>{
         const errorMessage = error.error?.message || 'Error al obtener movimientos programados';
@@ -40,10 +35,9 @@ export class SingleMovimientosProgramadosComponent {
     this.dataSvc.setmovProData(movimiento);
     this.router.navigate(['movimientos/programados/modificar',movimiento.id_movimientoprogramado]);
   }
-  activarMovimiento(id_movimientoprogramado:string){
+  activarMovimiento(id_movimientoprogramado:number){
     this.movPro.activarMov(id_movimientoprogramado).subscribe(
         (data)=>{
-          this.loadMovimientosProgramados();
           this.snackBar.open('Movimiento Activado ', 'Cerrar',{
             duration: 5000
         })}, (error)=>{
@@ -54,16 +48,14 @@ export class SingleMovimientosProgramadosComponent {
       }
     );
 }
-  desactivarMovimiento(id_movimientoprogramado:string){
-    console.log("ID movimiento Programado "+ id_movimientoprogramado);
+  desactivarMovimiento(id_movimientoprogramado:number){
     this.movPro.desactivarMov(id_movimientoprogramado).subscribe(
       (data)=>{
-        this.loadMovimientosProgramados();
         this.snackBar.open('Movimiento Desactivcado ', 'Cerrar',{
           duration: 5000
       })}, (error)=>{
         const errorMessage = error.error?.message || 'Error al desactivando movimiento programado';
-        this.snackBar.open('Error desactivando movimiento' + errorMessage,'Cerrar',{
+        this.snackBar.open('Error desactivando movimiento','Cerrar',{
           duration: 5000
       })
     }

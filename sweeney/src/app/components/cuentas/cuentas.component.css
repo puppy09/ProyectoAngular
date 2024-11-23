@@ -39,6 +39,9 @@
   justify-content: center;
 }
 
+.all{
+  display: block;
+}
 
   .poppins-thin {
     font-family: "Poppins", sans-serif;

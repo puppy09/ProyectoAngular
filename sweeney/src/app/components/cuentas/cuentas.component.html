@@ -8,39 +8,43 @@
         <p>Da clic para añadir una nueva cuenta</p>
         <div class="cuentasContainer">
 
-    <div class="account-carousel">
-        @if(cuentas && cuentas.length>0){
-            <p-carousel [value]="cuentas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
-                <ng-template pTemplate="item" let-cuenta>
-                    <div class="cuenta-card">
-                        <div class="max-w-sm p-6 bg-[#ffffff] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">       
-                            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black-900 dark:text-['000000']">{{cuenta.nombre}}</h5>
-                            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.no_cuenta}}</p>
-                            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.saldo | currency}}</p>
-                            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.fecha_vencimiento}}</p>
-                            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.estatusDetail.estatus}}</p>
-                            <div class="opc">
-                                <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-                                <mat-menu #menu="matMenu">
-                                    <button mat-menu-item>Ver Subcategorias</button>
-                                    @if(cuenta.estatus===1){
-                                        <button mat-menu-item (click)="desactivarCuentas(cuenta.ID)">Desactivar Cuenta</button>
-                                    }
-                                    @else {
-                                        <button mat-menu-item (click)="activarCuentas(cuenta.ID)">Activar Cuenta</button>
-                                    }
-                                    <button mat-menu-item (click)="setCuenta(cuenta)">Editar Cuenta</button>
-                                </mat-menu>
+            <div class="all">
+                <div class="account-carousel">
+                    @if(cuentas && cuentas.length>0){
+                        <p-carousel [value]="cuentas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+                            <ng-template pTemplate="item" let-cuenta>
+                                <div class="cuenta-card">
+                                    <div class="max-w-sm p-6 bg-[#ffffff] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">       
+                                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black-900 dark:text-['000000']">{{cuenta.nombre}}</h5>
+                                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.no_cuenta}}</p>
+                                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.saldo | currency}}</p>
+                                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.fecha_vencimiento}}</p>
+                                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.estatusDetail.estatus}}</p>
+                                        <div class="opc">
+                                            <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                            <mat-menu #menu="matMenu">
+                                                <button mat-menu-item>Ver Subcategorias</button>
+                                                @if(cuenta.estatus===1){
+                                                    <button mat-menu-item (click)="desactivarCuentas(cuenta.ID)">Desactivar Cuenta</button>
+                                                }
+                                                @else {
+                                                    <button mat-menu-item (click)="activarCuentas(cuenta.ID)">Activar Cuenta</button>
+                                                }
+                                                <button mat-menu-item (click)="setCuenta(cuenta)">Editar Cuenta</button>
+                                            </mat-menu>
+                                        </div>
+                                </div>
+                                
                             </div>
-                    </div>
-                    
-                </div>
-            </ng-template>
-          </p-carousel>
-    }
-    @else {
-        <p class="poppins-thin">No hay cuentas agregadas</p>
-    }
+                        </ng-template>
+                      </p-carousel>
+                }
+                @else {
+                    <p class="poppins-thin">No hay cuentas agregadas</p>
+                }
+                
+            </div>
+            
+            </div>
     
-</div>
 </div>

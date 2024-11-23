@@ -83,16 +83,5 @@ export class CuentasComponent {
     this.router.navigate(['movimientos/fondos/añadir',cuenta.ID])
   }
 
-  loadMovimientosProgramados(){
-    this.movPro.getMovimientosProg().subscribe(
-      (data)=>{
-        this.movimientosProgramados = data;
-      },(error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener pagos programados';
-        this.snackBar.open('Error con pagos programados '+errorMessage, 'Cerrar',{
-          duration: 5000
-      }
-    )
-  })
-}
+ 
 }

@@ -22,4 +22,8 @@ export class MovimientosProgService {
   {
     return this.http.patch<MovProgramados>(`${(this.apiUrl)}/desactivar/${id_movimientoprogramado}`,{});
   }
+
+  updateMovProg(id_movimientoprogramado:number, no_cuenta:string, monto: number, dia:number, descripcion:string): Observable<MovProgramados>{
+    return this.http.put<MovProgramados>(`${(this.apiUrl)}/actualizar/${id_movimientoprogramado}`,{no_cuenta, monto, dia, descripcion});
+  }
 }

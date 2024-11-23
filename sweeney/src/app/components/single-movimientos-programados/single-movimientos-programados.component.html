@@ -26,8 +26,9 @@
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item (click)="setMovimiento(movimiento)">Editar Pago</button>
+                                    
                                     @if(movimiento.estatus===1){
+                                        <button mat-menu-item (click)="setMovimiento(movimiento)">Editar Pago</button>
                                         <button mat-menu-item (click)="desactivarMovimiento(movimiento.id_movimientoProgramado)">Desactivar Movimiento</button>
                                     }
                                     @else {

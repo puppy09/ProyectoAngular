@@ -4,7 +4,7 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="movProUpd">
-        <form [formGroup]="movimientoProForm" (ngSubmit)="submitForm()">
+        <form [formGroup]="movimientoProForm" (ngSubmit)="submitForm(movimientoPro.id_movimientoProgramado)">
             <label for="no_cuenta">Número de Cuenta:</label>
             <input type="text" placeholder="Ingrese numero de cuenta" formControlName="no_cuenta">
 
@@ -17,6 +17,8 @@
             <label for="dia">Día Programado:</label>
             <input type="number" formControlName="dia" min="0">
             <input type="button" value="">
+            <button (click)="cancelar()">Cancelar</button>
+            <button type="submit">Actualizar Ingreso Programado</button>
         </form>
     </div>
 </div>

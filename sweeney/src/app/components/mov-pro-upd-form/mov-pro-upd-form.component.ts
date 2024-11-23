@@ -39,7 +39,25 @@ export class MovProUpdFormComponent {
       console.log("No hay pago");
     }
   }
-  submitForm(){
+  cancelar(){
 
+  }
+  submitForm(movProId: number){
+    const formData = this.movimientoProForm.value;
+    this.movProSvc.updateMovProg(
+      movProId,
+      formData.no_cuenta,
+      formData.monto,
+      formData.dia,
+      formData.descripcion
+    ).subscribe(response=>{
+      this.snackBar.open('Cuenta Actualizada con exito', 'Cerrar',{
+        duration: 5000
+      })}, error=>{
+        const errorMessage = error.error?.message || 'Error al actualizar cuenta';
+          this.snackBar.open('Error actualizando cuenta'+errorMessage, 'Cerrar',{
+          duration: 5000
+      })}
+    )
   }
 }

@@ -37,8 +37,9 @@ export class SingleMovimientosProgramadosComponent {
   })
   }
   setMovimiento(movimiento: any){
+    console.log(movimiento);
     this.dataSvc.setmovProData(movimiento);
-    this.router.navigate(['movimientos/programados/modificar',movimiento.id_movimientoprogramado]);
+    this.router.navigate(['movimientos/programados/modificar',movimiento.id_movimientoProgramado]);
   }
   activarMovimiento(id_movimientoprogramado:string){
     this.movPro.activarMov(id_movimientoprogramado).subscribe(

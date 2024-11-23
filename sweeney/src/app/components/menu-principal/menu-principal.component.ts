@@ -27,7 +27,7 @@ export class MenuPrincipalComponent  implements OnInit{
   usuario: any;
   saldo:any;
   totalGastado: any;
-  constructor(private pagSvc: PagosService, private dataSvc:DataServiceService, private router:Router, private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
+  constructor(private cueSrv:CuentasService, private pagSvc: PagosService, private dataSvc:DataServiceService, private router:Router, private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.fetchCuentas();
     this.fetchMovimientos();
@@ -140,6 +140,30 @@ export class MenuPrincipalComponent  implements OnInit{
     )
   }
 
+  activarCuentas(cuentaId:string): void{
+    this.cueSrv.activarCuenta(cuentaId).subscribe(
+      (data)=>{
+        this.fetchCuentas();
+      },
+      (error)=>{
+        const errorMessage = error.error?.message || 'Error al obtener cuentas';
+        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+      })
+  }
+  desactivarCuentas(cuentaId: string): void{
+    this.cueSrv.desactivarCuenta(cuentaId).subscribe(
+      (data)=>{
+        this.fetchCuentas();
+      },
+      (error)=>{
+        const errorMessage = error.error?.message || 'Error al obtener cuentas';
+        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
+          duration: 5000
+        })
+      })
+  }
   gotoAdd():void{
     this.router.navigate(['movimientos','fondos','añadir']);
   }

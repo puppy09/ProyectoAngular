@@ -31,12 +31,20 @@
                         <div class="account-square" (click)="selectCuenta(cuenta.no_cuenta)">
                             <p class="poppins-bold">{{ cuenta.nombre }}</p>
                             <p class="poppins-thin">{{ cuenta.saldo | currency }}</p>
+                            <p class="poppins-thin">{{cuenta.estatusDetail.estatus}}</p>
                             <div class="opc">
                                 <button mat-icon-button [matMenuTriggerFor]="menu">
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item (click)="setCuenta2(cuenta)">Añadir Fondos</button>
+                                    @if(cuenta.estatus===1){
+                                        <button mat-menu-item (click)="setCuenta2(cuenta)">Añadir Fondos</button>
+                                        <button mat-menu-item (click)="desactivarCuentas(cuenta.ID)">Desactivar Cuenta</button>
+                                    }
+                                    @else {
+                                        <button mat-menu-item (click)="activarCuentas(cuenta.ID)">Activar Cuenta</button>
+                                    }
+                                    
                                 </mat-menu>
                             </div>
                         </div>

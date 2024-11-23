@@ -1,1 +1,22 @@
 <app-header></app-header>
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="movProUpd">
+        <form [formGroup]="movimientoProForm" (ngSubmit)="submitForm()">
+            <label for="no_cuenta">Número de Cuenta:</label>
+            <input type="text" placeholder="Ingrese numero de cuenta" formControlName="no_cuenta">
+
+            <label for="descripcion">Descripcion:</label>
+            <input type="text" placeholder="Descripcion" formControlName="descripcion">
+
+            <label for="alias">Monto:</label>
+            <input type="number" formControlName="monto" min="0">
+
+            <label for="dia">Día Programado:</label>
+            <input type="number" formControlName="dia" min="0">
+            <input type="button" value="">
+        </form>
+    </div>
+</div>

@@ -28,13 +28,8 @@ export class SinglePagosProgramadosComponent {
     this.pagProSvc.getPagoProgramado().subscribe(
       (data)=>{
         this.pagosPro=data;
-        console.log(this.pagosPro);
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener pagos programados';
-        this.snackBar.open('Error con pagos programados '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
         console.error('Error fetching pagos programados: ', error);
       })
   }

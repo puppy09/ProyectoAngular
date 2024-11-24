@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { Router } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-single-pagos',
@@ -30,24 +31,27 @@ export class SinglePagosComponent {
         this.pagos = data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener pagos';
-        this.snackBar.open('Error con pagos '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
         console.error('Error fetching pagos: ', error);
       })
   }
   reembolsarPago(pagoId: string):void{
     this.pagoSrv.reembolsarPago(pagoId).subscribe(
       (data)=>{
-        this.getPagos();
-        this.snackBar.open('Pago Reembolsado', 'Cerrar',{
-          duration: 5000
-        });
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: 'Pago reembolsado exitosamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
       },
       (error)=>{
-        this.snackBar.open('Error Reembolsando Pago','Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error Reembolsando Pago',
+          showConfirmButton: false,
+          timer: 1500
         })
       })
   }

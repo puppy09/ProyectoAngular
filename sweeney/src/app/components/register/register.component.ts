@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -25,8 +26,12 @@ export class RegisterComponent {
   register(): void{
     this.authSrv.register(this.nombre, this.apellidos, this.email, this.password).subscribe({
       next: ()=>{
-        this.snackBar.open('¡Registro exitoso! Por favor, inicie sesión', 'Cerrar',{
-          duration: 5000 
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: 'Registro exitoso, por favor inicie sesión',
+          showConfirmButton: false,
+          timer: 1500
         })
 
         setTimeout(() =>{
@@ -35,9 +40,13 @@ export class RegisterComponent {
       }, 
       error: (err) => {
         const errorMessage = err.error?.message || 'Error al registrar al usuario';
-        this.snackBar.open('Error al registrar el usuario: '+errorMessage, 'Cerrar',{
-          duration: 5000
-        });
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: errorMessage,
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     });
   }

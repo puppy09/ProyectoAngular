@@ -10,6 +10,7 @@ import { DataServiceService } from '../../services/dataService/data-service.serv
 import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HeaderComponent } from '../header/header.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pagos-pro-upd-form',
@@ -51,8 +52,6 @@ export class PagosProUpdFormComponent {
           dia_programado: this.pagoPro.dia_programado,
           total_pagos: this.pagoPro.total_pagos
         });
-    }else{
-      console.log("No hay pago");
     }
   }
 
@@ -111,15 +110,22 @@ export class PagosProUpdFormComponent {
       formData.dia_programado,
       formData.total_pagos
     ).subscribe(response=>{
-      this.snackBar.open('Pago Actualizado con exito', 'Cerrar',{
-        duration: 5000
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: 'Pago Programado Actualizado con exito',
+        showConfirmButton: false,
+        timer: 1500
       })
       this.router.navigate(['/movimientos']);
       }, error=>{
         console.log(error);
-        const errorMessage = error.error?.message || 'Error al actualizar pago';
-            this.snackBar.open('Error actualizando pago'+errorMessage, 'Cerrar',{
-            duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error Actualizando Pago Programado',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
-  })
 }}

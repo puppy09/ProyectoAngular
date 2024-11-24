@@ -7,6 +7,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { CurrencyPipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-single-movimientos-programados',
@@ -26,15 +27,10 @@ export class SingleMovimientosProgramadosComponent {
   loadMovimientosProgramados(){
     this.movPro.getMovimientosProg().subscribe(
       (data)=>{
-        console.log(data);
         this.movimientosProgramados = data;
       },(error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener movimientos programados';
-        this.snackBar.open('Error con pagos programados '+errorMessage, 'Cerrar',{
-          duration: 5000
-      }
-    )
-  })
+        console.log("Error cargando movimientos programados")
+      })
   }
   setMovimiento(movimiento: any){
     console.log(movimiento);
@@ -45,13 +41,14 @@ export class SingleMovimientosProgramadosComponent {
     this.movPro.activarMov(id_movimientoprogramado).subscribe(
         (data)=>{
           this.loadMovimientosProgramados();
-          this.snackBar.open('Movimiento Activado ', 'Cerrar',{
-            duration: 5000
-        })}, (error)=>{
-          const errorMessage = error.error?.message || 'Error al activando movimiento programado';
-          this.snackBar.open('Error activando movimiento','Cerrar',{
-            duration: 5000
-        })
+        }, (error)=>{
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: 'Error Activando Movimiento',
+            showConfirmButton: false,
+            timer: 1500
+          })
       }
     );
 }
@@ -60,13 +57,14 @@ export class SingleMovimientosProgramadosComponent {
     this.movPro.desactivarMov(id_movimientoprogramado).subscribe(
       (data)=>{
         this.loadMovimientosProgramados();
-        this.snackBar.open('Movimiento Desactivcado ', 'Cerrar',{
-          duration: 5000
-      })}, (error)=>{
-        const errorMessage = error.error?.message || 'Error al desactivando movimiento programado';
-        this.snackBar.open('Error desactivando movimiento' + errorMessage,'Cerrar',{
-          duration: 5000
-      })
+       }, (error)=>{
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error Desactivando Movimiento',
+          showConfirmButton: false,
+          timer: 1500
+        })
     }
   );
   }

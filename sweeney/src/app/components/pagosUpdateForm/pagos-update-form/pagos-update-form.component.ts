@@ -9,6 +9,7 @@ import { SidebarComponent } from '../../sidebar/sidebar.component';
 import { HeaderComponent } from '../../header/header.component';
 import { PagosService } from '../../../services/pagos/pagos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-pagos-update-form',
   standalone: true,
@@ -42,8 +43,6 @@ export class PagosUpdateFormComponent {
         descripcion: this.pago.descripcion,
         monto: this.pago.monto
       });
-    }else{
-      console.log("No hay pago");
     }
   }
 
@@ -102,15 +101,23 @@ export class PagosUpdateFormComponent {
         formData.categoria,
         formData.subcategoria
       ).subscribe(response=>{
-        this.snackBar.open('Pago Actualizado con exito', 'Cerrar',{
-            duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: 'Pago Actualizado Exitosamente',
+          showConfirmButton: false,
+          timer: 1500
         })
         this.router.navigate(['/movimientos']);
         }, error=>{
-          const errorMessage = error.error?.message || 'Error al actualizar pago';
-            this.snackBar.open('Error actualizando pago'+errorMessage, 'Cerrar',{
-            duration: 5000
-        })}
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: 'Error Actualizando Pago',
+            showConfirmButton: false,
+            timer: 1500
+          })
+      }
     )//}
     //else{
       //alert("Formulario Invalido o fondos insuficientes");

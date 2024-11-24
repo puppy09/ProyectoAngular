@@ -29,10 +29,6 @@ export class SingleMovimientosComponent {
         this.movimientos = data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener movimientos';
-        this.snackBar.open('Error con movimientos '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
         console.error('Error fetching movimientos: ', error);
       })
   }

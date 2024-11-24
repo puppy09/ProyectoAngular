@@ -5,6 +5,45 @@
     </div>
     <div class="grupos">
         <button class="round-button">+</button>
-        <p>Estos son los grupos</p>
+
+        <div class="account-carousel">
+            @if(grupos && grupos.length>0){
+                <p-carousel [value]="grupos" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+                    <ng-template pTemplate="item" let-grupo>
+                        <div class="cuenta-card">
+                            <div class="max-w-sm p-6 bg-[#ffffff] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">       
+                                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black-900 dark:text-['000000']">{{grupo.grupoDetail.nombre}}</h5>
+                                <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{grupo.grupoDetail.descripcion}}</p>
+                                <div class="opc">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>Ver Subcategorias</button>
+                                        @if(grupo.estatus===1){
+                                            <button mat-menu-item>Desactivar Cuenta</button>
+                                        }
+                                        @else {
+                                            <button mat-menu-item>Activar Cuenta</button>
+                                        }
+                                        <button mat-menu-item>Editar Cuenta</button>
+                                    </mat-menu>
+                                </div>
+                        </div>
+                        
+                    </div>
+                </ng-template>
+              </p-carousel>
+        }
+        @else {
+            <p class="poppins-thin">No hay cuentas agregadas</p>
+        }
+        
+    </div>
+        @if(grupos&&grupos.length>0){
+            @for(grupo of grupos; track $index){
+                <p>{{grupo.grupoDetail.nombre}}</p>
+            }
+        }@else {
+            <p>no hay grupos</p>
+        }
     </div>
 </div>

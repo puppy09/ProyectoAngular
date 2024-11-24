@@ -28,3 +28,7 @@
   .round-button:hover {
     background-color: #ff8a3d; /* Darken color on hover */
   }
+  .account-carousel{
+    max-width: 1000px;
+    justify-content: center;
+  }

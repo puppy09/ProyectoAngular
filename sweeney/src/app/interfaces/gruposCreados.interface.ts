@@ -6,3 +6,18 @@ export interface gruposCreados {
     fondos: number;
     token: string;
 }
+
+export interface gruposMiembro{
+    id_grupo: number;
+    id_usuario: number;
+    id_estatus: number;
+    grupoDetail:{
+        nombre: string,
+        descripcion: string,
+        fondos: number
+    }
+    creadorDetail:{
+        ID: number,
+        nombre: string
+    }
+}

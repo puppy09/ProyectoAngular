@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environtment';
 import { HttpClient } from '@angular/common/http';
-import { gruposCreados } from '../../interfaces/gruposCreados.interface';
+import { gruposCreados, gruposMiembro } from '../../interfaces/gruposCreados.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,10 +13,10 @@ export class GruposCreadosService {
   private apiUrl = `${environment.apiUrl}/grupos`;
 
   getGruposCreados(): Observable<gruposCreados|gruposCreados[]>{
-    return this.http.get<gruposCreados|gruposCreados[]>(`${(this.apiUrl)}/creados`);
+    return this.http.get<gruposCreados|gruposCreados[]>(`${this.apiUrl}/creados`);
   }
 
-  getGruposMiembro(): Observable<gruposCreados|gruposCreados[]>{
-    return this.http.get<gruposCreados|gruposCreados[]>(`${(this.apiUrl)}/miembro`);
+  getGruposMiembro(): Observable<gruposMiembro|gruposMiembro[]>{
+    return this.http.get<gruposMiembro|gruposMiembro[]>(`${this.apiUrl}/miembro`);
   }
 }

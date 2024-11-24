@@ -14,17 +14,16 @@
                             <div class="max-w-sm p-6 bg-[#ffffff] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">       
                                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black-900 dark:text-['000000']">{{grupo.grupoDetail.nombre}}</h5>
                                 <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{grupo.grupoDetail.descripcion}}</p>
+                                <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{grupo.tipo_usuario}}</p>
                                 <div class="opc">
                                     <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
                                     <mat-menu #menu="matMenu">
-                                        <button mat-menu-item>Ver Subcategorias</button>
-                                        @if(grupo.estatus===1){
-                                            <button mat-menu-item>Desactivar Cuenta</button>
+                                        @if(grupo.tipo_usuario==='CREADOR'){
+                                            <button mat-menu-item>Editar Grupo</button>
                                         }
-                                        @else {
-                                            <button mat-menu-item>Activar Cuenta</button>
+                                        @else if(grupo.tipo_usuario!="CREADOR") {
+                                            <button mat-menu-item>Darse de Baja de Grupo</button>
                                         }
-                                        <button mat-menu-item>Editar Cuenta</button>
                                     </mat-menu>
                                 </div>
                         </div>

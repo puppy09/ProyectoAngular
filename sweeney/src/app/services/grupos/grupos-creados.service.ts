@@ -23,4 +23,8 @@ export class GruposCreadosService {
   joinGrupo(token:string):Observable<JSON>{
     return this.http.post<JSON>(`${this.apiUrl}/unirse`,{token});
   }
+
+  crearGrupo(nombre:string, descripcion:string):Observable<gruposCreados>{
+    return this.http.post<gruposCreados>(`${this.apiUrl}`,{nombre, descripcion});
+  }
 }

@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { Movimientos } from '../../interfaces/movimientos.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-movimientos',
@@ -33,11 +34,7 @@ export class MovimientosComponent implements OnInit{
         this.movimientos = data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener cuentas';
-        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
-        console.error('Error fetching cuentas: ', error);
+        console.log("Error obteniendo movimientos");
       })
   }
 

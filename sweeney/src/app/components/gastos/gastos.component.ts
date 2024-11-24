@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-gastos',
   standalone: true,
@@ -29,10 +30,13 @@ export class GastosComponent {
         this.categorias = data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener gastos';
-        this.snackBar.open('Error con gastos '+errorMessage, 'Cerrar',{
-          duration: 5000
-        });
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error obteniendo categorias',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
   }
   activarCategoria(categoryId: string){
@@ -41,9 +45,12 @@ export class GastosComponent {
         this.loadCategorias();
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error activando categoria';
-        this.snackBar.open('Error con categorias '+errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error activando categoria',
+          showConfirmButton: false,
+          timer: 1500
         })
       })
   }
@@ -53,9 +60,12 @@ export class GastosComponent {
         this.loadCategorias();
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error desactivando categoria';
-        this.snackBar.open('Error con categorias '+errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error desactivando categoria',
+          showConfirmButton: false,
+          timer: 1500
         })
       })
   }

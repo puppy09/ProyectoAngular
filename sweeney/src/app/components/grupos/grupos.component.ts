@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-grupos',
@@ -46,10 +47,21 @@ export class GruposComponent {
     const formData = this.joinGpoForm.value;
     this.gpoSvc.joinGrupo(formData.tokenGpo).subscribe(
       (data)=>{
-          this.snackBar.open('Te has unido al grupo','Cerrar');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: 'Te has unido al grupo',
+          showConfirmButton: false,
+          timer: 1500
+        })
       },(error)=>{
-        const errorMessage=error.error?.message|| 'Error uniendose a grupo';
-        this.snackBar.open(errorMessage, 'Cerrar');
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error uniendose a grupo',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     );
     this.loadGrupos();

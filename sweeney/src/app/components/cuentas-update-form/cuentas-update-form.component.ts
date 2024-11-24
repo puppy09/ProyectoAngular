@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cuentas-update-form',
@@ -38,8 +39,6 @@ export class CuentasUpdateFormComponent {
         alias: this.cuenta.nombre,
         saldo: this.cuenta.saldo
       });
-    }else{
-      console.log("No hay pago");
     }
   }
 
@@ -57,7 +56,7 @@ export class CuentasUpdateFormComponent {
     this.router.navigate(['/cuentas']);
   }
   submitForm(cuentaId:number){
-    //if(this.cuentasForm.valid){
+    if(this.cuentasForm.valid){
       const formData=this.cuentasForm.value;
       this.cuentaSvc.updCuenta(
         cuentaId,
@@ -65,17 +64,32 @@ export class CuentasUpdateFormComponent {
         formData.alias,
         formData.saldo
       ).subscribe(response=>{
-        this.snackBar.open('Cuenta Actualizada con exito', 'Cerrar',{
-          duration: 5000
-        })}, error=>{
-          const errorMessage = error.error?.message || 'Error al actualizar cuenta';
-            this.snackBar.open('Error actualizando cuenta'+errorMessage, 'Cerrar',{
-            duration: 5000
-        })}
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: 'Cuenta actualizada exitosamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        }, error=>{
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: 'Error actualizando cuenta',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
       )
-    //}
-    //else{
-    //  console.log("invalido");
-    //}
+    }
+    else{
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: 'Formulario invalido',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   }
 }

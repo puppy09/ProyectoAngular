@@ -7,6 +7,7 @@ import { CuentasService } from '../../services/cuentas/cuentas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cuentas-form',
   standalone: true,
@@ -62,12 +63,20 @@ export class CuentasFormComponent {
             formData.alias,
             formData.saldo,
             1).subscribe(response =>{
-              this.snackBar.open('Cuenta agregada con exito', 'Cerrar',{
-              duration:5000
-            })}, error =>{
-                const errorMessage = error.error?.message || 'Error al registrar pago';
-                this.snackBar.open('Error registrando pago'+errorMessage, 'Cerrar',{
-                duration: 5000
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: 'Cuenta creada exitosamente',
+                showConfirmButton: false,
+                timer: 1500
+              })  
+            }, error =>{
+              Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: 'Error creando cuenta',
+                showConfirmButton: false,
+                timer: 1500
               })
             });
         }else{
@@ -77,18 +86,32 @@ export class CuentasFormComponent {
         formData.alias,
         0,
         1).subscribe(response =>{
-          this.snackBar.open('Cuenta agregada con exito', 'Cerrar',{
-            duration:5000
-          })},
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: 'Cuenta creada exitosamente',
+            showConfirmButton: false,
+            timer: 1500
+          })  
+        },
           error =>{
-            const errorMessage = error.error?.message || 'Error al registrar pago';
-            this.snackBar.open('Error registrando pago'+errorMessage, 'Cerrar',{
-            duration: 5000
-          })
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: 'Error creando cuenta',
+              showConfirmButton: false,
+              timer: 1500
+            })
       });
         }
     }else{
-    alert("Formulario Invalido");
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: 'Formulario Invalido',
+        showConfirmButton: false,
+        timer: 1500
+      })
   }
   }
 }

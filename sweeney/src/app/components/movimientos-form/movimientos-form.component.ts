@@ -11,6 +11,7 @@ import { PagosService } from '../../services/pagos/pagos.service';
 import {MatRadioModule} from '@angular/material/radio';
 import { PagosProgService } from '../../services/pagosProg/pagos-prog.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-movimientos-form',
@@ -95,7 +96,7 @@ export class MovimientosFormComponent implements OnInit{
     this.router.navigate(['/movimientos']);
   }
   submitForm(){
-    //if(this.pagosForm.valid){
+    if(this.pagosForm.valid){
       const formData = this.pagosForm.value;
       console.log("Monto:"+formData.monto);
       if(formData.tipoMovimiento ===  'unica'){
@@ -106,18 +107,24 @@ export class MovimientosFormComponent implements OnInit{
           formData.categoria,
           formData.subcategoria
         ).subscribe(response =>{
-              this.snackBar.open('Pago Registrado con exito', 'Cerrar',{
-          duration: 5000
-        })
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: 'Pago regustrado exitosamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
         this.router.navigate(['/movimientos']);
         }, error =>{
-            const errorMessage = error.error?.message || 'Error al registrar pago';
-            this.snackBar.open('Error registrando pago'+errorMessage, 'Cerrar',{
-            duration: 5000
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: 'Error registrando pago',
+            showConfirmButton: false,
+            timer: 1500
           })
         });
       }else{
-        console.log("error")
         this.pagoProSvc.postPagoProgramado(
           formData.no_cuenta,
           formData.descripcion,
@@ -127,16 +134,29 @@ export class MovimientosFormComponent implements OnInit{
           formData.diaPago,
           formData.totalPagos
         ).subscribe(response =>{
-          this.snackBar.open('Pago Programdo con exito', 'Cerrar',{
-            duration: 5000
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: 'Pago programado exitosamente',
+            showConfirmButton: false,
+            timer: 1500
           })}, error=>{
-            const errorMessage = error.error?.message || 'Error al programar pago';
-            this.snackBar.open('Error programando pago'+errorMessage, 'Cerrar',{
-            duration: 5000
-          })
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: 'Error programando pago',
+              showConfirmButton: false,
+              timer: 1500
+            })
       })}
-  //}else{
-    //alert("Formulario Invalido o fondos insuficientes");
-  //}}
+  }else{
+    Swal.fire({
+      position: "top-end",
+      icon: "error",
+      title: 'Formulario invalido',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
   }
 }

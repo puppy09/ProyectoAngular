@@ -4,6 +4,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -26,11 +27,13 @@ export class LoginComponent {
         this.router.navigate(['/menu']);
       },
       error: (err) =>{
-        const errorMessage = err.error?.message || 'Error al registrar al usuario';
-        this.snackBar.open('Error al loguear el usuario: '+errorMessage, 'Cerrar',
-        {
-          duration: 5000
-        });
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error logueando',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     })
   }

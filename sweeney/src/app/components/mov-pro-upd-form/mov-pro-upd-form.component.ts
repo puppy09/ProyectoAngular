@@ -6,6 +6,7 @@ import { DataServiceService } from '../../services/dataService/data-service.serv
 import { MovimientosProgService } from '../../services/movimientosProg/movimientos-prog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReactiveFormsModule, FormControl, FormsModule, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-mov-pro-upd-form',
   standalone: true,
@@ -35,8 +36,6 @@ export class MovProUpdFormComponent {
         monto: this.movimientoPro.monto,
         dia: this.movimientoPro.dia
       });
-    }else{
-      console.log("No hay pago");
     }
   }
   cancelar(){
@@ -51,13 +50,21 @@ export class MovProUpdFormComponent {
       formData.dia,
       formData.descripcion
     ).subscribe(response=>{
-      this.snackBar.open('Cuenta Actualizada con exito', 'Cerrar',{
-        duration: 5000
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: 'Movimiento actualizado con exito',
+        showConfirmButton: false,
+        timer: 1500
       })}, error=>{
         const errorMessage = error.error?.message || 'Error al actualizar cuenta';
-          this.snackBar.open('Error actualizando cuenta'+errorMessage, 'Cerrar',{
-          duration: 5000
-      })}
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error actualizando movimiento' + error,
+          showConfirmButton: false,
+          timer: 1500
+        })}
     )
   }
 }

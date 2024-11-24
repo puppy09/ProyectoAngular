@@ -8,6 +8,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MovimientosService } from '../../services/movimientos/movimientos.service';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-movimientos-fondos-form',
   standalone: true,
@@ -70,16 +71,24 @@ ngOnInit(){
           formData.descripcion,
           formData.monto
         ).subscribe(response=>{
-              this.snackBar.open('Movimiento Registrado con éxito', 'Cerrar',{
-              duration: 5000
-              })
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: 'Fondos añadidos correctamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
               this.router.navigate(['/cuentas']);
           }, error=>{
-              const errorMessage = error.error?.message || 'Error al programar ingreso';
-              this.snackBar.open('Error programando pago'+errorMessage, 'Cerrar',{
-              duration: 5000
-              });
-            })}
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: 'Error añadiendo fondos',
+              showConfirmButton: false,
+              timer: 1500
+              })
+            });
+      }
       else{
         this.movService.postFondosProgramados(
             formData.no_cuenta,
@@ -87,14 +96,21 @@ ngOnInit(){
             formData.monto,
             formData.diaPago
         ).subscribe(response=>{
-            this.snackBar.open('Movimiento Registrado con éxito', 'Cerrar',{
-              duration: 5000
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: 'Fondos programados correctamente',
+            showConfirmButton: false,
+            timer: 1500
           })
           this.router.navigate(['/cuentas']);
         }, error=>{
-            const errorMessage = error.error?.message || 'Error al programar ingresp';
-            this.snackBar.open('Error programando pago'+errorMessage, 'Cerrar',{
-            duration: 5000
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: 'Error programando fondos',
+            showConfirmButton: false,
+            timer: 1500
           });
         })}
     }}}

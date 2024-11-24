@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { DataServiceService } from '../../services/dataService/data-service.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-menu-principal',
   standalone: true,
@@ -44,12 +45,14 @@ export class MenuPrincipalComponent  implements OnInit{
         this.saldo = data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener saldo';
-        this.snackBar.open(errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'No se ha cargado saldo total',
+          showConfirmButton: false,
+          timer: 1500
         })
-      }
-    )
+      })
   }
   fetchCuentas(): void {
     this.cuentasService.getCuentas().subscribe(
@@ -57,13 +60,8 @@ export class MenuPrincipalComponent  implements OnInit{
         this.cuentas = data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener cuentas';
-        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
-        console.error('Error fetching cuentas: ', error);
-      })
-  }
+        console.log("Error cargando Cuentas" + error.error?.message);
+  })}
 
   fetchMovimientos(): void{
     this.movService.getMovimientos().subscribe(
@@ -71,11 +69,7 @@ export class MenuPrincipalComponent  implements OnInit{
         this.movimientos = data;
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener movimientos';
-        this.snackBar.open('Error obteniendo mov '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
-        console.error('Error fetching movimientos: ', error);
+        console.log("Error cargando Movimientos" + error.error?.message);
       })
   }
 
@@ -86,11 +80,8 @@ export class MenuPrincipalComponent  implements OnInit{
       this.pagos = data;
     },
     (error)=>{
-      const errorMessage = error.error?.message || 'Error al obtener pagos';
-        this.snackBar.open('Error Obteniendo Pagos '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
-        console.error('Error fetching pagos: ', error);
+      
+      console.log("Error cargando pagos "+ error.error?.message);
     })
   }
 
@@ -102,11 +93,6 @@ export class MenuPrincipalComponent  implements OnInit{
       },
       (error)=>{
         console.log("error obteniendo la informacion del usuario", error);
-        const errorMessage = error.error?.message || 'Error al obtener informacion del usuario';
-        this.snackBar.open('Error Obteniendo informacion del usuario '+errorMessage, 'Cerrar',{
-          duration: 5000
-        })
-        console.error('Error fetching user: ', error);
       })
   }
 
@@ -116,12 +102,13 @@ export class MenuPrincipalComponent  implements OnInit{
         this.movimientos = data;
       },
       (error)=>{
-        console.log("error obteniendo la pagos del usuario", error);
-        const errorMessage = error.error?.message || 'Error al obtener pagos del usuario';
-        this.snackBar.open('Error Obteniendo pagos del usuario '+errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'No hay cuentas del usuario',
+          showConfirmButton: false,
+          timer: 1500
         })
-        console.error('Error fetching user: ', error);
       }
     )
   }
@@ -133,9 +120,6 @@ export class MenuPrincipalComponent  implements OnInit{
         console.log(this.totalGastado);
       },(error)=>{
         console.log("Error Obteniendo total gastado");
-        this.snackBar.open("Error Obteniendo Total Gastado","Cerrar",{
-          duration: 3000
-        });
       }
     )
   }
@@ -146,11 +130,14 @@ export class MenuPrincipalComponent  implements OnInit{
         this.fetchCuentas();
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener cuentas';
-        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error Activando Cuenta',
+          showConfirmButton: false,
+          timer: 1500
         })
-      })
+        })
   }
   desactivarCuentas(cuentaId: string): void{
     this.cueSrv.desactivarCuenta(cuentaId).subscribe(
@@ -158,9 +145,12 @@ export class MenuPrincipalComponent  implements OnInit{
         this.fetchCuentas();
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener cuentas';
-        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error Desactivando Cuenta',
+          showConfirmButton: false,
+          timer: 1500
         })
       })
   }

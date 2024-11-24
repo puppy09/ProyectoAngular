@@ -7,6 +7,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { NegociosService } from '../../services/negocios/negocios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-gastos-form',
   standalone: true,
@@ -54,12 +55,14 @@ export class GastosFormComponent {
             console.log(data);
         },
         (error)=>{
-          const errorMessage = error.error?.message || 'Error al obtener rubros';
-          this.snackBar.open(errorMessage, 'Cerrar',{
-          duration: 5000
-        }
-      )
-  });
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: 'Error obteniendo rubros de negocios',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        });
 }
 
   loadNegocios(event:any){
@@ -68,11 +71,14 @@ export class GastosFormComponent {
       (data)=>{
           this.negocios=data;
       },(error)=>{
-          const errorMessage = error.error?.message || 'Error al obtener negocios';
-          this.snackBar.open(errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error obteniendo negocios',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
-    })
   }
   addNegocio(negocio: any){
     

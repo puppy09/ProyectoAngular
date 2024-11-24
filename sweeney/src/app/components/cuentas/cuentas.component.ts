@@ -12,6 +12,7 @@ import { DataServiceService } from '../../services/dataService/data-service.serv
 import { CarouselModule } from 'primeng/carousel';
 import 'flowbite';
 import { MovimientosProgService } from '../../services/movimientosProg/movimientos-prog.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cuentas',
@@ -36,10 +37,13 @@ export class CuentasComponent {
       },
       (error)=>{
         const errorMessage = error.error?.message || 'Error al obtener cuentas';
-        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: errorMessage,
+          showConfirmButton: false,
+          timer: 1500
         })
-        console.error('Error fetching cuentas: ', error);
       }
     )
   }
@@ -49,9 +53,12 @@ export class CuentasComponent {
         this.loadCuentas();
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener cuentas';
-        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error Activando Cuenta',
+          showConfirmButton: false,
+          timer: 1500
         })
       })
   }
@@ -62,9 +69,12 @@ export class CuentasComponent {
         this.loadCuentas();
       },
       (error)=>{
-        const errorMessage = error.error?.message || 'Error al obtener cuentas';
-        this.snackBar.open('Error con cuentas '+errorMessage, 'Cerrar',{
-          duration: 5000
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'Error Desactivando Cuenta',
+          showConfirmButton: false,
+          timer: 1500
         })
       })
   }

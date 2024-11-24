@@ -19,4 +19,8 @@ export class GruposCreadosService {
   getGruposMiembro(): Observable<gruposMiembro|gruposMiembro[]>{
     return this.http.get<gruposMiembro|gruposMiembro[]>(`${this.apiUrl}/miembro`);
   }
+
+  joinGrupo(token:string):Observable<JSON>{
+    return this.http.post<JSON>(`${this.apiUrl}/miembro`,{token});
+  }
 }

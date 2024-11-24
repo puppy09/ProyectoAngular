@@ -21,6 +21,6 @@ export class GruposCreadosService {
   }
 
   joinGrupo(token:string):Observable<JSON>{
-    return this.http.post<JSON>(`${this.apiUrl}/miembro`,{token});
+    return this.http.post<JSON>(`${this.apiUrl}/unirse`,{token});
   }
 }

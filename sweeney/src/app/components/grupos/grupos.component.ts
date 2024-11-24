@@ -6,18 +6,25 @@ import { CarouselModule } from 'primeng/carousel';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-grupos',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, CarouselModule, MatMenuModule, MatButtonModule, MatIconModule],
+  imports: [ReactiveFormsModule, HeaderComponent, SidebarComponent, CarouselModule, MatMenuModule, MatButtonModule, MatIconModule],
   templateUrl: './grupos.component.html',
   styleUrl: './grupos.component.css'
 })
 export class GruposComponent {
 
   grupos:any;
-  constructor(private gpoSvc: GruposCreadosService){}
+  joinGpoForm:FormGroup = new FormGroup({});
+  constructor(private gpoSvc: GruposCreadosService, private snackBar: MatSnackBar, private fb:FormBuilder){
+    this.joinGpoForm = this.fb.group({
+      tokenGpo: new FormControl('', Validators.required)
+    })
+  }
 
   ngOnInit(): void{
     this.loadGrupos();
@@ -32,5 +39,18 @@ export class GruposComponent {
         console.log("error con grupos "+error.message);
       }
     );
+  }
+  
+  joinGrupo(){
+    const formData = this.joinGpoForm.value;
+    this.gpoSvc.joinGrupo(formData.tokenGpo).subscribe(
+      (data)=>{
+          this.snackBar.open('Te has unido al grupo','Cerrar');
+      },(error)=>{
+        const errorMessage=error.error?.message|| 'Error uniendose a grupo';
+        this.snackBar.open(errorMessage, 'Cerrar');
+      }
+    );
+    this.loadGrupos();
   }
 }

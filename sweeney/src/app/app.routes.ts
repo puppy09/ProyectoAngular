@@ -19,6 +19,7 @@ import { GastosFormComponent } from './components/gastos-form/gastos-form.compon
 import { PagosProUpdFormComponent } from './components/pagos-pro-upd-form/pagos-pro-upd-form.component';
 import { MovProUpdFormComponent } from './components/mov-pro-upd-form/mov-pro-upd-form.component';
 import { SingleMovimientosProgramadosComponent } from './components/single-movimientos-programados/single-movimientos-programados.component';
+import { CrearGrupoModalComponent } from './components/crear-grupo-modal/crear-grupo-modal.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -49,7 +50,14 @@ export const routes: Routes = [
     {path: 'movimientos/fondos/añadir', component:MovimientosFondosFormComponent},
     {path: 'movimientos/fondos/añadir/:id', component:MovimientosFondosFormComponent},
     {path: 'movimientos/programados/modificar/:id',component:MovProUpdFormComponent},
-    {path: 'grupos',component:GruposComponent},
+    {path: 'grupos',component:GruposComponent,
+        children:[
+            {
+                path: 'crear/grupo',
+                component: CrearGrupoModalComponent
+            }
+        ]
+    },
     {path: 'gastos',component:GastosComponent},
     {path: 'gastos/agregar', component:GastosFormComponent},
     {path: 'pagos/modificar/:id', component: PagosUpdateFormComponent},

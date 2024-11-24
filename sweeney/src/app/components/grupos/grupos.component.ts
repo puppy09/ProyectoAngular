@@ -8,11 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-grupos',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent, SidebarComponent, CarouselModule, MatMenuModule, MatButtonModule, MatIconModule],
+  imports: [RouterModule, ReactiveFormsModule, HeaderComponent, SidebarComponent, CarouselModule, MatMenuModule, MatButtonModule, MatIconModule],
   templateUrl: './grupos.component.html',
   styleUrl: './grupos.component.css'
 })
@@ -20,7 +21,7 @@ export class GruposComponent {
 
   grupos:any;
   joinGpoForm:FormGroup = new FormGroup({});
-  constructor(private gpoSvc: GruposCreadosService, private snackBar: MatSnackBar, private fb:FormBuilder){
+  constructor(private route: ActivatedRoute, private gpoSvc: GruposCreadosService, private snackBar: MatSnackBar, private fb:FormBuilder, private router: Router){
     this.joinGpoForm = this.fb.group({
       tokenGpo: new FormControl('', Validators.required)
     })
@@ -52,5 +53,9 @@ export class GruposComponent {
       }
     );
     this.loadGrupos();
+  }
+
+  crear(){
+    this.router.navigate(['crear/grupo'],{relativeTo: this.route});
   }
 }

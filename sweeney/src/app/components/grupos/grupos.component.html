@@ -4,8 +4,9 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="grupos">
-        <button class="round-button">+</button>
+        <button class="round-button" (click)="crear()">+</button>
         <p>Da clic para crear un grupo nuevo</p>
+        <router-outlet></router-outlet>
         <div class="join">
             <p>O únete a uno</p>
             <form [formGroup]="joinGpoForm" (ngSubmit)="joinGrupo()">

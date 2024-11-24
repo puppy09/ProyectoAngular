@@ -1,6 +1,9 @@
 .container{
     display:flex;
 }
+.cuenta-card{
+  padding: 20px;
+}
 .grupos{
     display: flex;
     flex-direction: column;

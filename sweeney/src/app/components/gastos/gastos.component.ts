@@ -8,11 +8,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { CarouselModule } from 'primeng/carousel';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-gastos',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule],
+  imports: [CarouselModule,HeaderComponent, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule],
   templateUrl: './gastos.component.html',
   styleUrl: './gastos.component.css'
 })

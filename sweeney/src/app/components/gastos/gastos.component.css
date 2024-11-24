@@ -6,12 +6,19 @@
     position: fixed;
     height: 100%;
 }
-.gastosContainer{
+/*.gastosContainer{
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Creates two equal-width columns */
-    gap: 10px; /* Adjust the gap between the items */
-    width: 95%; /* Ensure container spans full width */
+    grid-template-columns: repeat(2, 1fr); /* Creates two equal-width columns 
+    gap: 10px; /* Adjust the gap between the items 
+    width: 95%; /* Ensure container spans full width 
     box-sizing: border-box;
+}*/
+.cuenta-card{
+  padding: 20px;
+}
+.gastosContainer{
+  max-width: 1000px;
+  justify-content: center;
 }
 .round-button {
     width: 35px;           /* Set the width */

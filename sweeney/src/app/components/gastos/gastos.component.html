@@ -8,32 +8,35 @@
         <p>Da clic para añadir un nuevo gasto</p>
         <div class="gastosContainer">
             @if(categorias && categorias.length>0){
-                @for(categoria of categorias; track $index){
-                    <div class="category-square">
-                        <p>{{categoria.nombre}}</p>
-                        <p class="poppins-thin">{{categoria.presupuesto}}%</p>
-                        <p class="poppins-thin">{{categoria.estatusDetail.estatus}}</p>
-                        <div class="opc">
-                            <button mat-icon-button [matMenuTriggerFor]="menu">
-                                <mat-icon>more_vert</mat-icon>
-                            </button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>Ver Subcategorias</button>
-                                @if(categoria.estatus===1){
-                                    <button mat-menu-item (click)="desactivarCategoria(categoria.ID)">Desactivar Categoria</button>
-                                }
-                                @else {
-                                    <button mat-menu-item (click)="activarCategoria(categoria.ID)">Activar Categoria</button>
-                                }
-                                <button mat-menu-item>Editar Categoria</button>
-                            </mat-menu>
+                <p-carousel [value]="categorias" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+                    <ng-template pTemplate="item" let-categoria>
+                        <div class="cuenta-card">
+                            <div class="max-w-sm p-6 bg-[#ffffff] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">       
+                                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black-900 dark:text-['000000']">{{categoria.nombre}}</h5>
+                                <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{categoria.presupuesto}}%</p>
+                                <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{categoria.estatusDetail.estatus}}</p>
+                                <div class="opc">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>Ver Subcategorias</button>
+                                        @if(categoria.estatus===1){
+                                            <button mat-menu-item (click)="desactivarCategoria(categoria.ID)">Desactivar Categoria</button>
+                                        }
+                                        @else {
+                                            <button mat-menu-item (click)="activarCategoria(categoria.ID)">Activar Categoria</button>
+                                        }
+                                        <button mat-menu-item>Editar Categoria</button>
+                                    </mat-menu>
+                                </div>
                         </div>
+                        
                     </div>
-                }
-            }
-            @else {
-                <p class="poppins-thin">Aun no tienes categorias de gastos agregadas</p>
-            }
+                </ng-template>
+              </p-carousel>
+        }
+        @else {
+            <p class="poppins-thin">No hay cuentas agregadas</p>
+        }
         </div>
     </div>
 </div>

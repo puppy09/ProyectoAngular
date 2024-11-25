@@ -3,6 +3,7 @@
 }
 .cuenta-card{
   padding: 20px;
+  cursor: grab;
 }
 .grupos{
     display: flex;

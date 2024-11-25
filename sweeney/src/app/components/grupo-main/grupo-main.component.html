@@ -1,1 +1,13 @@
-<p>grupo-main works!</p>
+
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="movimientos">
+        <div class="botones">
+            <button (click)="navigateToPagosGrupos()" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#065170] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#5D9DA8]">Movimientos Grupales</button>
+            <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#065170] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#5D9DA8]">Pagos Grupales</button>
+        </div>                
+        <router-outlet></router-outlet>
+    </div>
+</div>

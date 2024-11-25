@@ -21,7 +21,7 @@
             @if(grupos && grupos.length>0){
                 <p-carousel [value]="grupos" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
                     <ng-template pTemplate="item" let-grupo>
-                        <div class="cuenta-card">
+                        <div class="cuenta-card" (click)="gotoMain(grupo)">
                             <div class="max-w-sm p-6 bg-[#ffffff] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">       
                                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black-900 dark:text-['000000']">{{grupo.grupoDetail.nombre}}</h5>
                                 <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{grupo.grupoDetail.descripcion}}</p>

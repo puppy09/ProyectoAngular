@@ -1,0 +1,46 @@
+<div class="movimientosContainer">
+    <h4 class="poppins-bold">Mis Movimientos</h4>
+<div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[100%] sm:max-h-[300px]">
+    <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
+        <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
+            <tr>
+                <th scope="col" class="px-6 py-3 poppins-bold">Usuario</th>
+                <th scope="col" class="px-6 py-3">Descripcion</th>
+                <th scope="col" class="px-6 py-3">Monto</th>
+                <th scope="col" class="px-6 py-3">Categoria</th>
+                <th scope="col" class="px-6 py-3">Subcategoria</th>
+                <th scope="col" class="px-6 py-3">Pagos Hechos</th>
+                <th scope="col" class="px-6 py-3">Estatus</th>
+                <th scope="col" class="px-6 py-3">Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(pagos && pagos.length>0){
+                @for(pago of pagos; track $index){
+                   
+                    @defer () {
+                        <tr class="bg-white border-b dark:bg-[#ffffff] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
+                            <td class="px-6 py-4">{{pago.user.nombre}}</td>
+                            <td class="px-6 py-4">{{pago.descripcion}}</td>
+                            <td class="px-6 py-4">{{pago.monto}}</td>
+                            <td class="px-6 py-4">{{pago.categoriagrupal.categoria}}</td>
+                            <td class="px-6 py-4">{{pago.negocio.nombre}}</td>
+                            <td class="px-6 py-4">{{pago.pagos_hechos}}/{{pago.total_pagos}}</td>
+                            <td class="px-6 py-4">{{pago.estatuspago.estatus_pagos}}</td>
+                            <td class="px-6 py-4">{{pago.fecha}}</td>
+                        </tr>
+                    }
+                    @placeholder {
+                        <td class="poppins-thin" colspan="5" style="text-align: center;">Cargando movimientos</td>
+                    }
+                }
+            }
+            @else {
+                <TR>
+                    <TD class="poppins-thin" colspan="8" style="text-align: center;">Este usuario aun no tiene movimientos registrados</TD>
+                </TR>
+            }            
+        </tbody>
+    </table>
+</div>
+</div>

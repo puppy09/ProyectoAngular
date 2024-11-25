@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DataServiceService } from '../../services/dataService/data-service.service';
 
 @Component({
   selector: 'app-grupos',
@@ -22,7 +23,7 @@ export class GruposComponent {
 
   grupos:any;
   joinGpoForm:FormGroup = new FormGroup({});
-  constructor(private route: ActivatedRoute, private gpoSvc: GruposCreadosService, private snackBar: MatSnackBar, private fb:FormBuilder, private router: Router){
+  constructor(private dataSvc: DataServiceService, private route: ActivatedRoute, private gpoSvc: GruposCreadosService, private snackBar: MatSnackBar, private fb:FormBuilder, private router: Router){
     this.joinGpoForm = this.fb.group({
       tokenGpo: new FormControl('', Validators.required)
     })
@@ -69,5 +70,9 @@ export class GruposComponent {
 
   crear(){
     this.router.navigate(['crear/grupo'],{relativeTo: this.route});
+  }
+  gotoMain(grupo:any){
+    this.dataSvc.setGrupoData(grupo);
+    this.router.navigate(['grupos/main']);
   }
 }

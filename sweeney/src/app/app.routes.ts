@@ -20,6 +20,8 @@ import { PagosProUpdFormComponent } from './components/pagos-pro-upd-form/pagos-
 import { MovProUpdFormComponent } from './components/mov-pro-upd-form/mov-pro-upd-form.component';
 import { SingleMovimientosProgramadosComponent } from './components/single-movimientos-programados/single-movimientos-programados.component';
 import { CrearGrupoModalComponent } from './components/crear-grupo-modal/crear-grupo-modal.component';
+import { GrupoMainComponent } from './components/grupo-main/grupo-main.component';
+import { GruposSinglePagosComponent } from './components/grupos-single-pagos/grupos-single-pagos.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -55,6 +57,14 @@ export const routes: Routes = [
             {
                 path: 'crear/grupo',
                 component: CrearGrupoModalComponent
+            }
+        ]
+    },
+    {path: 'grupos/main', component: GrupoMainComponent,
+        children:[
+            {
+                path:'single/pagos',
+                component: GruposSinglePagosComponent
             }
         ]
     },

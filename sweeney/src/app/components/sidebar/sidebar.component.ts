@@ -35,7 +35,7 @@ export class SidebarComponent {
     }
   }
   goToMovimientos(){
-    this.router.navigate(['/movimientos']);
+    this.router.navigate(['/movimientos/single/movimientos']);
   }
 
   goToCuentas(){

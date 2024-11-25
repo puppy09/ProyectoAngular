@@ -15,6 +15,8 @@ module.exports = {
         '200': '130%'      
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MovimientosService } from '../../services/movimientos/movimientos.service';
 import { PagosService } from '../../services/pagos/pagos.service';
 import { CurrencyPipe } from '@angular/common';
@@ -28,7 +27,7 @@ export class MenuPrincipalComponent  implements OnInit{
   usuario: any;
   saldo:any;
   totalGastado: any;
-  constructor(private cueSrv:CuentasService, private pagSvc: PagosService, private dataSvc:DataServiceService, private router:Router, private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService, private snackBar: MatSnackBar) {}
+  constructor(private cueSrv:CuentasService, private pagSvc: PagosService, private dataSvc:DataServiceService, private router:Router, private userSvc: AuthService,  private cuentasService: CuentasService, private movService: MovimientosService, private pagoSrv: PagosService) {}
   ngOnInit(): void {
     this.fetchCuentas();
     this.fetchMovimientos();

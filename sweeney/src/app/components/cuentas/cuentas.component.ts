@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { CurrencyPipe } from '@angular/common';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,7 +24,7 @@ export class CuentasComponent {
 
   cuentas: any;
   movimientosProgramados: any;
-  constructor(private movPro: MovimientosProgService, private dataSvc:DataServiceService, private cueSrv: CuentasService, private snackBar: MatSnackBar, private router: Router){}
+  constructor(private movPro: MovimientosProgService, private dataSvc:DataServiceService, private cueSrv: CuentasService, private router: Router){}
 
   ngOnInit(): void{
     this.loadCuentas();

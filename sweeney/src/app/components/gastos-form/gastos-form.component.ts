@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { NegociosService } from '../../services/negocios/negocios.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import Swal from 'sweetalert2';
 @Component({
@@ -22,7 +21,7 @@ export class GastosFormComponent {
   negocios:any;
 
   gastosForm: FormGroup = new FormGroup({});
-  constructor(private gasSvc: CategoriasService, private negSvc: NegociosService, private snackBar: MatSnackBar){}
+  constructor(private gasSvc: CategoriasService, private negSvc: NegociosService){}
 
   ngOnInit(): void{
     this.gastosForm = new FormGroup({

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { MovimientosProgService } from '../../services/movimientosProg/movimientos-prog.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -19,7 +18,7 @@ import Swal from 'sweetalert2';
 export class SingleMovimientosProgramadosComponent {
   movimientos: any;
   movimientosProgramados:any;
-  constructor(private snackBar: MatSnackBar, private dataSvc: DataServiceService, private router:Router, private movPro: MovimientosProgService){}
+  constructor(private dataSvc: DataServiceService, private router:Router, private movPro: MovimientosProgService){}
 
   ngOnInit(){
     this.loadMovimientosProgramados();

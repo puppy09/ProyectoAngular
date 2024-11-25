@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataServiceService } from '../../services/dataService/data-service.service';
+import { GruposCreadosService } from '../../services/grupos/grupos-creados.service';
 
 @Component({
   selector: 'app-grupos-single-pagos-programados',
@@ -8,5 +11,21 @@ import { Component } from '@angular/core';
   styleUrl: './grupos-single-pagos-programados.component.css'
 })
 export class GruposSinglePagosProgramadosComponent {
-
+  grupo: any;
+  pagosProgramados:any;
+  constructor(private router:Router, private dataSvc: DataServiceService, private gpoSvc: GruposCreadosService){
+    this.grupo = this.dataSvc.getGrupoData();
+  }
+  ngOnInit(){
+    this.loadPagosProgramados(this.grupo.id_grupo);
+  }
+  loadPagosProgramados(id_grupo:string){
+    this.gpoSvc.getPagosProgramadosGrupales(id_grupo).subscribe(
+      (data)=>{
+        this.pagosProgramados=data;
+      },(error)=>{
+        console.log("Error obteniendo pagos");
+      }
+    )
+  }
 }

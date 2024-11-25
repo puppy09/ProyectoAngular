@@ -4,7 +4,6 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { MovimientosProgService } from '../../services/movimientosProg/movimientos-prog.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReactiveFormsModule, FormControl, FormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 @Component({
@@ -19,7 +18,7 @@ export class MovProUpdFormComponent {
   movimientoProForm:FormGroup = new FormGroup({});
   movimientoPro: any;
 
-  constructor(private dataSvc: DataServiceService, private movProSvc: MovimientosProgService, private fb: FormBuilder, private snackBar: MatSnackBar){
+  constructor(private dataSvc: DataServiceService, private movProSvc: MovimientosProgService, private fb: FormBuilder){
     this.movimientoProForm = this.fb.group({
       no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
       descripcion: new FormControl('', Validators.required),

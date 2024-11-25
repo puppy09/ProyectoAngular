@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CategoriasService } from '../../services/categorias/categorias.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { PercentPipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,7 +19,7 @@ import Swal from 'sweetalert2';
 export class GastosComponent {
 
   categorias:any;
-  constructor(private router:Router, private gasSvc: CategoriasService, private snackBar: MatSnackBar){}
+  constructor(private router:Router, private gasSvc: CategoriasService){}
 
   ngOnInit():void{
     this.loadCategorias();

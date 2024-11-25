@@ -8,7 +8,6 @@ import { DataServiceService } from '../../../services/dataService/data-service.s
 import { SidebarComponent } from '../../sidebar/sidebar.component';
 import { HeaderComponent } from '../../header/header.component';
 import { PagosService } from '../../../services/pagos/pagos.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-pagos-update-form',
@@ -24,7 +23,7 @@ export class PagosUpdateFormComponent {
   categorias: any;
   subcategorias: any;
   pago: any;
-  constructor(private router:Router, private snackBar: MatSnackBar, private pagoSvc: PagosService,  private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService, private  catSrv: CategoriasService, private subSrv: SubcategoriasService){
+  constructor(private router:Router, private pagoSvc: PagosService,  private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService, private  catSrv: CategoriasService, private subSrv: SubcategoriasService){
     this.pagosForm = this.fb.group({
       no_cuenta: new FormControl('', Validators.required),
       categoria: new FormControl('', Validators.required),

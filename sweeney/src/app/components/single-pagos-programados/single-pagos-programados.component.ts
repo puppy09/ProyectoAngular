@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { PagosProgService } from '../../services/pagosProg/pagos-prog.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +17,7 @@ import { CurrencyPipe } from '@angular/common';
 export class SinglePagosProgramadosComponent {
 
   pagosPro: any;
-  constructor(private router: Router, private dataSvc: DataServiceService, private pagProSvc: PagosProgService, private snackBar: MatSnackBar){}
+  constructor(private router: Router, private dataSvc: DataServiceService, private pagProSvc: PagosProgService){}
   
   ngOnInit(){
     this.getPagosProgramados();

@@ -29,4 +29,7 @@ export class GrupoMainComponent {
   navigateToMovimientosGrupos():void{
     this.router.navigate(['single/movimientos'],{relativeTo:this.route});
   }
+  navigateToPagosProgramados():void{
+    this.router.navigate(['single/pagos/programados'],{relativeTo:this.route});
+  }
 }

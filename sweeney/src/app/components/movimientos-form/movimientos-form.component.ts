@@ -4,7 +4,6 @@ import { SidebarComponent } from "../sidebar/sidebar.component";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoriasService } from '../../services/categorias/categorias.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { SubcategoriasService } from '../../services/subcategorias/subcategorias.service';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
 import { PagosService } from '../../services/pagos/pagos.service';
@@ -29,7 +28,7 @@ export class MovimientosFormComponent implements OnInit{
   subcategorias: any;
 
 
-  constructor(private router: Router, private pagoProSvc: PagosProgService,private pagoSvc: PagosService,  private catSrv: CategoriasService, private snackBar: MatSnackBar, private  subSrv: SubcategoriasService, private cuenSrv: CuentasService){}
+  constructor(private router: Router, private pagoProSvc: PagosProgService,private pagoSvc: PagosService,  private catSrv: CategoriasService, private  subSrv: SubcategoriasService, private cuenSrv: CuentasService){}
   
   
   ngOnInit(): void {

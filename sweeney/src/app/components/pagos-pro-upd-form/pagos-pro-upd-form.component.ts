@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PagosProgService } from '../../services/pagosProg/pagos-prog.service';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
@@ -26,7 +25,7 @@ export class PagosProUpdFormComponent {
   categorias: any;
   subcategorias: any;
   pagoPro: any;
-  constructor(private dataSvc: DataServiceService, private fb: FormBuilder,private router:Router, private snackBar: MatSnackBar, private pagoSvc: PagosProgService, private cueSvc: CuentasService, private catSvc: CategoriasService, private subSvc: SubcategoriasService){
+  constructor(private dataSvc: DataServiceService, private fb: FormBuilder,private router:Router, private pagoSvc: PagosProgService, private cueSvc: CuentasService, private catSvc: CategoriasService, private subSvc: SubcategoriasService){
     this.pagosProForms=this.fb.group({
         no_cuenta: new FormControl('', Validators.required),
         categoria: new FormControl('', Validators.required),

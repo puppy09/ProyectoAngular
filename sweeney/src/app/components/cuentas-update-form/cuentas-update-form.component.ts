@@ -4,7 +4,6 @@ import { HeaderComponent } from '../header/header.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { Router } from '@angular/router';
@@ -21,7 +20,7 @@ export class CuentasUpdateFormComponent {
   cuentasForm: FormGroup = new FormGroup({});
   cuenta: any;
 
-  constructor(private router:Router, private cuentaSvc: CuentasService,  private fb:FormBuilder, private dataSvc: DataServiceService, private snackBar: MatSnackBar){
+  constructor(private router:Router, private cuentaSvc: CuentasService,  private fb:FormBuilder, private dataSvc: DataServiceService){
     this.cuentasForm = this.fb.group({
       no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
       fecha_venci: new FormControl('', Validators.required),

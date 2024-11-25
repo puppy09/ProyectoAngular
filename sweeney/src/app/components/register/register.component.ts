@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,7 +18,7 @@ export class RegisterComponent {
   nombre: string = '';
   apellidos: string = '';
 
-  constructor (private authSrv: AuthService, private router: Router, private snackBar: MatSnackBar){
+  constructor (private authSrv: AuthService, private router: Router){
    
   }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environtment';
 import { HttpClient } from '@angular/common/http';
 import { gruposCreados, gruposMiembro } from '../../interfaces/gruposCreados.interface';
-import { gruposMovimientos, gruposPagos } from '../../interfaces/gruposPagos.interface';
+import { gruposMovimientos, gruposPagos, gruposPagosProgramados } from '../../interfaces/gruposPagos.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -37,5 +37,9 @@ export class GruposCreadosService {
 
   getMovimientosGrupales(id_grupo:string):Observable<gruposMovimientos|gruposMovimientos[]>{
     return this.http.get<gruposMovimientos|gruposMovimientos[]>(`${this.apiURL3}/${id_grupo}`);
+  }
+
+  getPagosProgramadosGrupales(id_grupo:string):Observable<gruposPagosProgramados|gruposPagosProgramados[]>{
+    return this.http.get<gruposPagosProgramados|gruposPagosProgramados[]>(`${this.apiURL2}/programados/${id_grupo}`);
   }
 }

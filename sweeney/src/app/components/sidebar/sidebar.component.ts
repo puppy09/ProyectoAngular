@@ -3,9 +3,10 @@ import { SidebarModule } from 'primeng/sidebar';
 import {ButtonModule} from "primeng/button";
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faHouse} from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -16,7 +17,7 @@ import {faHouse} from '@fortawesome/free-solid-svg-icons';
 export class SidebarComponent {
   faHouse = faHouse;
   sidebarVisible: boolean = true;
-  constructor(private router:Router, private authSvc: AuthService, private snackBar: MatSnackBar){}
+  constructor(private router:Router, private authSvc: AuthService){}
   
   cerrarSesion(): void{
     try {
@@ -24,9 +25,13 @@ export class SidebarComponent {
       this.router.navigate(['']);
       
     } catch (error) {
-      this.snackBar.open('Error cerrando sesión', 'Cerrar', {
-        duration: 5000,
-      });
+      Swal.fire({
+        position: "top-end",
+          icon: "error",
+          title: 'Error cerrando sesión',
+          showConfirmButton: false,
+          timer: 1500
+      })
     }
   }
   goToMovimientos(){

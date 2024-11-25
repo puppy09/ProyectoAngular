@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { MovimientosService } from '../../services/movimientos/movimientos.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { CurrencyPipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,7 +21,7 @@ export class MovimientosComponent implements OnInit{
   movimientos: any;
   selectedComponent: string = '';
 
-  constructor(private route: ActivatedRoute, private movSrv: MovimientosService, private snackBar: MatSnackBar, private router:Router){}
+  constructor(private route: ActivatedRoute, private movSrv: MovimientosService,private router:Router){}
 
   ngOnInit(): void {
    this.navigateToMovimientos();

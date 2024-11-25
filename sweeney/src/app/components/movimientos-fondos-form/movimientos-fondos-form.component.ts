@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { MatRadioModule } from '@angular/material/radio';
 import { MovimientosService } from '../../services/movimientos/movimientos.service';
@@ -21,7 +20,7 @@ movimientoForm: FormGroup = new FormGroup({});
 cuentas: any;
 cuenta: any;
 
-constructor(private router: Router, private movService: MovimientosService, private snackBar: MatSnackBar,  private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService){
+constructor(private router: Router, private movService: MovimientosService, private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService){
   this.movimientoForm = this.fb.group({
     no_cuenta: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),

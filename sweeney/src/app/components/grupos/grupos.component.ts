@@ -6,7 +6,6 @@ import { CarouselModule } from 'primeng/carousel';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -23,7 +22,7 @@ export class GruposComponent {
 
   grupos:any;
   joinGpoForm:FormGroup = new FormGroup({});
-  constructor(private dataSvc: DataServiceService, private route: ActivatedRoute, private gpoSvc: GruposCreadosService, private snackBar: MatSnackBar, private fb:FormBuilder, private router: Router){
+  constructor(private dataSvc: DataServiceService, private route: ActivatedRoute, private gpoSvc: GruposCreadosService, private fb:FormBuilder, private router: Router){
     this.joinGpoForm = this.fb.group({
       tokenGpo: new FormControl('', Validators.required)
     })

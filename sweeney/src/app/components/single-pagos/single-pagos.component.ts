@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { PagosProgService } from '../../services/pagosProg/pagos-prog.service';
 import { PagosService } from '../../services/pagos/pagos.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,7 +19,7 @@ import Swal from 'sweetalert2';
 export class SinglePagosComponent {
 
   pagos: any;
-  constructor(private dataSvc:DataServiceService, private router: Router, private pagoSrv: PagosService, private snackBar: MatSnackBar){}
+  constructor(private dataSvc:DataServiceService, private router: Router, private pagoSrv: PagosService){}
   ngOnInit():void{
     this.getPagos();
   }

@@ -15,7 +15,7 @@
     border-color: #5D9DA8;
     color: white;
 }
-.botones :active{
+.botones:active{
     background-color: aqua;
 }
 .lista{
@@ -31,7 +31,7 @@
     left: 0;
     height: 100vh; /* Full viewport height */
     max-width: 15%;
-    background-color: #e8e8e8;
+    /*background-color: #e8e8e8;*/
     z-index: 101; /* Higher than header's z-index */
     display: flex;
     flex-direction: column;

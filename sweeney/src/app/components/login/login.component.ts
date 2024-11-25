@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth/auth.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,7 +16,7 @@ export class LoginComponent {
   email: string='';
   password: string='';
 
-  constructor (private authSrv: AuthService, private router: Router, private snackBar: MatSnackBar){
+  constructor (private authSrv: AuthService, private router: Router){
    
   }
 

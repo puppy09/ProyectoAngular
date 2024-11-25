@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovimientosService } from '../../services/movimientos/movimientos.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { CurrencyPipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class SingleMovimientosComponent {
   movimientos: any;
 
-  constructor(private route: ActivatedRoute, private movSrv: MovimientosService, private snackBar: MatSnackBar, private router:Router){}
+  constructor(private route: ActivatedRoute, private movSrv: MovimientosService, private router:Router){}
 
   ngOnInit(): void {
    this.getMov(); 

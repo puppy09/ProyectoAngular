@@ -4,7 +4,6 @@ import { HeaderComponent } from '../header/header.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -18,7 +17,7 @@ import Swal from 'sweetalert2';
 export class CuentasFormComponent {
 
   cuentasForm: FormGroup = new FormGroup({});
-  constructor(private router: Router, private cuenSvc: CuentasService, private snackBar: MatSnackBar){}
+  constructor(private router: Router, private cuenSvc: CuentasService){}
 
   ngOnInit(): void{
     this.cuentasForm = new FormGroup({

@@ -21,9 +21,12 @@ export class GrupoMainComponent {
     this.grupo = this.dataSvc.getGrupoData();
   }
   ngOnInit(){
-    this.navigateToPagosGrupos();
+    this.navigateToMovimientosGrupos();
   }
   navigateToPagosGrupos(): void{
     this.router.navigate(['single/pagos'], {relativeTo: this.route});
+  }
+  navigateToMovimientosGrupos():void{
+    this.router.navigate(['single/movimientos'],{relativeTo:this.route});
   }
 }

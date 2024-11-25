@@ -17,9 +17,9 @@ export class GruposSinglePagosComponent {
     this.grupo = this.dataSvc.getGrupoData();
   }
   ngOnInit(){
-    this.loadMovimientosGrupales(this.grupo.id_grupo);
+    this.loadPagosGrupales(this.grupo.id_grupo);
   }
-  loadMovimientosGrupales(id_grupo:string){
+  loadPagosGrupales(id_grupo:string){
     console.log("entro aqui");  
     this.gpoSvc.getPagosGrupales(id_grupo).subscribe(
         (data)=>{

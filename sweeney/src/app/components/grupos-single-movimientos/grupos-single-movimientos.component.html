@@ -1,5 +1,5 @@
 <div class="movimientosContainer">
-    <h4 class="poppins-bold">Pagos Grupales</h4>
+    <h4 class="poppins-bold">Movimientos Grupales</h4>
 <div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[90%] sm:max-h-[300px]">
     <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
         <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
@@ -7,27 +7,21 @@
                 <th scope="col" class="px-6 py-3 poppins-bold">Usuario</th>
                 <th scope="col" class="px-6 py-3">Descripcion</th>
                 <th scope="col" class="px-6 py-3">Monto</th>
-                <th scope="col" class="px-6 py-3">Categoria</th>
-                <th scope="col" class="px-6 py-3">Subcategoria</th>
-                <th scope="col" class="px-6 py-3">Pagos Hechos</th>
-                <th scope="col" class="px-6 py-3">Estatus</th>
+                <th scope="col" class="px-6 py-3">Transaccion</th>
                 <th scope="col" class="px-6 py-3">Fecha</th>
             </tr>
         </thead>
         <tbody>
-            @if(pagos && pagos.length>0){
-                @for(pago of pagos; track $index){
+            @if(movimientos && movimientos.length>0){
+                @for(movimiento of movimientos; track $index){
                    
                     @defer () {
                         <tr class="bg-white border-b dark:bg-[#ffffff] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
-                            <td class="px-6 py-4">{{pago.user.nombre}}</td>
-                            <td class="px-6 py-4">{{pago.descripcion}}</td>
-                            <td class="px-6 py-4">{{pago.monto}}</td>
-                            <td class="px-6 py-4">{{pago.categoriagrupal.categoria}}</td>
-                            <td class="px-6 py-4">{{pago.negocio.nombre}}</td>
-                            <td class="px-6 py-4">{{pago.pagos_hechos}}/{{pago.total_pagos}}</td>
-                            <td class="px-6 py-4">{{pago.estatuspago.estatus_pagos}}</td>
-                            <td class="px-6 py-4">{{pago.fecha}}</td>
+                            <td class="px-6 py-4">{{movimiento.userDetail.nombre}}</td>
+                            <td class="px-6 py-4">{{movimiento.descripcion}}</td>
+                            <td class="px-6 py-4">{{movimiento.monto}}</td>
+                            <td class="px-6 py-4">{{movimiento.movimientoDetail.tipo_movimiento}}</td>
+                            <td class="px-6 py-4">{{movimiento.fecha}}</td>
                         </tr>
                     }
                     @placeholder {
@@ -37,7 +31,7 @@
             }
             @else {
                 <TR>
-                    <TD class="poppins-thin" colspan="8" style="text-align: center;">Este grupo aun no tiene pagos registrados</TD>
+                    <TD class="poppins-thin" colspan="8" style="text-align: center;">Este grupo aun no tiene movimientos registrados</TD>
                 </TR>
             }            
         </tbody>

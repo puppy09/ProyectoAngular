@@ -22,6 +22,7 @@ import { SingleMovimientosProgramadosComponent } from './components/single-movim
 import { CrearGrupoModalComponent } from './components/crear-grupo-modal/crear-grupo-modal.component';
 import { GrupoMainComponent } from './components/grupo-main/grupo-main.component';
 import { GruposSinglePagosComponent } from './components/grupos-single-pagos/grupos-single-pagos.component';
+import { GruposSingleMovimientosComponent } from './components/grupos-single-movimientos/grupos-single-movimientos.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -65,6 +66,10 @@ export const routes: Routes = [
             {
                 path:'single/pagos',
                 component: GruposSinglePagosComponent
+            },
+            {
+                path:'single/movimientos',
+                component: GruposSingleMovimientosComponent
             }
         ]
     },

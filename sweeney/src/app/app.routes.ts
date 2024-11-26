@@ -26,6 +26,7 @@ import { GruposSingleMovimientosComponent } from './components/grupos-single-mov
 import { GruposSinglePagosProgramadosComponent } from './components/grupos-single-pagos-programados/grupos-single-pagos-programados.component';
 import { GruposPostPagosComponent } from './components/grupos-post-pagos/grupos-post-pagos.component';
 import { GruposPostFondosComponent } from './components/grupos-post-fondos/grupos-post-fondos.component';
+import { GruposSingleMovimientosProgramadosComponent } from './components/grupos-single-movimientos-programados/grupos-single-movimientos-programados.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -77,6 +78,9 @@ export const routes: Routes = [
             {
                 path:'single/pagos/programados',
                 component: GruposSinglePagosProgramadosComponent
+            },{
+                path:'single/movimientos/programados',
+                component: GruposSingleMovimientosProgramadosComponent
             }
         ]
     },

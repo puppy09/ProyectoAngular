@@ -23,12 +23,12 @@ export class RegisterComponent {
   }
 
   register(): void{
-    this.authSrv.register(this.nombre, this.apellidos, this.email, this.password).subscribe({
+    this.authSrv.register(this.nombre, this.apellidos, this.email).subscribe({
       next: ()=>{
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: 'Registro exitoso, por favor inicie sesión',
+          title: 'La contraseña se ha enviado al correo proporcionado',
           showConfirmButton: false,
           timer: 1500
         })

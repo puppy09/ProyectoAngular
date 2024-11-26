@@ -15,7 +15,7 @@ export class GruposMovimientosService {
     return this.http.get<gruposMovimientos|gruposMovimientos[]>(`${this.apiURL}/${id_grupo}`);
   }
 
-  getMovimientosProgramadosGrupales(id_grupo:string, no_cuenta:string, descripcion:string, monto:number, ):Observable<gruposMovimientosProgramados|gruposMovimientosProgramados[]>{
+  getMovimientosProgramadosGrupales(id_grupo:string):Observable<gruposMovimientosProgramados|gruposMovimientosProgramados[]>{
     return this.http.get<gruposMovimientosProgramados|gruposMovimientosProgramados[]>(`${this.apiURL}/programados/${id_grupo}`);
   }
 

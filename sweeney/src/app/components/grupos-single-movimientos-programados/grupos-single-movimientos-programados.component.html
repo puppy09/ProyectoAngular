@@ -1,0 +1,43 @@
+<div class="movimientosContainer">
+    <h4 class="poppins-bold">Movimientos Programados</h4>
+    <button class="round-button" (click)="setGrupo(grupo)">+</button>
+    <p class="poppins-thin">Da clic para añadir fondos</p>
+    <div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[90%] sm:max-h-[300px]">
+        <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
+            <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
+                <tr>
+                    <th scope="col" class="px-6 py-3 poppins-bold">Usuario</th>
+                    <th scope="col" class="px-6 py-3">Descripcion</th>
+                    <th scope="col" class="px-6 py-3">Monto</th>
+                    <th scope="col" class="px-6 py-3">Dia Programdo</th>
+                    <th scope="col" class="px-6 py-3">Estatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(movimientos && movimientos.length>0){
+                    @for(movimiento of movimientos; track $index){
+                       
+                        @defer () {
+                            <tr class="bg-white border-b dark:bg-[#ffffff] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
+                                <td class="px-6 py-4">{{movimiento.usuarioDetail.nombre}}</td>
+                                <td class="px-6 py-4">{{movimiento.descripcion}}</td>
+                                <td class="px-6 py-4">{{movimiento.monto}}</td>
+                                <td class="px-6 py-4">{{movimiento.dia}}</td>
+                                <td class="px-6 py-4">{{movimiento.estatusDetail.estatus}}</td>
+                                
+                            </tr>
+                        }
+                        @placeholder {
+                            <td class="poppins-thin" colspan="5" style="text-align: center;">Cargando movimientos</td>
+                        }
+                    }
+                }
+                @else {
+                    <TR>
+                        <TD class="poppins-thin" colspan="8" style="text-align: center;">Este grupo aun no tiene movimientos programados registrados</TD>
+                    </TR>
+                }            
+            </tbody>
+        </table>
+    </div>
+</div>

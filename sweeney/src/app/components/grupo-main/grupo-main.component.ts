@@ -10,7 +10,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 @Component({
   selector: 'app-grupo-main',
   standalone: true,
-  imports: [RouterModule, HeaderComponent, SidebarComponent],
+  imports: [RouterModule, SidebarComponent],
   templateUrl: './grupo-main.component.html',
   styleUrl: './grupo-main.component.css'
 })
@@ -31,5 +31,8 @@ export class GrupoMainComponent {
   }
   navigateToPagosProgramados():void{
     this.router.navigate(['single/pagos/programados'],{relativeTo:this.route});
+  }
+  navigateToMovimientosProgramados():void{
+    this.router.navigate(['single/movimientos/programados'],{relativeTo:this.route});
   }
 }

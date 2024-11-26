@@ -27,8 +27,8 @@ export class AuthService {
     )
   }
 
-  register(nombre: string, apellidos: string,email: string, password: string): Observable<any>{
-    return this.http.post<any>(this.apiUrl+'/register',{nombre, apellidos, email, contra: password});
+  register(nombre: string, apellidos: string,email: string): Observable<any>{
+    return this.http.post<any>(this.apiUrl+'/register',{nombre, apellidos, email});
     catchError((error: HttpErrorResponse) =>{
       return throwError(()=> error);
     })

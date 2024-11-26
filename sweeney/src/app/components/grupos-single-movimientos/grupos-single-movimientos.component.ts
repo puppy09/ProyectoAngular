@@ -28,4 +28,8 @@ export class GruposSingleMovimientosComponent {
       }
     )
   }
+  setGrupo(grupo:any){
+    this.dataSvc.setGrupoData(grupo);
+    this.router.navigate(['grupos/movimientos/agregar']);
+  }
 }

@@ -25,6 +25,7 @@ import { GruposSinglePagosComponent } from './components/grupos-single-pagos/gru
 import { GruposSingleMovimientosComponent } from './components/grupos-single-movimientos/grupos-single-movimientos.component';
 import { GruposSinglePagosProgramadosComponent } from './components/grupos-single-pagos-programados/grupos-single-pagos-programados.component';
 import { GruposPostPagosComponent } from './components/grupos-post-pagos/grupos-post-pagos.component';
+import { GruposPostFondosComponent } from './components/grupos-post-fondos/grupos-post-fondos.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -80,6 +81,7 @@ export const routes: Routes = [
         ]
     },
     {path: 'grupos/pagos/agregar', component: GruposPostPagosComponent},
+    {path: 'grupos/movimientos/agregar', component: GruposPostFondosComponent},
     {path: 'gastos',component:GastosComponent},
     {path: 'gastos/agregar', component:GastosFormComponent},
     {path: 'pagos/modificar/:id', component: PagosUpdateFormComponent},

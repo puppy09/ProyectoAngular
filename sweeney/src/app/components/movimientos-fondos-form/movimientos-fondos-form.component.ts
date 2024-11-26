@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-movimientos-fondos-form',
   standalone: true,
-  imports: [MatRadioModule,ReactiveFormsModule, HeaderComponent, SidebarComponent],
+  imports: [MatRadioModule,ReactiveFormsModule, SidebarComponent],
   templateUrl: './movimientos-fondos-form.component.html',
   styleUrl: './movimientos-fondos-form.component.css'
 })

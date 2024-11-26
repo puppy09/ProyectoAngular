@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="configuracion">
+        <h2 class="poppins-thin">Configuración</h2>
+        <div class="user-info">
+            <label for="nombre">Nombre de Usuario:</label>
+            <p class="poppins-thin">{{user.nombre}} {{user.apellidos}}</p>
+            <label for="email">Correo Electrónico:</label>
+            <p class="poppins-thin">{{user.email}}</p>
+            <br>
+        <h4 class="poppins-thin">Cambiar Contraseña</h4>
+            <form [formGroup]="contraForm" (ngSubmit)="cambiarContra()" class="form-vertical">
+                <div class="form-group" style="margin-bottom: 1rem; display: flex; flex-direction: column; padding-right: 1rem;">
+                    <div class="contraAct" style="display:flex; flex-direction: column;">
+                        <label for="contraActual">Contraseña Actual:</label>
+                        <input type="password" formControlName="contraActual" style="width: 15%;">
+                    </div>
+                    <div class="contraAct" style="display:flex; flex-direction: column;">
+                        <label for="nuevaContra">Nueva Contraseña:</label>
+                        <input type="password" formControlName="nuevaContra" style="width: 15%;">
+                    </div>
+                    <div class="contraAct" style="display:flex; flex-direction: column;">
+                        <label for="confirmContra">Confirmar Contraseña:</label>
+                        <input type="password" formControlName="confirmContra" style="width: 15%;">
+                    </div>
+                </div>
+                <button type="submit" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#065170] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#5D9DA8]">Cambiar Contraseña</button>
+            </form>
+        </div>
+    </div>
+</div>

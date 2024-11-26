@@ -14,7 +14,7 @@ import { DataServiceService } from '../../services/dataService/data-service.serv
 @Component({
   selector: 'app-grupos',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, HeaderComponent, SidebarComponent, CarouselModule, MatMenuModule, MatButtonModule, MatIconModule],
+  imports: [RouterModule, ReactiveFormsModule, SidebarComponent, CarouselModule, MatMenuModule, MatButtonModule, MatIconModule],
   templateUrl: './grupos.component.html',
   styleUrl: './grupos.component.css'
 })

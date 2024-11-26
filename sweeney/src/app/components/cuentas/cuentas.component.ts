@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
 import { CurrencyPipe } from '@angular/common';
@@ -16,7 +15,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cuentas',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, CurrencyPipe, MatMenuModule, MatButtonModule, MatIconModule, CarouselModule],
+  imports: [SidebarComponent, CurrencyPipe, MatMenuModule, MatButtonModule, MatIconModule, CarouselModule],
   templateUrl: './cuentas.component.html',
   styleUrl: './cuentas.component.css'
 })

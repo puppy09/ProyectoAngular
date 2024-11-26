@@ -73,3 +73,20 @@ export interface gruposPagosProgramados{
         nombre:string
     }
 }
+
+export interface gruposMovimientosProgramados{
+    id_movimiento: number,
+    id_grupo: number,
+    id_usuario: number,
+    no_cuenta: string,
+    descripcion: string,
+    monto: number,
+    dia: number,
+    estatus: number,
+    estatusDetail: {
+        estatus: string
+    },
+    usuarioDetail: {
+        nombre: string
+    }
+}

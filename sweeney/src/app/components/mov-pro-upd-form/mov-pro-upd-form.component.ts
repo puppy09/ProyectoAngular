@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-mov-pro-upd-form',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, ReactiveFormsModule],
+  imports: [SidebarComponent, ReactiveFormsModule],
   templateUrl: './mov-pro-upd-form.component.html',
   styleUrl: './mov-pro-upd-form.component.css'
 })

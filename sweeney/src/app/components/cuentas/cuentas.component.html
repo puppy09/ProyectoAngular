@@ -6,23 +6,20 @@
         <button class="round-button" (click)="gotoAdd()">+</button>
         <p>Da clic para añadir una nueva cuenta</p>
         <div class="cuentasContainer">
-
+            
             <div class="all">
+                <h4 class="poppins-semibold">Mis Cuentas</h4>
                 <div class="account-carousel">
                     @if(cuentas && cuentas.length>0){
                         <p-carousel [value]="cuentas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
                             <ng-template pTemplate="item" let-cuenta>
                                 <div class="cuenta-card">
-                                    <div class="max-w-sm p-6 bg-[#ffffff] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">       
-                                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black-900 dark:text-['000000']">{{cuenta.nombre}}</h5>
-                                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.no_cuenta}}</p>
-                                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.saldo | currency}}</p>
-                                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.fecha_vencimiento}}</p>
-                                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{cuenta.estatusDetail.estatus}}</p>
-                                        <div class="opc">
-                                            <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                    <div class="credit-card bg-[#FF8A3D] p-6 rounded-xl shadow-lg text-white relative overflow-hidden">
+                                        <div class="absolute top-4 right-4">
+                                            <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white">
+                                                <mat-icon>more_vert</mat-icon>
+                                            </button>
                                             <mat-menu #menu="matMenu">
-                                                <button mat-menu-item>Ver Subcategorias</button>
                                                 @if(cuenta.estatus===1){
                                                     <button mat-menu-item (click)="desactivarCuentas(cuenta.ID)">Desactivar Cuenta</button>
                                                 }
@@ -32,9 +29,34 @@
                                                 <button mat-menu-item (click)="setCuenta(cuenta)">Editar Cuenta</button>
                                             </mat-menu>
                                         </div>
+
+                                        <div class="card-number mb-4">
+                                            <p class="text-xl tracking-widest">{{cuenta.no_cuenta}}</p>
+                                        </div>
+
+                                        <div class="card-details flex justify-between">
+                                            <div>
+                                                <p class="text-sm opacity-80">Alias</p>
+                                                <p class="text-lg font-semibold">{{cuenta.nombre}}</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm opacity-80">Vence</p>
+                                                <p class="text-lg">{{cuenta.fecha_vencimiento}}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <p class="text-sm opacity-80">Saldo</p>
+                                            <p class="text-2xl font-bold">{{cuenta.saldo | currency}}</p>
+                                        </div>
+
+                                        <div class="status mt-2">
+                                            <span class="text-sm px-2 py-1 rounded-full" [ngClass]="{'bg-green-400': cuenta.estatus===1, 'bg-red-400': cuenta.estatus!==1}">
+                                                {{cuenta.estatusDetail.estatus}}
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                
-                            </div>
                         </ng-template>
                       </p-carousel>
                 }

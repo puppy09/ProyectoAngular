@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataServiceService } from '../../services/dataService/data-service.service';
-import { GruposCreadosService } from '../../services/grupos/grupos-creados.service';
+import { GruposPagosService } from '../../services/gruposPagos/grupos-pagos.service';
+
 
 @Component({
   selector: 'app-grupos-single-pagos-programados',
@@ -13,7 +14,7 @@ import { GruposCreadosService } from '../../services/grupos/grupos-creados.servi
 export class GruposSinglePagosProgramadosComponent {
   grupo: any;
   pagosProgramados:any;
-  constructor(private router:Router, private dataSvc: DataServiceService, private gpoSvc: GruposCreadosService){
+  constructor(private router:Router, private dataSvc: DataServiceService, private gpoSvc: GruposPagosService){
     this.grupo = this.dataSvc.getGrupoData();
   }
   ngOnInit(){

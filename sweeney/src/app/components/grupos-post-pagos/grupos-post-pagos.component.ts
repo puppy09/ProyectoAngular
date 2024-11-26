@@ -1,36 +1,35 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { SidebarComponent } from "../sidebar/sidebar.component";
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CategoriasService } from '../../services/categorias/categorias.service';
-import { SubcategoriasService } from '../../services/subcategorias/subcategorias.service';
+import { Component } from '@angular/core';
+import { categoriaGrupal } from '../../interfaces/gastosGrupales.interface';
+import { GruposCategoriasService } from '../../services/gruposCategorias/grupos-categorias.service';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
-import { PagosService } from '../../services/pagos/pagos.service';
-import {MatRadioModule} from '@angular/material/radio';
-import { PagosProgService } from '../../services/pagosProg/pagos-prog.service';
+import { GruposPagosService } from '../../services/gruposPagos/grupos-pagos.service';
 import { Router } from '@angular/router';
+import { GruposSubcategoriasService } from '../../services/gruposSubcategorias/grupos-subcategorias.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataServiceService } from '../../services/dataService/data-service.service';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
 import Swal from 'sweetalert2';
-
 @Component({
-  selector: 'app-movimientos-form',
+  selector: 'app-grupos-post-pagos',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, ReactiveFormsModule, MatRadioModule],
-  templateUrl: './movimientos-form.component.html',
-  styleUrl: './movimientos-form.component.css'
+  imports: [SidebarComponent, ReactiveFormsModule, MatRadioModule],
+  templateUrl: './grupos-post-pagos.component.html',
+  styleUrl: './grupos-post-pagos.component.css'
 })
-export class MovimientosFormComponent implements OnInit{
+export class GruposPostPagosComponent {
 
   pagosForm: FormGroup = new FormGroup({});
-  cuentas: any;
-  categorias: any;
-  selectedCategory = '';
-  subcategorias: any;
+  cuentas:any;
+  grupo:any;
+  categorias:any;
+  selectedCategory ='';
+  subcategorias:any;
+  constructor(private dataSvc: DataServiceService, private router: Router,  private catSrv: GruposCategoriasService, private  subSrv: GruposSubcategoriasService, private cuenSrv: CuentasService, private gpoSvc: GruposPagosService){
+    this.grupo = this.dataSvc.getGrupoData();
+  }
 
-
-  constructor(private router: Router, private pagoProSvc: PagosProgService,private pagoSvc: PagosService,  private catSrv: CategoriasService, private  subSrv: SubcategoriasService, private cuenSrv: CuentasService){}
-  
-  
   ngOnInit(): void {
     this.pagosForm = new FormGroup({
       no_cuenta: new FormControl('', Validators.required),
@@ -43,9 +42,6 @@ export class MovimientosFormComponent implements OnInit{
       totalPagos: new FormControl({value:'', disabled: true})
     });
 
-    this.loadActiveCategorias();
-    this.loadActiveCuentas();
-
     this.pagosForm.get('tipoMovimiento')?.valueChanges.subscribe(value=>{
       if(value === 'unica'){
         this.pagosForm.get('diaPago')?.disable();
@@ -56,6 +52,8 @@ export class MovimientosFormComponent implements OnInit{
         this.pagosForm.get('totalPagos')?.enable();
       }
     });
+    this.loadActiveCuentas();
+    this.loadActiveCategorias();
   }
 
   loadActiveCuentas():void{
@@ -69,8 +67,9 @@ export class MovimientosFormComponent implements OnInit{
   }
 
   loadActiveCategorias():void{
-    this.catSrv.getCategoriasActivas().subscribe(
+    this.catSrv.getCategoriaGrupalActiva(this.grupo.id_grupo).subscribe(
       (data)=>{
+        console.log(data);
         this.categorias = data;
       },
       (error)=>{
@@ -81,8 +80,10 @@ export class MovimientosFormComponent implements OnInit{
   loadSubcategorias(event: any):void{
     this.selectedCategory = event.target.value;
     console.log("selectedCategory: "+this.selectedCategory);
-    this.subSrv.getSubcategoriasByCat(this.selectedCategory).subscribe(
+    console.log("grupo.id_grupo: "+this.grupo.id_grupo);
+    this.subSrv.getSubcategoriasCategoria(this.grupo.id_grupo, this.selectedCategory).subscribe(
       (data)=>{
+        console.log(data);
         this.subcategorias=data;
       },
       (error)=>{
@@ -90,21 +91,19 @@ export class MovimientosFormComponent implements OnInit{
       }
     )
   }
-
-  cancel(){
-    this.router.navigate(['/movimientos']);
-  }
   submitForm(){
-    if(this.pagosForm.valid){
+    //if(this.pagosForm.valid){
       const formData = this.pagosForm.value;
       console.log("Monto:"+formData.monto);
       if(formData.tipoMovimiento ===  'unica'){
-        this.pagoSvc.postPago(
+        this.gpoSvc.postPagoGrupal(
+          this.grupo.id_grupo,
           formData.no_cuenta,
           formData.descripcion,
           formData.monto,
           formData.categoria,
-          formData.subcategoria
+          formData.subcategoria,
+
         ).subscribe(response =>{
           Swal.fire({
             position: "top-end",
@@ -113,7 +112,7 @@ export class MovimientosFormComponent implements OnInit{
             showConfirmButton: false,
             timer: 1500
           })
-        this.router.navigate(['/movimientos']);
+        this.router.navigate(['/grupos/main/single/pagos']);
         }, error =>{
           Swal.fire({
             position: "top-end",
@@ -124,7 +123,8 @@ export class MovimientosFormComponent implements OnInit{
           })
         });
       }else{
-        this.pagoProSvc.postPagoProgramado(
+        this.gpoSvc.postPagoProgramadoGrupal(
+          this.grupo.id_grupo,
           formData.no_cuenta,
           formData.descripcion,
           formData.monto,
@@ -135,11 +135,13 @@ export class MovimientosFormComponent implements OnInit{
         ).subscribe(response =>{
           Swal.fire({
             position: "top-end",
-            icon: "error",
+            icon: "success",
             title: 'Pago programado exitosamente',
             showConfirmButton: false,
             timer: 1500
-          })}, error=>{
+          })
+        this.router.navigate(['/grupos/main/single/pagos']);
+        }, error=>{
             Swal.fire({
               position: "top-end",
               icon: "error",
@@ -148,7 +150,7 @@ export class MovimientosFormComponent implements OnInit{
               timer: 1500
             })
       })}
-  }else{
+  /*}else{
     Swal.fire({
       position: "top-end",
       icon: "error",
@@ -156,6 +158,6 @@ export class MovimientosFormComponent implements OnInit{
       showConfirmButton: false,
       timer: 1500
     })
-  }
+  }*/
   }
 }

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataServiceService } from '../../services/dataService/data-service.service';
-import { GruposCreadosService } from '../../services/grupos/grupos-creados.service';
-
+import { GruposMovimientosService } from '../../services/gruposMovimientos/grupos-movimientos.service';
 @Component({
   selector: 'app-grupos-single-movimientos',
   standalone: true,
@@ -13,7 +12,7 @@ import { GruposCreadosService } from '../../services/grupos/grupos-creados.servi
 export class GruposSingleMovimientosComponent {
   grupo:any;
   movimientos:any;
-  constructor(private router:Router, private dataSvc: DataServiceService, private gpoSvc: GruposCreadosService){
+  constructor(private router:Router, private dataSvc: DataServiceService, private gpoSvc: GruposMovimientosService){
     this.grupo = this.dataSvc.getGrupoData();
   }
 

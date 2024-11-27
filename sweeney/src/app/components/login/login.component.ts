@@ -36,4 +36,7 @@ export class LoginComponent {
       }
     })
   }
+  navigateToRecuperar(): void{
+    this.router.navigate(['/recuperar/contra']);
+  }
 }

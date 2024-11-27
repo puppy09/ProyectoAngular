@@ -28,9 +28,11 @@ import { GruposPostPagosComponent } from './components/grupos-post-pagos/grupos-
 import { GruposPostFondosComponent } from './components/grupos-post-fondos/grupos-post-fondos.component';
 import { GruposSingleMovimientosProgramadosComponent } from './components/grupos-single-movimientos-programados/grupos-single-movimientos-programados.component';
 import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+import { RecuperarContraComponent } from './components/recuperar-contra/recuperar-contra.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
+    {path: 'recuperar/contra', component: RecuperarContraComponent},
     {path: 'configuracion', component: ConfiguracionComponent},
     {path: 'menu', component: MenuPrincipalComponent},
     {path: 'registro',component:RegisterComponent},

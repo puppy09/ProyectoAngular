@@ -1,0 +1,34 @@
+<div class="forgot-password-container">
+    <div class="logo-section">
+      <img src="images/sweeney.png" alt="Sweeney" class="logo ml-[30%]" style="width: 30%;">
+      
+      <div class="info-section ml-[10%]">
+        <h3 class="poppins-semibold2">Información Importante</h3>
+        <p class="poppins-thin">Por favor lea la siguiente información y proporcione la información solicitada.</p>
+        <ul class="poppins-thin w-[100%]">
+          <li>No revele su contraseña a nadie</li>
+          <li>No reutilice contraseñas</li>
+          <li>Use contraseñas alfanuméricas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-section" formGroupName="forgotPassword" >
+      <h2 class="poppins-semibold">¿Olvidaste tú contraseña?</h2>
+      <h5 class="poppins-thin">No te preocupes. Podemos ayudarte.</h5>
+
+      <form>
+        <div class="form-group">
+          <input class="poppins-thin text-[#000000]" type="email" formControlName="email" name="email"
+                 placeholder="Por favor ingresa tu correo" style="width: 50%;">
+        </div>
+        <button type="submit" (click)="recuperarContra()" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-[white] focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#065170] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#065170] w-[20%]">Cambiar Contraseña</button>
+
+      </form>
+
+      <div class="login-link">
+        <span>¿Recuerdas tu contraseña?</span>
+        <a href="/">Vuelva a login</a>
+      </div>
+    </div>
+  </div>

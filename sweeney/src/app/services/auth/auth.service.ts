@@ -48,4 +48,7 @@ export class AuthService {
   logout(): void{
     localStorage.removeItem(this.tokenKey);
   }
+  recuperarContra(email: string): Observable<any>{
+    return this.http.put<any>(`${this.apiUrl}/recuperarContra`, {email});
+  }
 }

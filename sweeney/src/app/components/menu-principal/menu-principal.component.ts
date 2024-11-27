@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-menu-principal',
   standalone: true,
-  imports: [SidebarComponent, CurrencyPipe, CarouselModule, HeaderComponent, MatMenuModule, MatIconModule, MatButtonModule],
+  imports: [SidebarComponent, CurrencyPipe, CarouselModule, MatMenuModule, MatIconModule, MatButtonModule],
   templateUrl: './menu-principal.component.html',
   styleUrl: './menu-principal.component.css'
 })

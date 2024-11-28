@@ -8,11 +8,11 @@
         <div class="cuentasContainer">
             
             <div class="all">
-                <h4 class="poppins-semibold">Mis Cuentas</h4>
+                <h4 class="poppins-semibold">Mis Cuentas Activas</h4>
                 <div class="account-carousel">
-                    @if(cuentas && cuentas.length>0){
-                        <p-carousel [value]="cuentas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
-                            <ng-template pTemplate="item" let-cuenta>
+                    @if(activas && activas.length>0){
+                        <p-carousel [value]="activas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+                            <ng-template pTemplate="item" let-activa>
                                 <div class="cuenta-card">
                                     <div class="credit-card bg-[#FF8A3D] p-6 rounded-xl shadow-lg text-white relative overflow-hidden">
                                         <div class="absolute top-4 right-4">
@@ -20,39 +20,34 @@
                                                 <mat-icon>more_vert</mat-icon>
                                             </button>
                                             <mat-menu #menu="matMenu">
-                                                @if(cuenta.estatus===1){
-                                                    <button mat-menu-item (click)="desactivarCuentas(cuenta.ID)">Desactivar Cuenta</button>
-                                                }
-                                                @else {
-                                                    <button mat-menu-item (click)="activarCuentas(cuenta.ID)">Activar Cuenta</button>
-                                                }
-                                                <button mat-menu-item (click)="setCuenta(cuenta)">Editar Cuenta</button>
+                                                <button mat-menu-item (click)="desactivarCuentas(activa.ID)">Desactivar Cuenta</button>
+                                                <button mat-menu-item (click)="setCuenta(activa)">Editar Cuenta</button>
                                             </mat-menu>
                                         </div>
 
                                         <div class="card-number mb-4">
-                                            <p class="text-xl tracking-widest">{{cuenta.no_cuenta}}</p>
+                                            <p class="text-xl tracking-widest">{{activa.no_cuenta}}</p>
                                         </div>
 
                                         <div class="card-details flex justify-between">
                                             <div>
                                                 <p class="text-sm opacity-80">Alias</p>
-                                                <p class="text-lg font-semibold">{{cuenta.nombre}}</p>
+                                                <p class="text-lg font-semibold">{{activa.nombre}}</p>
                                             </div>
                                             <div>
                                                 <p class="text-sm opacity-80">Vence</p>
-                                                <p class="text-lg">{{cuenta.fecha_vencimiento}}</p>
+                                                <p class="text-lg">{{activa.fecha_vencimiento}}</p>
                                             </div>
                                         </div>
 
                                         <div class="mt-4">
                                             <p class="text-sm opacity-80">Saldo</p>
-                                            <p class="text-2xl font-bold">{{cuenta.saldo | currency}}</p>
+                                            <p class="text-2xl font-bold">{{activa.saldo | currency}}</p>
                                         </div>
 
                                         <div class="status mt-2">
-                                            <span class="text-sm px-2 py-1 rounded-full" [ngClass]="{'bg-green-400': cuenta.estatus===1, 'bg-red-400': cuenta.estatus!==1}">
-                                                {{cuenta.estatusDetail.estatus}}
+                                            <span class="text-sm px-2 py-1 rounded-full" [ngClass]="{'bg-green-400': activa.estatus===1, 'bg-red-400': activa.estatus!==1}">
+                                                {{activa.estatusDetail.estatus}}
                                             </span>
                                         </div>
                                     </div>
@@ -61,12 +56,64 @@
                       </p-carousel>
                 }
                 @else {
-                    <p class="poppins-thin">No hay cuentas agregadas</p>
+                    <p class="poppins-thin">No hay cuentas activas</p>
                 }
                 
             </div>
-            
+            <h4 class="poppins-semibold">Mis Cuentas Inactivas</h4>
+                <div class="account-carousel">
+                    @if(inactivas && inactivas.length>0){
+                        <p-carousel [value]="inactivas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+                            <ng-template pTemplate="item" let-inactiva>
+                                <div class="cuenta-card">
+                                    <div class="credit-card bg-[#FF8A3D] p-6 rounded-xl shadow-lg text-white relative overflow-hidden">
+                                        <div class="absolute top-4 right-4">
+                                            <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white">
+                                                <mat-icon>more_vert</mat-icon>
+                                            </button>
+                                            <mat-menu #menu="matMenu">
+                                                <button mat-menu-item (click)="activarCuentas(inactiva.ID)">Activar Cuenta</button>
+                                                <button mat-menu-item (click)="setCuenta(inactiva)">Editar Cuenta</button>
+                                            </mat-menu>
+                                        </div>
+
+                                        <div class="card-number mb-4">
+                                            <p class="text-xl tracking-widest">{{inactiva.no_cuenta}}</p>
+                                        </div>
+
+                                        <div class="card-details flex justify-between">
+                                            <div>
+                                                <p class="text-sm opacity-80">Alias</p>
+                                                <p class="text-lg font-semibold">{{inactiva.nombre}}</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm opacity-80">Vence</p>
+                                                <p class="text-lg">{{inactiva.fecha_vencimiento}}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <p class="text-sm opacity-80">Saldo</p>
+                                            <p class="text-2xl font-bold">{{inactiva.saldo | currency}}</p>
+                                        </div>
+
+                                        <div class="status mt-2">
+                                            <span class="text-sm px-2 py-1 rounded-full" [ngClass]="{'bg-green-400': inactiva.estatus===1, 'bg-red-400': inactiva.estatus!==1}">
+                                                {{inactiva.estatusDetail.estatus}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </ng-template>
+                      </p-carousel>
+                }
+                @else {
+                    <p class="poppins-thin">No hay cuentas inactivas</p>
+                }
+                
             </div>
 
     </div>
+    </div>
+</div>
 </div>

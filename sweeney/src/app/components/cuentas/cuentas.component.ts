@@ -22,11 +22,15 @@ import Swal from 'sweetalert2';
 export class CuentasComponent {
 
   cuentas: any;
+  inactivas: any;
+  activas: any;
   movimientosProgramados: any;
   constructor(private movPro: MovimientosProgService, private dataSvc:DataServiceService, private cueSrv: CuentasService, private router: Router){}
 
   ngOnInit(): void{
     this.loadCuentas();
+    this.loadCuentasInactivas();
+    this.loadCuentasActivas();
   }
   loadCuentas(): void{
     this.cueSrv.getCuentas().subscribe(
@@ -45,10 +49,47 @@ export class CuentasComponent {
       }
     )
   }
+  loadCuentasActivas(): void{
+    this.cueSrv.getCuentasActivas().subscribe(
+      (data)=>{
+        this.activas=data;
+      },
+      (error)=>{
+        const errorMessage = error.error?.message || 'Error al obtener cuentas';
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: errorMessage,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
+  }
+
+  loadCuentasInactivas(): void{
+    this.cueSrv.getCuentasInactivas().subscribe(
+      (data)=>{
+        this.inactivas=data;
+        console.log(this.inactivas);
+      },
+      (error)=>{
+        const errorMessage = error.error?.message || 'Error al obtener cuentas';
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: errorMessage,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
+  }
   activarCuentas(cuentaId:string): void{
     this.cueSrv.activarCuenta(cuentaId).subscribe(
       (data)=>{
-        this.loadCuentas();
+        this.loadCuentasActivas();
+        this.loadCuentasInactivas();
       },
       (error)=>{
         Swal.fire({
@@ -64,7 +105,8 @@ export class CuentasComponent {
   desactivarCuentas(cuentaId: string): void{
     this.cueSrv.desactivarCuenta(cuentaId).subscribe(
       (data)=>{
-        this.loadCuentas();
+        this.loadCuentasActivas();
+        this.loadCuentasInactivas();
       },
       (error)=>{
         Swal.fire({

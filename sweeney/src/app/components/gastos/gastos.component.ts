@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-gastos',
   standalone: true,
-  imports: [CarouselModule,HeaderComponent, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule],
+  imports: [CarouselModule, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule],
   templateUrl: './gastos.component.html',
   styleUrl: './gastos.component.css'
 })

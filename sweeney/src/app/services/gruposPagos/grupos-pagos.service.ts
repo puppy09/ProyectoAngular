@@ -29,4 +29,15 @@ export class GruposPagosService {
   updatePagoProgramadoGrupal(id_pago:number, grupo:string, no_cuenta:string, descripcion:string, monto:number, categoria:number, subcategoria:number, dia_pago:number, total_pagos:number):Observable<gruposPagosProgramados|gruposPagosProgramados[]>{
     return this.http.put<gruposPagosProgramados|gruposPagosProgramados[]>(`${this.apiURL}/update/${id_pago}`,{grupo, no_cuenta, descripcion, monto, categoria, subcategoria, dia_pago, total_pagos});
   }
+
+  updatePagoGrupal(grupo:number,  id_pago:number, no_cuenta: string, descripcion:string, monto: number, categoria:number, subcategoria: number):Observable<gruposPagos|gruposPagos[]>{
+    console.log("SERVICIO");
+    console.log("id_pago "+id_pago);
+    console.log("no_cuenta "+no_cuenta);
+    console.log("descripcion "+descripcion);
+    console.log("monto "+monto);
+    console.log("categoria "+categoria);
+    console.log("subcategoria "+subcategoria);
+    return this.http.put<gruposPagos|gruposPagos[]>(`${this.apiURL}/${id_pago}`,{grupo, no_cuenta, descripcion, monto, categoria, subcategoria});
+  }
 }

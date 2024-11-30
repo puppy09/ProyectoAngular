@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cuentas-update-form',
   standalone: true,
-  imports: [SidebarComponent, HeaderComponent, ReactiveFormsModule],
+  imports: [SidebarComponent, ReactiveFormsModule],
   templateUrl: './cuentas-update-form.component.html',
   styleUrl: './cuentas-update-form.component.css'
 })

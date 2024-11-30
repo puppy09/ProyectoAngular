@@ -14,6 +14,7 @@
                 <th scope="col" class="px-6 py-3">Pagos Hechos</th>
                 <th scope="col" class="px-6 py-3">Estatus</th>
                 <th scope="col" class="px-6 py-3">Fecha</th>
+                <th scope="col" class="px-6 py-3">Info.</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,14 @@
                             <td class="px-6 py-4">{{pago.pagos_hechos}}/{{pago.total_pagos}}</td>
                             <td class="px-6 py-4">{{pago.estatuspago.estatus_pagos}}</td>
                             <td class="px-6 py-4">{{pago.fecha}}</td>
+                            <td class="px-6 py-4"><button mat-icon-button [matMenuTriggerFor]="menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                            @if(usuario.ID === pago.id_usuario){
+                                <button mat-menu-item (click)="editarPagoPro(pago)">Editar Pago</button>
+                            }
+                            </mat-menu>
                         </tr>
                     }
                     @placeholder {

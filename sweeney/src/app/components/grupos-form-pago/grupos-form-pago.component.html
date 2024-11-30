@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="movProUpd">
+        <form [formGroup]="pagoForm" (ngSubmit)="submitForm()">
+            <label for="cuenta">Cuenta:</label>
+            <select name="" id="cuenta" formControlName="no_cuenta">
+                @if(cuentas){
+                    @for (cuenta of cuentas; track $index) {
+                        <option value={{cuenta.no_cuenta}}>{{ cuenta.nombre }}</option>
+                    }
+                }
+                @else {
+                    <option value="">No hay cuentas activas</option>
+                }                
+            </select>
+            <label for="descripcion">Descripcion:</label>
+            <input type="text" formControlName="descripcion">
+            <label for="categoria">Categoria:</label>
+            <select name="" id="categoria" formControlName="categoria" (change)="loadSubcategorias($event)">
+                @if(categorias){
+                    @for (categoria of categorias; track $index) {
+                        <option value={{categoria.id_categoria}}>{{ categoria.categoria }}</option>
+                    }
+                }
+                @else {
+                    <option value="">No hay categorias activas</option>
+                }  
+            </select>
+            <label for="subcategoria">Subcategoria:</label>
+            <select name="" id="subcategoria" formControlName="subcategoria">
+                @if(subcategorias){
+                    @for (subcategoria of subcategorias; track $index) {
+                        <option value={{subcategoria.id_negocio}}>{{ subcategoria.negocio.nombre }}</option>
+                    }
+                }
+                @if(!subcategorias) {
+                    <option value="">No hay subcategorias</option>
+                }
+                
+            </select>
+            <label for="monto">Monto:</label>
+            <input type="number" formControlName="monto" min="0">
+            <button>Cancelar</button>
+        <button type="submit">Actualizar Pago</button>
+        </form>        
+    </div>
+</div>
+

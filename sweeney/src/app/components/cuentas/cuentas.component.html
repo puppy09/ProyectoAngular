@@ -8,7 +8,7 @@
         <div class="cuentasContainer">
             
             <div class="all">
-                <h4 class="poppins-semibold">Mis Cuentas Activas</h4>
+                <h4 class="poppins-bold">Mis Cuentas Activas</h4>
                 <div class="account-carousel">
                     @if(activas && activas.length>0){
                         <p-carousel [value]="activas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
@@ -60,7 +60,7 @@
                 }
                 
             </div>
-            <h4 class="poppins-semibold">Mis Cuentas Inactivas</h4>
+            <h4 class="poppins-bold">Mis Cuentas Inactivas</h4>
                 <div class="account-carousel">
                     @if(inactivas && inactivas.length>0){
                         <p-carousel [value]="inactivas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">

@@ -22,10 +22,14 @@ import { GastosFormComponent } from '../gastos-form/gastos-form.component';
 export class GastosComponent {
 
   categorias:any;
+  categoriasInactivas:any;
+  categoriasActivas:any;
   constructor(private router:Router, private gasSvc: CategoriasService, private route: ActivatedRoute){}
 
   ngOnInit():void{
     this.loadCategorias();
+    this.loadCategoriasActivas();
+    this.loadCategoriasInactivas();
   }
   loadCategorias(){
     this.gasSvc.getCategorias().subscribe(
@@ -42,13 +46,30 @@ export class GastosComponent {
         })
       })
   }
+  loadCategoriasInactivas(){
+    this.gasSvc.getCategoriasInactivas().subscribe(
+      (data)=>{
+        this.categoriasInactivas = data;
+      }
+    )
+  }
+
+  loadCategoriasActivas(){
+    this.gasSvc.getCategoriasActivas().subscribe(
+      (data)=>{
+        this.categoriasActivas = data;
+      }
+    )
+  }
   onCategoryCreated() {
     this.loadCategorias(); // Reload categories when a new one is created
   }
   activarCategoria(categoryId: string){
     this.gasSvc.activarCategoria(categoryId).subscribe(
       (data)=>{
-        this.loadCategorias();
+//        this.loadCategorias();
+        this.loadCategoriasActivas();
+        this.loadCategoriasInactivas();
       },
       (error)=>{
         Swal.fire({
@@ -63,7 +84,9 @@ export class GastosComponent {
   desactivarCategoria(categoryId: string){
     this.gasSvc.desactivarCategoria(categoryId).subscribe(
       (data)=>{
-        this.loadCategorias();
+//        this.loadCategorias();
+        this.loadCategoriasActivas();
+        this.loadCategoriasInactivas();
       },
       (error)=>{
         Swal.fire({

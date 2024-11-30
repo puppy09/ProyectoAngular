@@ -1,0 +1,25 @@
+<p-carousel [value]="categorias" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+                    <ng-template pTemplate="item" let-activa>
+                        <div class="cuenta-card">
+                            <div class="max-w-sm p-6 bg-[#ffffff] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">       
+                                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black-900 dark:text-['000000']">{{activa.nombre}}</h5>
+                                <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{activa.presupuesto}}</p>
+                                <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{activa.estatusDetail.estatus}}</p>
+                                <div class="opc">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>Ver Subcategorias</button>
+                                        @if(activa.estatus===1){
+                                            <button mat-menu-item (click)="desactivarCategoria(activa.ID)">Desactivar Categoria</button>
+                                        }
+                                        @else {
+                                            <button mat-menu-item (click)="activarCategoria(activa.ID)">Activar Categoria</button>
+                                        }
+                                        <button mat-menu-item>Editar Categoria</button>
+                                    </mat-menu>
+                                </div>
+                        </div>
+                        
+                    </div>
+                </ng-template>
+              </p-carousel>

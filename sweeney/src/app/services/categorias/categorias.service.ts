@@ -20,6 +20,10 @@ export class CategoriasService {
     return this.http.get<categoria|categoria[]>(`${this.apiUrl}/activas`);
   }
 
+  getCategoriasInactivas():Observable<categoria|categoria[]>{
+    return this.http.get<categoria|categoria[]>(`${this.apiUrl}/inactivas`);
+  }
+
   activarCategoria(categoryId: string):Observable<categoria|categoria[]>{
     return this.http.patch<categoria|categoria[]>(`${this.apiUrl}/activar/${categoryId}`,{});
   }

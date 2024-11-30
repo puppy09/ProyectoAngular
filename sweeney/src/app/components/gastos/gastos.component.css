@@ -42,6 +42,11 @@
     font-weight: 400;
     font-style: normal;
   }
+  .poppins-bold {
+    font-family: "Poppins", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
 .category-square{
     width: 50%;
     height: 150px;

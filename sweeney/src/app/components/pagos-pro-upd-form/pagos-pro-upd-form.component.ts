@@ -76,6 +76,10 @@ export class PagosProUpdFormComponent {
     this.catSvc.getCategoriasActivas().subscribe(
       (data)=>{
         this.categorias = data;
+        const defaultCategory = this.categorias[0];
+        this.pagosProForms.controls['categoria'].setValue(defaultCategory.ID);
+        // Trigger subcategories load for the single category
+        this.loadSubcategorias({ target: { value: defaultCategory.ID } });
       },
       (error)=>{
         console.error('Error fetching categorias: ', error);
@@ -88,6 +92,8 @@ export class PagosProUpdFormComponent {
     this.subSvc.getSubcategoriasByCat(this.selectedCategory).subscribe(
       (data)=>{
         this.subcategorias=data;
+        const defaultSubcategory = this.subcategorias[0];
+          this.pagosProForms.controls['subcategoria'].setValue(defaultSubcategory.id_negocio);
       },
       (error)=>{
         console.error('Error fetching subcategorias: ', error);
@@ -101,13 +107,13 @@ export class PagosProUpdFormComponent {
     const formData = this.pagosProForms.value;
     this.pagoSvc.updPagoProgramado(
       this.pagoPro.id_pagoprogramado,
-      formData.no_cuenta,
-      formData.descripcion,
-      formData.monto,
-      formData.categoria,
-      formData.subcategoria,
-      formData.dia_programado,
-      formData.total_pagos
+      this.pagosProForms.get('no_cuenta')?.value,
+      this.pagosProForms.get('descripcion')?.value,
+      this.pagosProForms.get('monto')?.value,
+      this.pagosProForms.get('categoria')?.value,
+      this.pagosProForms.get('subcategoria')?.value,
+      this.pagosProForms.get('dia_programado')?.value,
+      this.pagosProForms.get('total_pagos')?.value
     ).subscribe(response=>{
       Swal.fire({
         position: "top-end",

@@ -6,20 +6,23 @@ import { PercentPipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
+import { RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
+import { GastosFormComponent } from '../gastos-form/gastos-form.component';
+
 @Component({
   selector: 'app-gastos',
   standalone: true,
-  imports: [CarouselModule, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule],
+  imports: [CarouselModule, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule, RouterModule, GastosFormComponent],
   templateUrl: './gastos.component.html',
   styleUrl: './gastos.component.css'
 })
 export class GastosComponent {
 
   categorias:any;
-  constructor(private router:Router, private gasSvc: CategoriasService){}
+  constructor(private router:Router, private gasSvc: CategoriasService, private route: ActivatedRoute){}
 
   ngOnInit():void{
     this.loadCategorias();
@@ -38,6 +41,9 @@ export class GastosComponent {
           timer: 1500
         })
       })
+  }
+  onCategoryCreated() {
+    this.loadCategorias(); // Reload categories when a new one is created
   }
   activarCategoria(categoryId: string){
     this.gasSvc.activarCategoria(categoryId).subscribe(
@@ -71,6 +77,7 @@ export class GastosComponent {
   }
 
   goToAdd(){
-    this.router.navigate(['gastos','agregar']);
+    this.router.navigate(['agregar'],{relativeTo: this.route});
+    this.loadCategorias();
   }
 }

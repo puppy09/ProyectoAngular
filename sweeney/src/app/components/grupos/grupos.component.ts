@@ -69,6 +69,7 @@ export class GruposComponent {
 
   crear(){
     this.router.navigate(['crear/grupo'],{relativeTo: this.route});
+    this.loadGrupos();
   }
   gotoMain(grupo:any){
     this.dataSvc.setGrupoData(grupo);

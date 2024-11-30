@@ -3,7 +3,6 @@
 }
 .cuenta-card{
   padding: 20px;
-  cursor: grab;
 }
 .grupos{
     display: flex;
@@ -33,7 +32,7 @@
     background-color: #ff8a3d; /* Darken color on hover */
   }
   .account-carousel{
-    max-width: 1000px;
+    max-width: 1000PX;
     justify-content: center;
   }
 

@@ -60,6 +60,10 @@ export class GruposFormPagoProComponent {
   loadCategorias(){
     this.catSvc.getCategoriaGrupalActiva(this.pagoPro.id_grupo).subscribe(data => {
       this.categorias = data;
+      const defaultCategory = this.categorias[0];
+      this.movimientoProForm.controls['categoria'].setValue(defaultCategory.ID);
+        // Trigger subcategories load for the single category
+        this.loadSubcategorias({ target: { value: defaultCategory.ID } });
     }, (error) => {
       console.log(error);
     });
@@ -80,6 +84,8 @@ export class GruposFormPagoProComponent {
     this.subSvc.getSubcategoriasCategoria(this.pagoPro.id_grupo, this.selectedCategory).subscribe(
       (data)=>{
         this.subcategorias=data;
+        const defaultSubcategory = this.subcategorias[0];
+        this.movimientoProForm.controls['subcategoria'].setValue(defaultSubcategory.id_negocio);
       },
       (error)=>{
         console.error('Error fetching subcategorias: ', error);
@@ -90,13 +96,13 @@ export class GruposFormPagoProComponent {
     this.pagoGpoSvc.updatePagoProgramadoGrupal(
       this.pagoPro.id_pago, 
       this.pagoPro.id_grupo, 
-      formData.no_cuenta, 
-      formData.descripcion, 
-      formData.monto, 
-      formData.categoria, 
-      formData.subcategoria, 
-      formData.dia_programado, 
-      formData.total_pagos).subscribe(
+      this.movimientoProForm.get('no_cuenta')?.value, 
+      this.movimientoProForm.get('descripcion')?.value, 
+      this.movimientoProForm.get('monto')?.value, 
+      this.movimientoProForm.get('categoria')?.value, 
+      this.movimientoProForm.get('subcategoria')?.value, 
+      this.movimientoProForm.get('dia_programado')?.value, 
+      this.movimientoProForm.get('total_pagos')?.value).subscribe(
       (data)=>{
         Swal.fire({
           title: 'Pago programado actualizado',

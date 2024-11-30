@@ -72,6 +72,10 @@ export class MovimientosFormComponent implements OnInit{
     this.catSrv.getCategoriasActivas().subscribe(
       (data)=>{
         this.categorias = data;
+        const defaultCategory = this.categorias[0];
+        this.pagosForm.controls['categoria'].setValue(defaultCategory.ID);
+        // Trigger subcategories load for the single category
+        this.loadSubcategorias({ target: { value: defaultCategory.ID } });
       },
       (error)=>{
         console.error('Error fetching categorias: ', error);
@@ -84,6 +88,8 @@ export class MovimientosFormComponent implements OnInit{
     this.subSrv.getSubcategoriasByCat(this.selectedCategory).subscribe(
       (data)=>{
         this.subcategorias=data;
+        const defaultSubcategory = this.subcategorias[0];
+        this.pagosForm.controls['subcategoria'].setValue(defaultSubcategory.id_negocio);
       },
       (error)=>{
         console.error('Error fetching subcategorias: ', error);
@@ -135,7 +141,7 @@ export class MovimientosFormComponent implements OnInit{
         ).subscribe(response =>{
           Swal.fire({
             position: "top-end",
-            icon: "error",
+            icon: "success",
             title: 'Pago programado exitosamente',
             showConfirmButton: false,
             timer: 1500

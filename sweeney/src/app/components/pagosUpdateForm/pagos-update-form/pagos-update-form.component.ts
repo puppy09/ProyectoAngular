@@ -67,12 +67,10 @@ export class PagosUpdateFormComponent {
     this.catSrv.getCategoriasActivas().subscribe(
       (data)=>{
         this.categorias = data;
-        if (this.categorias.length === 1) {
           const defaultCategory = this.categorias[0];
           this.pagosForm.controls['categoria'].setValue(defaultCategory.ID);
           // Trigger subcategories load for the single category
           this.loadSubcategorias({ target: { value: defaultCategory.ID } });
-        }
       },
       (error)=>{
         console.error('Error fetching categorias: ', error);
@@ -87,10 +85,8 @@ export class PagosUpdateFormComponent {
       (data)=>{
         this.subcategorias=data;
         console.log("subcategorias "+this.subcategorias);
-        if (this.subcategorias.length === 1) {
           const defaultSubcategory = this.subcategorias[0];
           this.pagosForm.controls['subcategoria'].setValue(defaultSubcategory.id_negocio);
-        }
       },
       (error)=>{
         console.error('Error fetching subcategorias: ', error);

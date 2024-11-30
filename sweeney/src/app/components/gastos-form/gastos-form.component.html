@@ -1,53 +1,7 @@
-<div class="container">
-    <div class="sideBar">
-        <app-sidebar></app-sidebar>
-    </div>
-    <div class="categoriaForm">
-        <form [formGroup]="gastosForm">
-            <p>Asigna un nombre a esta categoría:</p>
-            <label for="nombre">Nombre: </label>
-            <input type="text" placeholder="Ingrese un nombre para la categoria">
-        
-            <label for="presupuesto"> Presupuesto: </label>
-            <input type="number" placeholder="10%">
-
-            <p>Puedes asignar subcategorias a este gasto</p>
-            <label for="tipo_megocio">Tipo de Negocio:</label>
-            <select name="tipo_megocio" id="tipo_megocio" formControlName="tipo_negocio" (change)="loadNegocios($event)">
-                @for(rubro of negociosRubros; track $index){
-                    <option value={{rubro.id_tiponegocio}}>{{ rubro.tipo_negocio}}</option>
-                }
-            </select>
-            <label for="negocio">Negocio</label>
-            <select name="negocios" formControlName="negocios">
-                
-                @if(negocios&&negocios.length>0){
-                    @for(negocio of negocios; track $index){
-                        <option value={{negocio.id_negocio}}>{{ negocio.nombre}}</option>
-                    }
-                }
-                @else {
-                    <option value="">No hay negocios asignados</option>
-                }
-            </select>
-            <div>
-                <mat-radio-group formControlName="addNuevo">
-                    <label for="">¿Desea registrar un nuevo negocio?</label>
-                    <mat-radio-button value="si">Si</mat-radio-button>
-                    <mat-radio-button value="no">No</mat-radio-button>
-                </mat-radio-group>
-            </div>
-            <label for="nuevoNegocio">Agregar Nuevo Negocio:</label>
-            <input type="text" id="nuevoNegocio" placeholder="Nombre" formControlName="nuevoNegocio">
-            <button type="button" id="agregar">Agregar</button>
-        </form>
-        <h4>Negocios Asociados</h4>
-        <table>
-            <th>Nombre</th>
-            <th>Info.</th>
-            <tbody>
-                
-            </tbody>
-        </table>
-    </div>
-</div>
+<form [formGroup]="gastosForm" (ngSubmit)="submit()">
+    <label for="nombre">Nombre: </label>
+    <input type="text" placeholder="Ingrese un nombre para la categoria" formControlName="nombre">
+    <label for="presupuesto"> Presupuesto: </label>
+    <input type="number" placeholder="$10000" formControlName="presupuesto">
+    <button type="submit" id="agregar">Agregar</button>
+</form>

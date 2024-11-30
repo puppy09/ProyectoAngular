@@ -65,6 +65,10 @@ export class GruposFormPagoComponent {
   loadCategorias():void{
     this.catSvc.getCategoriaGrupalActiva(this.pagoPro.id_grupo).subscribe(data => {
       this.categorias = data;
+      const defaultCategory = this.categorias[0];
+      this.pagoForm.controls['categoria'].setValue(defaultCategory.ID);
+        // Trigger subcategories load for the single category
+        this.loadSubcategorias({ target: { value: defaultCategory.ID } });
     }, error => {
       console.error('Error fetching categorias: ', error);
     });
@@ -74,14 +78,20 @@ export class GruposFormPagoComponent {
     this.selectedCategory = event.target.value;
     this.subSvc.getSubcategoriasCategoria(this.pagoPro.id_grupo, this.selectedCategory).subscribe(data => {
       this.subcategorias = data;
+      const defaultSubcategory = this.subcategorias[0];
+      this.pagoForm.controls['subcategoria'].setValue(defaultSubcategory.id_negocio);
     }, error => {
       console.error('Error fetching subcategorias: ', error);
     });
   }
   submitForm(){
-    console.log(this.pagoForm.get('no_cuenta')?.value);
     const formData = this.pagoForm.value;
-    console.log("FORM DATA NO DE CUENTA "+formData.no_cuenta);
+    console.log("ELEMENTOS FORM");
+    console.log(this.pagoForm.get('no_cuenta')?.value);
+    console.log(this.pagoForm.get('descripcion')?.value);
+    console.log(this.pagoForm.get('monto')?.value);
+    console.log(this.pagoForm.get('categoria')?.value);
+    console.log(this.pagoForm.get('subcategoria')?.value);
     this.pagoGpoSvc.updatePagoGrupal(
       this.pagoPro.id_grupo, 
       this.pagoPro.id_pago, 

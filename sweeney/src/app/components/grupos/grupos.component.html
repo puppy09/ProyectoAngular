@@ -40,6 +40,49 @@
                     </div>
                 </ng-template>
               </p-carousel>
+              
+
+              <p-carousel [value]="grupos" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+                <ng-template pTemplate="item" let-grupo>
+                    <div class="cuenta-card">
+                        <div class="credit-card bg-[#FF8A3D] p-6 rounded-xl shadow-lg text-white relative overflow-hidden">
+                            <div class="absolute top-4 right-4">
+                                <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>Activar Cuenta</button>
+                                    <button mat-menu-item>Editar Cuenta</button>
+                                </mat-menu>
+                            </div>
+
+                            <div class="card-number mb-4">
+                                <p class="text-xl tracking-widest"> PRUEBA </p>
+                            </div>
+
+                            <div class="card-details flex justify-between">
+                                <div>
+                                    <p class="text-sm opacity-80">Alias</p>
+                                    <p class="text-lg font-semibold">a VER SI JALA</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm opacity-80">Vence</p>
+                                    <p class="text-lg">xdddd</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <p class="text-sm opacity-80">Saldo</p>
+                                <p class="text-2xl font-bold">900</p>
+                            </div>
+
+                            <div class="status mt-2">
+                                
+                            </div>
+                        </div>
+                    </div>
+            </ng-template>
+          </p-carousel>
         }
         @else {
             <p class="poppins-thin">No hay cuentas agregadas</p>

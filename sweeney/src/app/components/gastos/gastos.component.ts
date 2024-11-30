@@ -14,11 +14,12 @@ import { GastosFormComponent } from '../gastos-form/gastos-form.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { faL } from '@fortawesome/free-solid-svg-icons';
+import { DataServiceService } from '../../services/dataService/data-service.service';
 
 @Component({
   selector: 'app-gastos',
   standalone: true,
-  imports: [CarouselModule, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule, RouterModule, GastosFormComponent, ReactiveFormsModule],
+  imports: [CarouselModule, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule, RouterModule, ReactiveFormsModule],
   templateUrl: './gastos.component.html',
   styleUrl: './gastos.component.css'
 })
@@ -31,7 +32,7 @@ export class GastosComponent {
   selectedCategoria:any;
   editarCategoria:boolean = false;
   gastosForm: FormGroup = new FormGroup({});
-  constructor(private router:Router, private gasSvc: CategoriasService, private route: ActivatedRoute){}
+  constructor(private router:Router, private gasSvc: CategoriasService, private route: ActivatedRoute, private dataSvc:DataServiceService){}
 
 
   ngOnInit(): void{
@@ -182,8 +183,8 @@ export class GastosComponent {
     });
     this.editarCategoria = true;
   }
-  goToAdd(){
-    this.router.navigate(['agregar'],{relativeTo: this.route});
-    this.loadCategorias();
+  setCategoriaData(categoria:any){
+    this.dataSvc.setCategoriaData(categoria);
+    this.router.navigate(['gastos/agregar']);
   }
 }

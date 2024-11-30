@@ -17,7 +17,7 @@ export class NegociosService {
     return this.http.get<negocioRubro[]>(`${this.apiUrl}/rubros`);
   }
 
-  getNegocios(id_rubro:number):Observable<negocio|negocio[]>{
+  getNegocios(id_rubro:string):Observable<negocio|negocio[]>{
     return this.http.get<negocio|negocio[]>(`${this.apiUrl}/${id_rubro}`);
   }
 }

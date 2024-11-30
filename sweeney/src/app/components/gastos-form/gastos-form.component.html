@@ -1,7 +1,35 @@
-<form [formGroup]="gastosForm" (ngSubmit)="submit()">
-    <label for="nombre">Nombre: </label>
-    <input type="text" placeholder="Ingrese un nombre para la categoria" formControlName="nombre">
-    <label for="presupuesto"> Presupuesto: </label>
-    <input type="number" placeholder="$10000" formControlName="presupuesto">
-    <button type="submit" id="agregar">Agregar</button>
-</form>
+<div class="container">
+    <div class="sideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="gastosForm">
+        <form [formGroup]="subcategoriaForm" (ngSubmit)="submit()">
+            <label for="rubros">Rubros</label>
+            <select name="rubros" id="rubros" formControlName="rubros" (change)="loadNegocios($event)">
+                @if(rubros&&rubros.length>0){
+                    @for (rubro of rubros; track $index) {
+                        <option value={{rubro.id_tiponegocio}}>{{ rubro.tipo_negocio }}</option>
+                    }
+                }
+            </select>
+            <label for="negocios">Negocios</label>
+            <select name="negocios" id="negocios" formControlName="negocios">
+                @if(negocios&&negocios.length>0){
+                    @for (negocio of negocios; track $index) {
+                        <option value={{negocio.id_negocio}}>{{negocio.nombre}}</option>
+                    }
+                    
+                }
+            </select>
+            <mat-radio-group formControlName="addNegocio">
+                <label for="addNegocio">¿Desea agregar un negocio?</label>
+                <mat-radio-button value="si">Si</mat-radio-button>
+                <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+            <label for="newNewgocio">Nuevo Negocio</label>
+            <input type="text" formControlName="newNewgocio">
+
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+</div>

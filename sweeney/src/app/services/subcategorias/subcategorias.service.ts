@@ -27,4 +27,12 @@ export class SubcategoriasService {
   asignarNegocios(payload: asignarNegociosPayload): Observable<any>{
     return this.http.post(`${this.apiUrl}/crear/asociaciones`, payload);
   }
+
+  regAsigNegocio(nombre:string, tipo_negocio:number, categoria:number):Observable<any>{
+    console.log("SERVICIO");
+    console.log(nombre);
+    console.log(tipo_negocio);
+    console.log(categoria);
+    return this.http.post<any>(`${this.apiUrl}/create/assign`, {nombre, tipo_negocio, categoria});
+  }
 }

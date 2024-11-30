@@ -96,14 +96,8 @@ export const routes: Routes = [
     {path: 'grupos/movimientos/programados/modificar/:id', component: GruposFormMovProComponent},
     {path: 'grupos/pagos/programados/modificar/:id', component: GruposFormPagoProComponent},
     {path: 'grupos/pagos/modificar/:id', component: GruposFormPagoComponent},
-    {path: 'gastos',component:GastosComponent,
-        children:[
-            {
-                path: 'agregar',
-                component: GastosFormComponent
-            }
-        ]
-    },
+    {path: 'gastos',component:GastosComponent},
+    {path: 'gastos/agregar', component: GastosFormComponent},
     {path: 'pagos/modificar/:id', component: PagosUpdateFormComponent},
     {path: 'pagos/programados/modificar/:id',component:PagosProUpdFormComponent},
     {path: 'cuentas/agregar', component:CuentasFormComponent},

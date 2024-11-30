@@ -8,6 +8,7 @@ import { GruposCategoriasService } from '../../services/gruposCategorias/grupos-
 import Swal from 'sweetalert2';
 import { GruposSubcategoriasService } from '../../services/gruposSubcategorias/grupos-subcategorias.service';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
+import { GruposPagosService } from '../../services/gruposPagos/grupos-pagos.service';
 
 @Component({
   selector: 'app-grupos-form-pago-pro',
@@ -24,7 +25,7 @@ export class GruposFormPagoProComponent {
   selectedCategory:any;
   subcategorias:any;
   cuentas:any;
-  constructor(private cueSvc: CuentasService,  private dataSvc: DataServiceService, private movProSvc: GruposMovimientosService, private fb: FormBuilder, private catSvc: GruposCategoriasService, private subSvc: GruposSubcategoriasService){
+  constructor(private cueSvc: CuentasService,  private dataSvc: DataServiceService, private pagoGpoSvc: GruposPagosService, private fb: FormBuilder, private catSvc: GruposCategoriasService, private subSvc: GruposSubcategoriasService){
     this.movimientoProForm = this.fb.group({
         no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
         categoria: new FormControl('', Validators.required),
@@ -36,6 +37,7 @@ export class GruposFormPagoProComponent {
     })
 
     this.pagoPro=dataSvc.getPagoGrupalProData();
+    console.log(this.pagoPro);
     if(this.pagoPro){
       console.log(this.pagoPro);
       this.movimientoProForm.patchValue({
@@ -52,6 +54,7 @@ export class GruposFormPagoProComponent {
 
   ngOnInit(): void {
     this.loadCategorias();
+    this.loadActiveCuentas();
   }
 
   loadCategorias(){
@@ -83,6 +86,33 @@ export class GruposFormPagoProComponent {
       })
   }
   submitForm(){
-    console.log(this.movimientoProForm.value);
+    const formData = this.movimientoProForm.value;
+    this.pagoGpoSvc.updatePagoProgramadoGrupal(
+      this.pagoPro.id_pago, 
+      this.pagoPro.id_grupo, 
+      formData.no_cuenta, 
+      formData.descripcion, 
+      formData.monto, 
+      formData.categoria, 
+      formData.subcategoria, 
+      formData.dia_programado, 
+      formData.total_pagos).subscribe(
+      (data)=>{
+        Swal.fire({
+          title: 'Pago programado actualizado',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+          timer: 1500
+        });
+      },
+      (error)=>{
+        const errorMessage = error.error?.message;
+        Swal.fire({
+          title: 'Error',
+          text: errorMessage,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      });
   }
 }

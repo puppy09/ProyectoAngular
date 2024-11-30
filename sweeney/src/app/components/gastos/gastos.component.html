@@ -23,7 +23,7 @@
                                 </button>
                                 <mat-menu #menu="matMenu">
                                     <button mat-menu-item (click)="desactivarCategoria(activa.ID)">Desactivar Categoria</button>
-                                    <button mat-menu-item>Editar Categoria</button>
+                                    <button mat-menu-item (click)="editCategoria(activa)">Editar Categoria</button>
                                 </mat-menu>
                             </div>
 
@@ -85,6 +85,9 @@
                         </div>
                 </ng-template>
               </p-carousel>
+            }
+            @else {
+                <p class="poppins-thin">No hay categorias inactivas</p>
             }
         </div>
     </div>

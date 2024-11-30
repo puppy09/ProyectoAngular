@@ -11,6 +11,7 @@
                     <th scope="col" class="px-6 py-3">Monto</th>
                     <th scope="col" class="px-6 py-3">Dia Programdo</th>
                     <th scope="col" class="px-6 py-3">Estatus</th>
+                    <th scope="col" class="px-6 py-3">Info.</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +25,21 @@
                                 <td class="px-6 py-4">{{movimiento.monto}}</td>
                                 <td class="px-6 py-4">{{movimiento.dia}}</td>
                                 <td class="px-6 py-4">{{movimiento.estatusDetail.estatus}}</td>
-                                
+                                <td class="px-6 py-4"><button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                @if(usuario.ID === movimiento.id_usuario){
+                                    <button mat-menu-item>Editar Movimiento Programado</button>
+                                }
+                                @if(movimiento.estatus===1){
+                                    <button mat-menu-item (click)="desactivarMovimiento(movimiento.id_movimiento)">Desactivar Movimiento Programado</button>
+                                }
+                                @else{
+                                    <button mat-menu-item (click)="activarMovimiento(movimiento.id_movimiento)">Activar Movimiento Programado</button>
+                                }
+                            </mat-menu>
+                            </td>
                             </tr>
                         }
                         @placeholder {

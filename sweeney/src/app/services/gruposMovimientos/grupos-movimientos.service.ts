@@ -26,4 +26,10 @@ export class GruposMovimientosService {
   postMovimientosProgramadosGrupales(id_grupo:number, no_cuenta:string, descripcion:string, monto:number, dia_depo:number):Observable<gruposMovimientosProgramados>{
     return this.http.post<gruposMovimientosProgramados>(`${this.apiURL}/add/programados/${id_grupo}`,{no_cuenta, monto, descripcion,dia_depo});
   }
+  desactivarMovimientoProgramado(id_movimientoProgramado:string):Observable<gruposMovimientosProgramados>{
+    return this.http.patch<gruposMovimientosProgramados>(`${this.apiURL}/desactivar/${id_movimientoProgramado}`,{});
+  }
+  activarMovimientoProgramado(id_movimientoProgramado:string):Observable<gruposMovimientosProgramados>{
+    return this.http.patch<gruposMovimientosProgramados>(`${this.apiURL}/activar/${id_movimientoProgramado}`,{});
+  }
 }

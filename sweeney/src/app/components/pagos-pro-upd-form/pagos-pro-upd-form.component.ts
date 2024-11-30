@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-pagos-pro-upd-form',
   standalone: true,
-  imports: [ReactiveFormsModule, SidebarComponent, HeaderComponent ],
+  imports: [ReactiveFormsModule, SidebarComponent ],
   templateUrl: './pagos-pro-upd-form.component.html',
   styleUrl: './pagos-pro-upd-form.component.css'
 })

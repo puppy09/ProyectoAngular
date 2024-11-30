@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { CurrencyPipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-single-movimientos-programados',
@@ -18,7 +19,7 @@ import Swal from 'sweetalert2';
 export class SingleMovimientosProgramadosComponent {
   movimientos: any;
   movimientosProgramados:any;
-  constructor(private dataSvc: DataServiceService, private router:Router, private movPro: MovimientosProgService){}
+  constructor(private dataSvc: DataServiceService, private router:Router, private movPro: MovimientosProgService, private authSvc: AuthService){}
 
   ngOnInit(){
     this.loadMovimientosProgramados();

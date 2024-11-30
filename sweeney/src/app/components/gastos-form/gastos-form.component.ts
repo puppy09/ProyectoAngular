@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-gastos-form',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent, SidebarComponent, MatRadioModule],
+  imports: [ReactiveFormsModule, SidebarComponent, MatRadioModule],
   templateUrl: './gastos-form.component.html',
   styleUrl: './gastos-form.component.css'
 })

@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 import { GastosFormComponent } from '../gastos-form/gastos-form.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-gastos',
@@ -26,6 +27,9 @@ export class GastosComponent {
   categorias:any;
   categoriasInactivas:any;
   categoriasActivas:any;
+  isModalOpen:boolean = false;
+  selectedCategoria:any;
+  editarCategoria:boolean = false;
   gastosForm: FormGroup = new FormGroup({});
   constructor(private router:Router, private gasSvc: CategoriasService, private route: ActivatedRoute){}
 
@@ -42,6 +46,7 @@ export class GastosComponent {
 
   submit(){
     //if(this.gastosForm.valid){
+    if(this.editarCategoria==false){
       this.gasSvc.postCategoria(
         this.gastosForm.get('nombre')?.value,
         this.gastosForm.get('presupuesto')?.value
@@ -71,7 +76,34 @@ export class GastosComponent {
         icon: 'error'
       });
     }*/
-  }
+    }else if(this.editarCategoria==true){
+      this.gasSvc.editarCategoria(
+        this.selectedCategoria.ID,
+        this.gastosForm.get('nombre')?.value,
+        this.gastosForm.get('presupuesto')?.value
+      ).subscribe(
+        (data)=>{
+          console.log(data);
+          this.loadCategoriasActivas();
+          this.loadCategoriasInactivas();
+          this.editarCategoria = false;
+          Swal.fire({
+            title: 'Categoria actualizada',
+            text: 'La categoria se ha actualizado correctamente',
+            icon: 'success'
+          });
+        },
+        (error)=>{
+          const errorMessage = error.error?.message;
+          Swal.fire({
+            title: 'Error',
+            text: errorMessage,
+            icon: 'error'
+          });
+        }
+      )
+    }
+}
 
   loadCategorias(){
     this.gasSvc.getCategorias().subscribe(
@@ -141,6 +173,15 @@ export class GastosComponent {
       })
   }
 
+  editCategoria(categoria:any){
+    this.selectedCategoria = null;
+    this.selectedCategoria = categoria;
+    this.gastosForm.patchValue({
+      nombre: this.selectedCategoria.nombre,
+      presupuesto: this.selectedCategoria.presupuesto
+    });
+    this.editarCategoria = true;
+  }
   goToAdd(){
     this.router.navigate(['agregar'],{relativeTo: this.route});
     this.loadCategorias();

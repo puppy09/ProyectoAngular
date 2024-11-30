@@ -35,4 +35,8 @@ export class CategoriasService {
   postCategoria(nombre: string, presupuesto: number):Observable<categoria|categoria[]>{
     return this.http.post<categoria|categoria[]>(`${this.apiUrl}`,{nombre, presupuesto});
   }
+
+  editarCategoria(id_categoria:string, nombre:string, presupuesto:number):Observable<categoria|categoria[]>{
+    return this.http.put<categoria|categoria[]>(`${this.apiUrl}/${id_categoria}`,{nombre, presupuesto});
+  }
 }

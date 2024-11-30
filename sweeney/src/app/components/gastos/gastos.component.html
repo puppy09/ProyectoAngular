@@ -10,7 +10,6 @@
             <input type="number" placeholder="$10000" formControlName="presupuesto">
             <button type="submit" id="agregar">Agregar</button>
         </form>
-        <p>Da clic para añadir un nuevo gasto</p>
         <div class="gastosContainer">
             <h4 class="poppins-bold">Mis Gastos Activos</h4>
             @if(categoriasActivas && categoriasActivas.length>0){
@@ -63,7 +62,7 @@
                                     </button>
                                     <mat-menu #menu="matMenu">
                                         <button mat-menu-item (click)="activarCategoria(inactiva.ID)">Activar Categoria</button>
-                                        <button mat-menu-item>Editar Categoria</button>
+                                        <button  mat-menu-item (click)="editCategoria(inactiva)" >Editar Categoria</button>
                                     </mat-menu>
                                 </div>
     
@@ -90,3 +89,8 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal toggle -->
+
+  

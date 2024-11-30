@@ -9,6 +9,7 @@ export class DataServiceService {
   private movPro: any
   private cuentaData: any
   private grupoData:any
+  private movProGrupal:any
   constructor() { }
 
   //Servicios de Pagos
@@ -50,6 +51,7 @@ export class DataServiceService {
     this.movPro=null;
   }
 
+  //Servicios de Grupos
   setGrupoData(data:any){
     this.grupoData=data;
   }
@@ -60,5 +62,18 @@ export class DataServiceService {
 
   clearGrupoData(){
     this.grupoData=null;
+  }
+
+  //Servicio de Movimientos Programados Grupales
+  setMovProGrupalData(data:any){
+    this.movProGrupal=data;
+  }
+
+  getMovProGrupalData(){
+    return this.movProGrupal;
+  }
+  
+  clearMovProGrupalData(){
+    this.movProGrupal=null;
   }
 }

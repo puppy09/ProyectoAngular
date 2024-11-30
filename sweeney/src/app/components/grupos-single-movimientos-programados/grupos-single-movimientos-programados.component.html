@@ -22,7 +22,7 @@
                             <tr class="bg-white border-b dark:bg-[#ffffff] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
                                 <td class="px-6 py-4">{{movimiento.usuarioDetail.nombre}}</td>
                                 <td class="px-6 py-4">{{movimiento.descripcion}}</td>
-                                <td class="px-6 py-4">{{movimiento.monto}}</td>
+                                <td class="px-6 py-4">{{movimiento.monto | currency}}</td>
                                 <td class="px-6 py-4">{{movimiento.dia}}</td>
                                 <td class="px-6 py-4">{{movimiento.estatusDetail.estatus}}</td>
                                 <td class="px-6 py-4"><button mat-icon-button [matMenuTriggerFor]="menu">
@@ -30,7 +30,7 @@
                                 </button>
                                 <mat-menu #menu="matMenu">
                                 @if(usuario.ID === movimiento.id_usuario){
-                                    <button mat-menu-item>Editar Movimiento Programado</button>
+                                    <button mat-menu-item (click)="editarMovimiento(movimiento)">Editar Movimiento Programado</button>
                                 }
                                 @if(movimiento.estatus===1){
                                     <button mat-menu-item (click)="desactivarMovimiento(movimiento.id_movimiento)">Desactivar Movimiento Programado</button>

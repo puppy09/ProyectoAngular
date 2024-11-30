@@ -1,24 +1,23 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { DataServiceService } from '../../services/dataService/data-service.service';
-import { MovimientosProgService } from '../../services/movimientosProg/movimientos-prog.service';
-import { ReactiveFormsModule, FormControl, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { gruposMovimientos } from '../../interfaces/gruposPagos.interface';
+import { GruposMovimientosService } from '../../services/gruposMovimientos/grupos-movimientos.service';
 import Swal from 'sweetalert2';
+import { SidebarComponent } from '../sidebar/sidebar.component';  
+
 @Component({
-  selector: 'app-mov-pro-upd-form',
+  selector: 'app-grupos-form-mov-pro',
   standalone: true,
-  imports: [SidebarComponent, ReactiveFormsModule],
-  templateUrl: './mov-pro-upd-form.component.html',
-  styleUrl: './mov-pro-upd-form.component.css'
+  imports: [SidebarComponent,ReactiveFormsModule],
+  templateUrl: './grupos-form-mov-pro.component.html',
+  styleUrl: './grupos-form-mov-pro.component.css'
 })
-export class MovProUpdFormComponent {
+export class GruposFormMovProComponent {
 
   movimientoProForm:FormGroup = new FormGroup({});
   movimientoPro: any;
-
-  constructor(private dataSvc: DataServiceService, private movProSvc: MovimientosProgService, private fb: FormBuilder){
+  constructor(private dataSvc: DataServiceService, private movProSvc: GruposMovimientosService, private fb: FormBuilder){
     this.movimientoProForm = this.fb.group({
       no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
       descripcion: new FormControl('', Validators.required),
@@ -26,7 +25,7 @@ export class MovProUpdFormComponent {
       dia: new FormControl('', Validators.required),
     })
 
-    this.movimientoPro=dataSvc.getmovProData();
+    this.movimientoPro=dataSvc.getMovProGrupalData();
     if(this.movimientoPro){
       console.log(this.movimientoPro);
       this.movimientoProForm.patchValue({
@@ -37,17 +36,15 @@ export class MovProUpdFormComponent {
       });
     }
   }
-  cancelar(){
 
-  }
-  submitForm(movProId: number){
+  submitForm(movProId: string){
     const formData = this.movimientoProForm.value;
-    this.movProSvc.updateMovProg(
+    this.movProSvc.updMovimientoProgramado(
       movProId,
       formData.no_cuenta,
+      formData.descripcion,
       formData.monto,
       formData.dia,
-      formData.descripcion
     ).subscribe(response=>{
       Swal.fire({
         position: "top-end",

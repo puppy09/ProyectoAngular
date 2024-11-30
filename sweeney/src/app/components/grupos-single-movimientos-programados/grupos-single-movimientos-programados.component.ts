@@ -95,4 +95,9 @@ export class GruposSingleMovimientosProgramadosComponent {
       }
     )
   }
+
+  editarMovimiento(movimiento:any){
+    this.dataSvc.setMovProGrupalData(movimiento);
+    this.router.navigate(['grupos/movimientos/programados/modificar',movimiento.id_movimiento]);
+  }
 }

@@ -32,4 +32,9 @@ export class GruposMovimientosService {
   activarMovimientoProgramado(id_movimientoProgramado:string):Observable<gruposMovimientosProgramados>{
     return this.http.patch<gruposMovimientosProgramados>(`${this.apiURL}/activar/${id_movimientoProgramado}`,{});
   }
+  updMovimientoProgramado(id_movimientoProgramado:string, no_cuenta:string, descripcion:string, monto:number, dia_depo:number):Observable<gruposMovimientosProgramados>{
+    return this.http.put<gruposMovimientosProgramados>(`${this.apiURL}/update/${id_movimientoProgramado}`,{no_cuenta, descripcion, monto, dia_depo});
+  }
+
+
 }

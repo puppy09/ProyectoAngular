@@ -29,6 +29,7 @@ import { GruposPostFondosComponent } from './components/grupos-post-fondos/grupo
 import { GruposSingleMovimientosProgramadosComponent } from './components/grupos-single-movimientos-programados/grupos-single-movimientos-programados.component';
 import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
 import { RecuperarContraComponent } from './components/recuperar-contra/recuperar-contra.component';
+import { GruposFormMovProComponent } from './components/grupos-form-mov-pro/grupos-form-mov-pro.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -90,6 +91,7 @@ export const routes: Routes = [
     },
     {path: 'grupos/pagos/agregar', component: GruposPostPagosComponent},
     {path: 'grupos/movimientos/agregar', component: GruposPostFondosComponent},
+    {path: 'grupos/movimientos/programados/modificar/:id', component: GruposFormMovProComponent},
     {path: 'gastos',component:GastosComponent},
     {path: 'gastos/agregar', component:GastosFormComponent},
     {path: 'pagos/modificar/:id', component: PagosUpdateFormComponent},

@@ -35,8 +35,8 @@
                         <option value={{subcategoria.id_negocio}}>{{ subcategoria.negocio.nombre }}</option>
                     }
                 }
-                @if(!subcategorias) {
-                    <option value="">No hay subcategorias</option>
+                @if(subcategorias.length==0) {
+                    <option value="">No hay subcategorias Activas</option>
                 }
                 
             </select>

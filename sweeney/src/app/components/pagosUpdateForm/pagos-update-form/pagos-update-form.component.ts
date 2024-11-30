@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-pagos-update-form',
   standalone: true,
-  imports: [ReactiveFormsModule, SidebarComponent, HeaderComponent],
+  imports: [ReactiveFormsModule, SidebarComponent],
   templateUrl: './pagos-update-form.component.html',
   styleUrl: './pagos-update-form.component.css'
 })
@@ -67,6 +67,12 @@ export class PagosUpdateFormComponent {
     this.catSrv.getCategoriasActivas().subscribe(
       (data)=>{
         this.categorias = data;
+        if (this.categorias.length === 1) {
+          const defaultCategory = this.categorias[0];
+          this.pagosForm.controls['categoria'].setValue(defaultCategory.ID);
+          // Trigger subcategories load for the single category
+          this.loadSubcategorias({ target: { value: defaultCategory.ID } });
+        }
       },
       (error)=>{
         console.error('Error fetching categorias: ', error);
@@ -74,11 +80,17 @@ export class PagosUpdateFormComponent {
   }
 
   loadSubcategorias(event: any):void{
+    this.subcategorias = [];
     this.selectedCategory = event.target.value;
     console.log(this.selectedCategory);
     this.subSrv.getSubcategoriasByCat(this.selectedCategory).subscribe(
       (data)=>{
         this.subcategorias=data;
+        console.log("subcategorias "+this.subcategorias);
+        if (this.subcategorias.length === 1) {
+          const defaultSubcategory = this.subcategorias[0];
+          this.pagosForm.controls['subcategoria'].setValue(defaultSubcategory.id_negocio);
+        }
       },
       (error)=>{
         console.error('Error fetching subcategorias: ', error);
@@ -94,11 +106,11 @@ export class PagosUpdateFormComponent {
       const formData=this.pagosForm.value;
       this.pagoSvc.updPago(
         this.pago.id_pago,
-        formData.no_cuenta,
-        formData.descripcion,
-        formData.monto,
-        formData.categoria,
-        formData.subcategoria
+        this.pagosForm.get('no_cuenta')?.value,
+        this.pagosForm.get('descripcion')?.value,
+        this.pagosForm.get('monto')?.value,
+        this.pagosForm.get('categoria')?.value,
+        this.pagosForm.get('subcategoria')?.value
       ).subscribe(response=>{
         Swal.fire({
           position: "top-end",

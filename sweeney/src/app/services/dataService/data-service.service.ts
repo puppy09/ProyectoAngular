@@ -10,6 +10,7 @@ export class DataServiceService {
   private cuentaData: any
   private grupoData:any
   private movProGrupal:any
+  private pagoProgramado:any
   constructor() { }
 
   //Servicios de Pagos
@@ -75,5 +76,18 @@ export class DataServiceService {
   
   clearMovProGrupalData(){
     this.movProGrupal=null;
+  }
+
+  //Servicio de Pagos Programados
+  setPagoGrupalProData(data:any){
+    this.pagoProgramado=data;
+  }
+
+  getPagoGrupalProData(){
+    return this.pagoProgramado;
+  }
+
+  clearPagoGrupalProData(){
+    this.pagoProgramado=null;
   }
 }

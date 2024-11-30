@@ -30,6 +30,7 @@ import { GruposSingleMovimientosProgramadosComponent } from './components/grupos
 import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
 import { RecuperarContraComponent } from './components/recuperar-contra/recuperar-contra.component';
 import { GruposFormMovProComponent } from './components/grupos-form-mov-pro/grupos-form-mov-pro.component';
+import { GruposFormPagoProComponent } from './components/grupos-form-pago-pro/grupos-form-pago-pro.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -92,6 +93,7 @@ export const routes: Routes = [
     {path: 'grupos/pagos/agregar', component: GruposPostPagosComponent},
     {path: 'grupos/movimientos/agregar', component: GruposPostFondosComponent},
     {path: 'grupos/movimientos/programados/modificar/:id', component: GruposFormMovProComponent},
+    {path: 'grupos/pagos/programados/modificar/:id', component: GruposFormPagoProComponent},
     {path: 'gastos',component:GastosComponent},
     {path: 'gastos/agregar', component:GastosFormComponent},
     {path: 'pagos/modificar/:id', component: PagosUpdateFormComponent},

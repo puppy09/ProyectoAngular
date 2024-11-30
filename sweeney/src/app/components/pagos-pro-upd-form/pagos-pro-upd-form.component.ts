@@ -27,7 +27,7 @@ export class PagosProUpdFormComponent {
   pagoPro: any;
   constructor(private dataSvc: DataServiceService, private fb: FormBuilder,private router:Router, private pagoSvc: PagosProgService, private cueSvc: CuentasService, private catSvc: CategoriasService, private subSvc: SubcategoriasService){
     this.pagosProForms=this.fb.group({
-        no_cuenta: new FormControl('', Validators.required),
+        no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
         categoria: new FormControl('', Validators.required),
         subcategoria: new FormControl('', Validators.required),
         descripcion: new FormControl('', Validators.required),

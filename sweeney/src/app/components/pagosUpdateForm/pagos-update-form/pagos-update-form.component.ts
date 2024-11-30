@@ -25,7 +25,7 @@ export class PagosUpdateFormComponent {
   pago: any;
   constructor(private router:Router, private pagoSvc: PagosService,  private dataSvc: DataServiceService,  private fb: FormBuilder, private route: Router, private cuenSrv: CuentasService, private  catSrv: CategoriasService, private subSrv: SubcategoriasService){
     this.pagosForm = this.fb.group({
-      no_cuenta: new FormControl('', Validators.required),
+      no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
       categoria: new FormControl('', Validators.required),
       subcategoria: new FormControl('', Validators.required),
       descripcion: new FormControl('', Validators.required),

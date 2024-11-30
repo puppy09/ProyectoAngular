@@ -3,9 +3,13 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="gastos">
-        <router-outlet></router-outlet>
-        <app-gastos-form (categoryCreated)="onCategoryCreated()"></app-gastos-form>
-        <button class="round-button" (click)="goToAdd()">+</button>
+        <form [formGroup]="gastosForm" (ngSubmit)="submit()">
+            <label for="nombre">Nombre: </label>
+            <input type="text" placeholder="Ingrese un nombre para la categoria" formControlName="nombre">
+            <label for="presupuesto"> Presupuesto: </label>
+            <input type="number" placeholder="$10000" formControlName="presupuesto">
+            <button type="submit" id="agregar">Agregar</button>
+        </form>
         <p>Da clic para añadir un nuevo gasto</p>
         <div class="gastosContainer">
             <h4 class="poppins-bold">Mis Gastos Activos</h4>

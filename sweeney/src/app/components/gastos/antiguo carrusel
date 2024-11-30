@@ -23,3 +23,7 @@
                     </div>
                 </ng-template>
               </p-carousel>
+
+
+
+              <button class="round-button" (click)="goToAdd()">+</button>

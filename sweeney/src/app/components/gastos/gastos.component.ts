@@ -11,11 +11,13 @@ import { CarouselModule } from 'primeng/carousel';
 import { RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { GastosFormComponent } from '../gastos-form/gastos-form.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-gastos',
   standalone: true,
-  imports: [CarouselModule, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule, RouterModule, GastosFormComponent],
+  imports: [CarouselModule, SidebarComponent, MatMenuModule,MatButtonModule, MatIconModule, RouterModule, GastosFormComponent, ReactiveFormsModule],
   templateUrl: './gastos.component.html',
   styleUrl: './gastos.component.css'
 })
@@ -24,13 +26,53 @@ export class GastosComponent {
   categorias:any;
   categoriasInactivas:any;
   categoriasActivas:any;
+  gastosForm: FormGroup = new FormGroup({});
   constructor(private router:Router, private gasSvc: CategoriasService, private route: ActivatedRoute){}
 
-  ngOnInit():void{
+
+  ngOnInit(): void{
+    this.gastosForm = new FormGroup({
+      nombre: new FormControl('', Validators.required),
+      presupuesto: new FormControl('', [Validators.required, Validators.min(0)]),
+    });
     this.loadCategorias();
     this.loadCategoriasActivas();
     this.loadCategoriasInactivas();
   }
+
+  submit(){
+    //if(this.gastosForm.valid){
+      this.gasSvc.postCategoria(
+        this.gastosForm.get('nombre')?.value,
+        this.gastosForm.get('presupuesto')?.value
+      ).subscribe(
+        (data)=>{
+          console.log(data);
+          Swal.fire({
+            title: 'Categoria agregada',
+            text: 'La categoria se ha agregado correctamente',
+            icon: 'success'
+          });
+          this.loadCategoriasActivas();
+        },
+        (error)=>{
+          const errorMessage = error.error?.message;
+          Swal.fire({
+            title: 'Error',
+            text: errorMessage,
+            icon: 'error'
+          });
+        }
+      );
+    /*}else{
+      Swal.fire({
+        title: 'Error',
+        text: 'Por favor, complete todos los campos',
+        icon: 'error'
+      });
+    }*/
+  }
+
   loadCategorias(){
     this.gasSvc.getCategorias().subscribe(
       (data)=>{

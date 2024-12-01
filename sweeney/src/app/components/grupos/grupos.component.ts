@@ -33,7 +33,7 @@ export class GruposComponent {
   }
 
   loadGrupos(){
-    this.gpoSvc.getGruposMiembro().subscribe(
+    this.gpoSvc.getGruposCreados().subscribe(
       (data)=>{
         console.log(data);
         this.grupos=data;

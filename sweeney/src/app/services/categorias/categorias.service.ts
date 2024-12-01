@@ -40,8 +40,8 @@ export class CategoriasService {
     return this.http.put<categoria|categoria[]>(`${this.apiUrl}/${id_categoria}`,{nombre, presupuesto});
   }
 
-  getPorcentajeMes():Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/porcentaje/gastado`);
+  getPorcentajeMes(mes:number):Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/porcentaje/gastado/`,{mes});
   }
 
   getPorcentajeMes3():Observable<any>{

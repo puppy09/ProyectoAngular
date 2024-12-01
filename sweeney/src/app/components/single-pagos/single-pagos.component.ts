@@ -43,6 +43,7 @@ export class SinglePagosComponent {
           showConfirmButton: false,
           timer: 1500
         })
+        this.getPagos();
       },
       (error)=>{
         Swal.fire({

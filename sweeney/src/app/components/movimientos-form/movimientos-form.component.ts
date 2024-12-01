@@ -62,6 +62,8 @@ export class MovimientosFormComponent implements OnInit{
     this.cuenSrv.getCuentasActivas().subscribe(
       (data)=>{
         this.cuentas = data;
+        const defaultCuenta = this.cuentas[0];
+        this.pagosForm.controls['no_cuenta'].setValue(defaultCuenta.ID);
       },
       (error)=>{
         console.error('Error fetching cuentas: ', error);

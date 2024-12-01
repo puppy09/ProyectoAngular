@@ -4,10 +4,31 @@
   </div>
   
   <div class="main">
-    <h4 class="poppins-bold">Mis Gráficas</h4>  
+    
+    <h4 class="poppins-bold">Mis Gráficas</h4>
+    <form [formGroup]="mesForm" (ngSubmit)="submit()">
+        <label for="mes">Mes</label>
+        <select name="mes" id="mes" formControlName="mes">
+            <option value=1>Enero</option>
+            <option value=2>Febrero</option>
+            <option value=3>Marzo</option>
+            <option value=4>Abril</option>
+            <option value=5>Mayo</option>
+            <option value=6>Junio</option>
+            <option value=7>Julio</option>
+            <option value=8>Agosto</option>
+            <option value=9>Septiembre</option>
+            <option value=10>Octubre</option>
+            <option value=11>Noviembre</option>
+            <option value=12>Diciembre</option>
+        </select>
+        <button type="submit">Buscar</button>
+    </form>  
     <div>
         <canvasjs-chart [options]="chartOptions" [styles]="{width: '40%', height:'360px'}"></canvasjs-chart>    
     </div>
+    <p>{{totalSpent | currency}}</p>
+    <p class="poppins-bold">Mis Gastos Mensuales</p>
     <div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[80%] sm:max-h-[350px]">
         <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
             <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
@@ -28,7 +49,7 @@
                             </tr>
                         }
                     }
-                } @else {
+                } @if(categorias==null || categorias==[]){
                     <tr>
                         <td class="poppins-thin" colspan="3" style="text-align: center;">No hay datos para mostrar</td>
                     </tr>

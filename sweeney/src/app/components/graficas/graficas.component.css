@@ -10,3 +10,7 @@
     gap: 10px;
     margin-bottom: 20px;
 }
+.poppins-bold{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}

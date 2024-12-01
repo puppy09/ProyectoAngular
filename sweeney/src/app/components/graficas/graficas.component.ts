@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { CategoriasService } from '../../services/categorias/categorias.service';
+import { ChangeDetectorRef } from '@angular/core';
 import Swal from 'sweetalert2';
 
 interface DataPoint {
@@ -30,7 +31,8 @@ export class GraficasComponent {
 		  dataPoints: [] as DataPoint[]
 	  }]
 	}
-  constructor(private categoriasService:CategoriasService){}
+  categorias:any;
+  constructor(private categoriasService:CategoriasService, private cdr:ChangeDetectorRef){}
 
   ngOnInit():void{
     this.loadPorcentajes();
@@ -40,13 +42,16 @@ export class GraficasComponent {
     this.categoriasService.getPorcentajeMes3().subscribe(
       (response)=>{
         const dataPoints:DataPoint[] = [];
+        this.categorias = response.categories;
         response.categories.forEach((category:any)=>{
           if(category.percentage>0){
             dataPoints.push({name:category.categoryNombre, y: category.percentage});
           }
-        });
+        },
+      );
         console.log("DATAPOINTS",dataPoints);
         this.chartOptions.data[0].dataPoints=dataPoints;
+        this.cdr.detectChanges();
       },
       (error)=>{
         const errorMessage = error.error?.message;

@@ -31,5 +31,46 @@
 
             <button type="submit">Registrar</button>
         </form>
+        <br>
+        <h4 class="poppins-bold">Subcategorias Registradas</h4>
+        <div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[100%] sm:max-h-[350px]">
+            <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
+                <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 poppins-bold">Negocio</th>
+                        <th scope="col" class="px-6 py-3 poppins-bold">tipo_negocio</th>
+                        <th scope="col" class="px-6 py-3 poppins-bold">Info.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(subcategorias && subcategorias.length>0){
+                        @for(subcategoria of subcategorias; track $index){
+                           
+                            @defer () {
+                                <tr class="bg-white border-b dark:bg-[#ffffff] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
+                                    <td class="px-6 py-4 poppins-light">{{subcategoria.negocio.nombre}}</td>
+                                    <td class="px-6 py-4">{{subcategoria.category.nombre}}</td>
+                                    <td class="px-6 py-4"><button mat-icon-button [matMenuTriggerFor]="menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="deleteSubcategoria(subcategoria)">Eliminar</button>
+                                    </mat-menu></td>
+                                </tr>
+                            }
+                            @placeholder {
+                                <td class="poppins-thin" colspan="5" style="text-align: center;">Cargando Subcategorias</td>
+                            }
+                            
+                        }
+                    }
+                    @else {
+                        <TR>
+                            <TD class="poppins-thin" colspan="5" style="text-align: center;">Aun no hay subcategorias registradas</TD>
+                        </TR>
+                    }            
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -35,4 +35,11 @@ export class SubcategoriasService {
     console.log(categoria);
     return this.http.post<any>(`${this.apiUrl}/create/assign`, {nombre, tipo_negocio, categoria});
   }
+
+  deleteSubcategoria(categoria:number, marca:number):Observable<subcategoria>{
+    console.log("SERVICIO");
+    console.log(categoria);
+    console.log(marca);
+    return this.http.post<subcategoria>(`${this.apiUrl}/delete`,{categoria, marca});
+  }
 }

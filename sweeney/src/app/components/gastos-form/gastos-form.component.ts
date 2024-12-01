@@ -8,15 +8,16 @@ import { MatRadioModule } from '@angular/material/radio';
 import Swal from 'sweetalert2';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 import { SubcategoriasService } from '../../services/subcategorias/subcategorias.service';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-gastos-form',
   standalone: true,
-  imports: [ReactiveFormsModule, MatRadioModule, SidebarComponent],
+  imports: [ReactiveFormsModule, MatRadioModule, SidebarComponent, MatMenuModule, MatIconModule],
   templateUrl: './gastos-form.component.html',
   styleUrl: './gastos-form.component.css'
 })
 export class GastosFormComponent {
-  @Output() categoryCreated = new EventEmitter<void>();
   negociosRubros:any;
   selectedRubro: any;
   rubros:any;
@@ -91,6 +92,25 @@ export class GastosFormComponent {
       })
     })
   }
+
+  deleteSubcategoria(subcategoria:any){
+    this.subSvc.deleteSubcategoria(this.selectedCategoria.ID, subcategoria.id_negocio).subscribe((data)=>{
+      this.loadSubcategorias(this.selectedCategoria);
+      Swal.fire({
+        icon: 'success',
+        title: 'Subcategoria eliminada correctamente',
+        timer: 1500
+      })
+    }, (error)=>{
+      const errorMessage = error.error?.message;
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al eliminar la subcategoria',
+        text: errorMessage,
+        timer: 1500
+      })
+    });
+  }
   submit(){
     if(this.subcategoriaForm.get('addNegocio')?.value === 'si'){
       this.subSvc.regAsigNegocio(this.subcategoriaForm.get('newNewgocio')?.value, this.selectedRubro, this.selectedCategoria.ID).subscribe((data)=>{
@@ -100,6 +120,7 @@ export class GastosFormComponent {
           text: 'Negocio registrado correctamente',
           timer: 1500
         })
+        this.loadSubcategorias(this.selectedCategoria);
       }, (error)=>{
         const errorMessage = error.error?.message;
         Swal.fire({
@@ -117,6 +138,7 @@ export class GastosFormComponent {
           title: 'Subcategoria registrada correctamente',
           timer: 1500
         })
+        this.loadSubcategorias(this.selectedCategoria);
       }, (error)=>{
         const errorMessage = error.error?.message;
         Swal.fire({

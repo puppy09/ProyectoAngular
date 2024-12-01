@@ -55,6 +55,10 @@ export class SidebarComponent {
   goToConfiguracion(){
     this.router.navigate(['/configuracion']);
   }
+  goToGraficas(){
+    this.router.navigate(['/graficas']);
+  }
   
+
 }
 

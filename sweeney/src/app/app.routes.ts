@@ -32,6 +32,7 @@ import { RecuperarContraComponent } from './components/recuperar-contra/recupera
 import { GruposFormMovProComponent } from './components/grupos-form-mov-pro/grupos-form-mov-pro.component';
 import { GruposFormPagoProComponent } from './components/grupos-form-pago-pro/grupos-form-pago-pro.component';
 import { GruposFormPagoComponent } from './components/grupos-form-pago/grupos-form-pago.component';
+import { GraficasComponent } from './components/graficas/graficas.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -102,6 +103,7 @@ export const routes: Routes = [
     {path: 'pagos/programados/modificar/:id',component:PagosProUpdFormComponent},
     {path: 'cuentas/agregar', component:CuentasFormComponent},
     {path: 'cuentas/modificar/:id', component:CuentasUpdateFormComponent},
+    {path: 'graficas', component: GraficasComponent},
     {path: 'page404', component:Page404Component},
     {
         path: '**', redirectTo: 'page404'

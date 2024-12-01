@@ -83,6 +83,7 @@ export class MovimientosFormComponent implements OnInit{
   }
 
   loadSubcategorias(event: any):void{
+    this.subcategorias = [];
     this.selectedCategory = event.target.value;
     console.log("selectedCategory: "+this.selectedCategory);
     this.subSrv.getSubcategoriasByCat(this.selectedCategory).subscribe(

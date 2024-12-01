@@ -22,7 +22,7 @@
             <input type="text" formControlName="descripcion">
             <label for="categoria">Categoria:</label>
             <select name="" id="categoria" formControlName="categoria" (change)="loadSubcategorias($event)">
-                @if(categorias){
+                @if(categorias&&categorias.length>0){
                     @for (categoria of categorias; track $index) {
                         <option value={{categoria.ID}}>{{ categoria.nombre }}</option>
                     }
@@ -33,12 +33,12 @@
             </select>
             <label for="subcategoria">Subcategoria:</label>
             <select name="" id="subcategoria" formControlName="subcategoria">
-                @if(subcategorias){
+                @if(subcategorias&&subcategorias.length>0){
                     @for (subcategoria of subcategorias; track $index) {
                         <option value={{subcategoria.id_negocio}}>{{ subcategoria.negocio.nombre }}</option>
                     }
                 }
-                @if(!subcategorias) {
+                @if(subcategorias.length==0) {
                     <option value="">No hay subcategorias</option>
                 }
                 

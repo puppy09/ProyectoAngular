@@ -115,7 +115,7 @@ export class GruposPostPagosComponent {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: 'Pago regustrado exitosamente',
+            title: 'Pago registrado exitosamente',
             showConfirmButton: false,
             timer: 1500
           })

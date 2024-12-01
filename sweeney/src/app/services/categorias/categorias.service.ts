@@ -39,4 +39,16 @@ export class CategoriasService {
   editarCategoria(id_categoria:string, nombre:string, presupuesto:number):Observable<categoria|categoria[]>{
     return this.http.put<categoria|categoria[]>(`${this.apiUrl}/${id_categoria}`,{nombre, presupuesto});
   }
+
+  getPorcentajeMes():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/porcentaje/gastado`);
+  }
+
+  getPorcentajeMes3():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/porcentaje/gastado/3`);
+  }
+
+  getPorcentajeMes6():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/porcentaje/gastado/6`);
+  }
 }

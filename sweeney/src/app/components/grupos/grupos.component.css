@@ -27,6 +27,11 @@
     justify-content: center;
     cursor: pointer;
   }
+  .boton-container{
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+  }
   
   .round-button:hover {
     background-color: #ff8a3d; /* Darken color on hover */

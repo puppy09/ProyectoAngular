@@ -21,6 +21,7 @@ import { DataServiceService } from '../../services/dataService/data-service.serv
 export class GruposComponent {
 
   grupos:any;
+  gruposMiembro:any;
   joinGpoForm:FormGroup = new FormGroup({});
   constructor(private dataSvc: DataServiceService, private route: ActivatedRoute, private gpoSvc: GruposCreadosService, private fb:FormBuilder, private router: Router){
     this.joinGpoForm = this.fb.group({
@@ -30,6 +31,7 @@ export class GruposComponent {
 
   ngOnInit(): void{
     this.loadGrupos();
+    this.loadGruposMiembro();
   }
 
   loadGrupos(){
@@ -39,6 +41,17 @@ export class GruposComponent {
         this.grupos=data;
       },(error)=>{
         console.log("error con grupos "+error.message);
+      }
+    );
+  }
+
+  loadGruposMiembro(){
+    this.gpoSvc.getGruposMiembro().subscribe(
+      (data)=>{
+        console.log(data);
+        this.gruposMiembro=data;
+      },(error)=>{
+        console.log("error con grupos miembros "+error.message);
       }
     );
   }

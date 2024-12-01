@@ -3,8 +3,10 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="grupos">
-        <button class="round-button" (click)="crear()">+</button>
+        <div class="boton-container">
+            <button class="round-button" (click)="crear()">+</button>
         <p>Da clic para crear un grupo nuevo</p>
+        </div>
         <router-outlet></router-outlet>
         <div class="join">
             <p>O únete a uno</p>
@@ -15,13 +17,13 @@
             </form>
         </div>
         
-
+        <h4 class="poppins-bold">Creados</h4>
         <div class="account-carousel">
             @if(grupos && grupos.length>0){
                 <p-carousel [value]="grupos" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
                     <ng-template pTemplate="item" let-grupo>
                         <div class="cuenta-card">
-                            <div class="credit-card bg-[#FF8A3D] p-6 rounded-xl shadow-lg text-white relative overflow-hidden" (click)="gotoMain(grupo)">
+                            <div class="credit-card bg-[#FF8A3D] p-6 rounded-xl shadow-lg text-white relative overflow-hidden">
                                 <div class="absolute top-4 right-4">
                                     <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white">
                                         <mat-icon>more_vert</mat-icon>
@@ -46,6 +48,7 @@
                                 <div class="mt-4">
                                     <p class="text-sm opacity-80">Fondos</p>
                                     <p class="text-2xl font-bold">{{grupo.fondos | currency}}</p>
+                                    <button (click)="gotoMain(grupo)">Ingresar</button>
                                 </div>
                             </div>
                         </div>
@@ -56,6 +59,49 @@
             <p class="poppins-thin">No hay grupos</p>
         }
         
-    </div>
+        </div>
+        <h4 class="poppins-bold">Miembro</h4>
+        <div class="account-carousel">
+            @if(gruposMiembro && gruposMiembro.length>0){
+                <p-carousel [value]="gruposMiembro" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+                    <ng-template pTemplate="item" let-grupo>
+                        <div class="cuenta-card">
+                            <div class="credit-card bg-[#FF8A3D] p-6 rounded-xl shadow-lg text-white relative overflow-hidden">
+                                <div class="absolute top-4 right-4">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>Desactivar Cuenta</button>
+                                        <button mat-menu-item>Editar Cuenta</button>
+                                    </mat-menu>
+                                </div>
+
+                                <div class="card-number mb-4">
+                                    <p class="text-xl tracking-widest">{{grupo.grupoDetail.nombre}}</p>
+                                </div>
+
+                                <div class="card-details flex justify-between">
+                                    <div>
+                                        <p class="text-sm opacity-80">Descripcion</p>
+                                        <p class="text-lg font-semibold">{{grupo.grupoDetail.descripcion}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <p class="text-sm opacity-80">Fondos</p>
+                                    <p class="text-2xl font-bold">{{grupo.grupoDetail.fondos | currency}}</p>
+                                    <button (click)="gotoMain(grupo)">Ingresar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+        }
+        @else {
+            <p class="poppins-thin">No hay grupos</p>
+        }
+        
+        </div>
     </div>
 </div>

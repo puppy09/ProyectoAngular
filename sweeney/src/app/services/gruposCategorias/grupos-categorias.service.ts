@@ -23,4 +23,15 @@ export class GruposCategoriasService {
   getCategoriaGrupalInactiva(id_grupo:string):Observable<categoriaGrupal|categoriaGrupal[]>{
     return this.http.get<categoriaGrupal|categoriaGrupal[]>(`${this.apiUrl}/inactivas/${id_grupo}`);
   }
+  postCategoriaGrupal(id_grupo:string, nombre:string, presupuesto:number):Observable<categoriaGrupal>{
+    console.log("Categoria Grupal");
+    console.log(id_grupo);
+    console.log(nombre);
+    console.log(presupuesto);
+    return this.http.post<categoriaGrupal>(`${this.apiUrl}/${id_grupo}`, {nombre, presupuesto});
+  }
+
+  editCategoriaGrupal(id_categoria:string, grupo:number, nombre:string, presupuesto:number):Observable<categoriaGrupal>{
+    return this.http.put<categoriaGrupal>(`${this.apiUrl}/${id_categoria}`, {grupo, nombre, presupuesto});
+  }
 }

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CategoriasService } from '../../services/categorias/categorias.service';
-import { PercentPipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +11,6 @@ import Swal from 'sweetalert2';
 import { GastosFormComponent } from '../gastos-form/gastos-form.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { faL } from '@fortawesome/free-solid-svg-icons';
 import { DataServiceService } from '../../services/dataService/data-service.service';
 
 @Component({

@@ -2,7 +2,98 @@
     <div class="sideBar">
         <app-sidebar></app-sidebar>
     </div>
-    <div class="movimientos">
-        <p>Gastos</p>
+    <div class="gastos">
+        <form [formGroup]="gastosForm" (ngSubmit)="submit()">
+            <label for="nombre">Nombre: </label>
+            <input type="text" placeholder="Ingrese un nombre para la categoria" formControlName="nombre">
+            <label for="presupuesto"> Presupuesto: </label>
+            <input type="number" placeholder="$10000" formControlName="presupuesto" min="0">
+            <button type="submit" id="agregar">Agregar</button>
+        </form>
+        <p class="poppins-bold">Gastos Grupales Activos</p>
+        @if(categoriasActivas && categoriasActivas.length>0){
+            <p-carousel [value]="categoriasActivas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+              <ng-template pTemplate="item" let-activa>
+                  <div class="cuenta-card">
+                      <div class="credit-card bg-[#FF8A3D] p-6 rounded-xl shadow-lg text-white relative overflow-hidden">
+                          <div class="absolute top-4 right-4">
+                              <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white">
+                                  <mat-icon>more_vert</mat-icon>
+                              </button>
+                              <mat-menu #menu="matMenu">
+                                  <button mat-menu-item>Desactivar Categoria</button>
+                                  <button mat-menu-item>Editar Categoria</button>
+                                  <button mat-menu-item>Gestionar Subcategorias</button>
+                              </mat-menu>
+                          </div>
+
+                          <div class="card-number mb-4">
+                              <p class="text-xl tracking-widest poppins-thin">{{activa.categoria}}</p>
+                          </div>
+
+                          <div class="card-details flex justify-between">
+                              <div>
+                                  <p class="text-sm opacity-80">Presupuesto</p>
+                                  <p class="text-lg font-semibold">{{activa.presupuesto | currency}}</p>
+                              </div>
+                              <div>
+                                <p class="text-sm opacity-80">Creador</p>
+                                <p class="text-lg font-semibold">{{activa.creadorDetail.nombre}}</p>
+                            </div>
+                          </div>
+                          <div class="status mt-2">
+                              <span class="text-sm px-2 py-1 rounded-full" [ngClass]="{'bg-green-400': activa.estatus===1, 'bg-red-400': activa.estatus!==1}">
+                                  {{activa.estatusDetail.estatus}}
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+          </ng-template>
+        </p-carousel>
+          }
+          @else {
+              <p class="poppins-thin">No hay categorias activas</p>
+          }
+          <p class="poppins-bold">Gastos Grupales Inactivos</p>
+          @if(categoriasInactivas && categoriasInactivas.length>0){
+            <p-carousel [value]="categoriasInactivas" [numVisible]="3" [numScroll]="1" class="px-4 py-2 mx-2 bg-gray-300 rounded">
+                <ng-template pTemplate="item" let-inactiva>
+                    <div class="cuenta-card">
+                        <div class="credit-card bg-[#FF8A3D] p-6 rounded-xl shadow-lg text-white relative overflow-hidden">
+                            <div class="absolute top-4 right-4">
+                                <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>Desactivar Categoria</button>
+                                    <button mat-menu-item>Editar Categoria</button>
+                                    <button mat-menu-item>Gestionar Subcategorias</button>
+                                </mat-menu>
+                            </div>
+  
+                            <div class="card-number mb-4">
+                                <p class="text-xl tracking-widest poppins-thin">{{inactiva.categoria}}</p>
+                            </div>
+  
+                            <div class="card-details flex justify-between">
+                                <div>
+                                    <p class="text-sm opacity-80">Presupuesto</p>
+                                    <p class="text-lg font-semibold">{{inactiva.presupuesto | currency}}</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm opacity-80">Creador</p>
+                                    <p class="text-lg font-semibold">{{inactiva.creadorDetail.nombre}}</p>
+                                </div>
+                            </div>
+                            <div class="status mt-2">
+                                <span class="text-sm px-2 py-1 rounded-full" [ngClass]="{'bg-green-400': inactiva.estatus===1, 'bg-red-400': inactiva.estatus!==1}">
+                                    {{inactiva.estatusDetail.estatus}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+            </ng-template>
+          </p-carousel>
+          }
     </div>
 </div>

@@ -19,4 +19,8 @@ export class GruposCategoriasService {
   getCategoriaGrupalActiva(id_grupo:string):Observable<categoriaGrupal|categoriaGrupal[]>{
     return this.http.get<categoriaGrupal|categoriaGrupal[]>(`${this.apiUrl}/activas/${id_grupo}`);
   }
+
+  getCategoriaGrupalInactiva(id_grupo:string):Observable<categoriaGrupal|categoriaGrupal[]>{
+    return this.http.get<categoriaGrupal|categoriaGrupal[]>(`${this.apiUrl}/inactivas/${id_grupo}`);
+  }
 }

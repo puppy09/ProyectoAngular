@@ -37,4 +37,7 @@ export class GrupoMainComponent {
   navigateToMovimientosProgramados():void{
     this.router.navigate(['single/movimientos/programados'],{relativeTo:this.route});
   }
+  navigateToGastos():void{
+    this.router.navigate(['grupos/gastos']);
+  }
 }

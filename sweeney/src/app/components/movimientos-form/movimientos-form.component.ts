@@ -63,7 +63,7 @@ export class MovimientosFormComponent implements OnInit{
       (data)=>{
         this.cuentas = data;
         const defaultCuenta = this.cuentas[0];
-        this.pagosForm.controls['no_cuenta'].setValue(defaultCuenta.ID);
+        this.pagosForm.controls['no_cuenta'].setValue(defaultCuenta.no_cuenta);
       },
       (error)=>{
         console.error('Error fetching cuentas: ', error);

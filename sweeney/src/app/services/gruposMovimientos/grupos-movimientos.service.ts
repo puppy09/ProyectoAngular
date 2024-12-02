@@ -12,6 +12,7 @@ export class GruposMovimientosService {
 
   constructor(private http: HttpClient) { }
   getMovimientosGrupales(id_grupo:string):Observable<gruposMovimientos|gruposMovimientos[]>{
+    console.log("get movimientos grupales "+id_grupo);
     return this.http.get<gruposMovimientos|gruposMovimientos[]>(`${this.apiURL}/${id_grupo}`);
   }
 

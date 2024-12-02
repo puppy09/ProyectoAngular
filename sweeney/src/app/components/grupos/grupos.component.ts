@@ -85,6 +85,7 @@ export class GruposComponent {
     this.loadGrupos();
   }
   gotoMain(grupo:any){
+    console.log("go to main "+grupo);
     this.dataSvc.setGrupoData(grupo);
     this.router.navigate(['grupos/main']);
   }

@@ -6,11 +6,12 @@ import { GruposCreadosService } from '../../services/grupos/grupos-creados.servi
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-grupo-main',
   standalone: true,
-  imports: [RouterModule, SidebarComponent],
+  imports: [RouterModule, SidebarComponent, CurrencyPipe],
   templateUrl: './grupo-main.component.html',
   styleUrl: './grupo-main.component.css'
 })
@@ -19,6 +20,7 @@ export class GrupoMainComponent {
   pagos:any;
   constructor(private route: ActivatedRoute, private router:Router, private dataSvc: DataServiceService, private gpoSvc: GruposCreadosService){
     this.grupo = this.dataSvc.getGrupoData();
+    console.log("grupo main "+this.grupo);
   }
   ngOnInit(){
     this.navigateToMovimientosGrupos();

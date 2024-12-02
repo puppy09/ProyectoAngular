@@ -34,4 +34,12 @@ export class GruposCategoriasService {
   editCategoriaGrupal(id_categoria:string, grupo:number, nombre:string, presupuesto:number):Observable<categoriaGrupal>{
     return this.http.put<categoriaGrupal>(`${this.apiUrl}/update/${id_categoria}`, {grupo, nombre, presupuesto});
   }
+
+  activarCategoriaGrupal(id_categoria:string, grupo:number):Observable<categoriaGrupal>{
+    return this.http.patch<categoriaGrupal>(`${this.apiUrl}/activar/${id_categoria}`, {grupo});
+  }
+
+  desactivarCategoriaGrupal(id_categoria:string, grupo:number):Observable<categoriaGrupal>{
+    return this.http.patch<categoriaGrupal>(`${this.apiUrl}/desactivar/${id_categoria}`, {grupo});
+  }
 }

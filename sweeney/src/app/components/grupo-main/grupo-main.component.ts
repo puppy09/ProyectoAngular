@@ -20,6 +20,7 @@ export class GrupoMainComponent {
   pagos:any;
   constructor(private route: ActivatedRoute, private router:Router, private dataSvc: DataServiceService, private gpoSvc: GruposCreadosService){
     this.grupo = this.dataSvc.getGrupoData();
+    console.log(this.grupo);
     console.log("grupo main "+this.grupo);
   }
   ngOnInit(){

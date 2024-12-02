@@ -52,7 +52,8 @@ loadActiveCuentas():void{
 }
 
 submitForm(){
-  if(this.movimientoForm.valid){
+  //if(this.movimientoForm.valid){
+  console.log("ENTRO A SUBMIT");
     const formData = this.movimientoForm.value;
     if(formData.tipoMovimiento === 'unica'){
      this.movSrv.postMovimientosGrupales(
@@ -109,7 +110,6 @@ submitForm(){
         }
       );
     }
-  }
+  //}
 }
-
 }

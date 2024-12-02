@@ -21,8 +21,11 @@ import { DataServiceService } from '../../services/dataService/data-service.serv
 export class GruposComponent {
 
   grupos:any;
-  gruposMiembro:any;
+  auxGruposMiembro:any;
+  miembro:[]=[];
+  creador:[]=[];
   joinGpoForm:FormGroup = new FormGroup({});
+
   constructor(private dataSvc: DataServiceService, private route: ActivatedRoute, private gpoSvc: GruposCreadosService, private fb:FormBuilder, private router: Router){
     this.joinGpoForm = this.fb.group({
       tokenGpo: new FormControl('', Validators.required)
@@ -30,11 +33,11 @@ export class GruposComponent {
   }
 
   ngOnInit(): void{
-    this.loadGrupos();
+    //this.loadGrupos();
     this.loadGruposMiembro();
   }
 
-  loadGrupos(){
+/*  loadGrupos(){
     this.gpoSvc.getGruposCreados().subscribe(
       (data)=>{
         console.log(data);
@@ -43,13 +46,17 @@ export class GruposComponent {
         console.log("error con grupos "+error.message);
       }
     );
-  }
+  }*/
 
   loadGruposMiembro(){
     this.gpoSvc.getGruposMiembro().subscribe(
       (data)=>{
-        console.log(data);
-        this.gruposMiembro=data;
+        //console.log(data);
+        this.auxGruposMiembro=data;
+        this.miembro=this.auxGruposMiembro.filter((grupo:any)=>grupo.tipo_usuario=="MIEMBRO");
+        console.log(this.miembro);
+        this.creador=this.auxGruposMiembro.filter((grupo:any)=>grupo.tipo_usuario=="CREADOR");
+        console.log(this.creador);
       },(error)=>{
         console.log("error con grupos miembros "+error.message);
       }
@@ -77,12 +84,12 @@ export class GruposComponent {
         })
       }
     );
-    this.loadGrupos();
+    this.loadGruposMiembro();
   }
 
   crear(){
     this.router.navigate(['crear/grupo'],{relativeTo: this.route});
-    this.loadGrupos();
+    this.loadGruposMiembro();
   }
   gotoMain(grupo:any){
     console.log("go to main "+grupo);

@@ -13,6 +13,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'app-grupos-gastos',
   standalone: true,
@@ -28,7 +29,8 @@ export class GruposGastosComponent {
   gastosForm: FormGroup = new FormGroup({});
   editarCategoria:boolean = false;
   selectedCategoria:any;
-  constructor(private router:Router, private dataSvc:DataServiceService, private gpoSvc:GruposCreadosService, private catGpoSvc:GruposCategoriasService){
+  user:any;
+  constructor(private authSvc:AuthService, private router:Router, private dataSvc:DataServiceService, private gpoSvc:GruposCreadosService, private catGpoSvc:GruposCategoriasService){
     this.grupo = this.dataSvc.getGrupoData();
     console.log(this.grupo);
   }
@@ -56,6 +58,11 @@ export class GruposGastosComponent {
     });
   }
 
+  loadSelfData():void{
+    this.authSvc.userInfo().subscribe((data:any)=>{
+      this.user=data;
+    });
+  }
   editCategoria(categoria:any){
     this.selectedCategoria = null;
     this.selectedCategoria = categoria;

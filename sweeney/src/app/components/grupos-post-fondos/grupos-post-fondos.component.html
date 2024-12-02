@@ -5,7 +5,7 @@
     <div class="new-mov">
         <h4 class="poppins-bold">Añade Fondos al Grupo</h4>
         <div class="fondosForm">
-            <form [formGroup]="movimientoForm" (ngSubmit)="submitForm()" action="">
+            <form [formGroup]="movimientoForm" (ngSubmit)="submitForm()">
                 <label for="cuenta">Cuenta:</label>
                 <select name="" id="cuenta" formControlName="no_cuenta">
                     @if(cuentas&&cuentas.length>0){

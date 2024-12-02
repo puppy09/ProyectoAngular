@@ -21,9 +21,11 @@
                                   <mat-icon>more_vert</mat-icon>
                               </button>
                               <mat-menu #menu="matMenu">
-                                  <button mat-menu-item>Desactivar Categoria</button>
-                                  <button mat-menu-item>Editar Categoria</button>
-                                  <button mat-menu-item>Gestionar Subcategorias</button>
+                                @if(user.id_usuario==activa.creador){
+                                    <button mat-menu-item>Desactivar Categoria</button>
+                                    <button mat-menu-item>Editar Categoria</button>
+                                }
+                                    <button mat-menu-item>Gestionar Subcategorias</button>
                               </mat-menu>
                           </div>
 

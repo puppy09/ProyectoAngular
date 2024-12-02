@@ -43,6 +43,9 @@ export class GruposGastosComponent {
     this.loadCategoriasActivas();
     this.loadCategoriasInactivas();
     this.loadSelfData();
+
+    console.log(this.user.id_usuario);
+    console.log(this.categoriasActivas);
   }
 
   loadCategoriasActivas():void{

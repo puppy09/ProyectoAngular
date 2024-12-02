@@ -83,6 +83,22 @@ export class GruposGastosComponent {
     //this.dataSvc.setCategoriaData(categoria);
     //this.router.navigate(['gastos/agregar']);
   }
+
+  desactivarCategoria(categoria:any){
+    this.catGpoSvc.desactivarCategoriaGrupal(categoria.id_categoria, this.grupo.id_grupo).subscribe((data:any)=>{
+      console.log(data);
+      this.loadCategoriasActivas();
+      this.loadCategoriasInactivas();
+    });
+  }
+  activarCategoria(categoria:any){
+    this.catGpoSvc.activarCategoriaGrupal(categoria.id_categoria, this.grupo.id_grupo).subscribe((data:any)=>{
+      console.log(data);
+      this.loadCategoriasActivas();
+      this.loadCategoriasInactivas();
+    });
+  }
+
   submit(){
    // if(this.gastosForm.valid){
     if(this.editarCategoria==false){

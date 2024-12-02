@@ -16,6 +16,7 @@ interface DataPoint {
   y: number;
 }
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -25,6 +26,7 @@ interface DataPoint {
 })
 export class GraficasComponent {
 
+  totalGastadoFixed:number = 0;
   totalSpent:number = 0;
 
   mesForm: FormGroup = new FormGroup({});
@@ -54,7 +56,8 @@ export class GraficasComponent {
       (response)=>{
         const dataPoints:DataPoint[] = [];
         this.categorias = response.categories;
-        this.totalSpent = response.totalGastadoFixed;
+        this.totalSpent = response.totalSpent;
+        this.totalGastadoFixed = response.totalGastadoFixed;
         response.categories.forEach((category:any)=>{
           if(category.percentage>0){
             dataPoints.push({name:category.categoryNombre, y: category.percentage});

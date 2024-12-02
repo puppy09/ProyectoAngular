@@ -27,7 +27,7 @@
     <div>
         <canvasjs-chart [options]="chartOptions" [styles]="{width: '40%', height:'360px'}"></canvasjs-chart>    
     </div>
-    <p class="poppins-thin">Total Gastado en el Mes: {{totalSpent | currency}}</p>
+    <p class="poppins-thin">Total Gastado en el Mes: {{totalGastadoFixed | currency}}</p>
     <p class="poppins-bold">Mis Gastos Mensuales</p>
     <div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[80%] sm:max-h-[350px]">
         <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
@@ -57,5 +57,38 @@
             </tbody>
         </table>
     </div>
-  </div>
-</div>     
+
+    <p class="poppins-bold">¿Respetaste tus presupuestos?</p>
+    <div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[10%] sm:max-h-[350px]"></div>
+        <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
+            <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
+                <tr>
+                    <th scope="col" class="px-6 py-3 poppins-bold">Categoria</th>
+                    <th scope="col" class="px-6 py-3">Presupuesto ($)</th>
+                    <th scope="col" class="px-6 py-3">Gasto ($)</th>
+                    <th scope="col" class="px-6 py-3">Diferencia ($)</th>
+                    <th scope="col" class="px-6 py-3">Respetado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(categorias && categorias.length>0){
+                    @for(categoria of categorias; track $index){
+                        @if(categoria.percentage>0){
+                            <tr class="bg-white border-b dark:bg-[#ffffff] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#aeced3]">
+                                <td class="px-6 py-4 poppins-light">{{categoria.categoryNombre}}</td>
+                                <td class="px-6 py-4">{{categoria.presupuesto | currency}}</td>
+                                <td class="px-6 py-4">{{categoria.totalSpent | currency}}</td>
+                                <td class="px-6 py-4">{{categoria.presupuesto-categoria.totalSpent | currency}}</td>
+                                <td class="px-6 py-4">{{categoria.presupuesto-categoria.totalSpent>0?"Si":"No"}}</td>
+                            </tr>
+                        }
+                    }
+                } @if(categorias==null || categorias==[]){
+                    <tr>
+                        <td class="poppins-thin" colspan="3" style="text-align: center;">No hay datos para mostrar</td>
+                    </tr>
+                }            
+            </tbody>
+        </table>
+    </div>
+</div>    

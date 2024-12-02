@@ -58,7 +58,9 @@ export class SidebarComponent {
   goToGraficas(){
     this.router.navigate(['/graficas']);
   }
-  
+  goToGraficas2(){
+    this.router.navigate(['/graficas2']);
+  }
 
 }
 

@@ -44,7 +44,7 @@ export class GruposGastosComponent {
     this.loadCategoriasInactivas();
     this.loadSelfData();
 
-    console.log(this.user.id_usuario);
+   
     console.log(this.categoriasActivas);
   }
 
@@ -65,23 +65,26 @@ export class GruposGastosComponent {
   loadSelfData():void{
     this.authSvc.userInfo().subscribe((data:any)=>{
       this.user=data;
+      console.log(this.user);
     });
   }
   editCategoria(categoria:any){
     this.selectedCategoria = null;
     this.selectedCategoria = categoria;
+    console.log(this.selectedCategoria);
     this.gastosForm.patchValue({
-      nombre: this.selectedCategoria.nombre,
+      nombre: this.selectedCategoria.categoria,
       presupuesto: this.selectedCategoria.presupuesto
     });
     this.editarCategoria = true;
   }
+
   setCategoriaData(categoria:any){
     //this.dataSvc.setCategoriaData(categoria);
     //this.router.navigate(['gastos/agregar']);
   }
   submit(){
-    //if(this.gastosForm.valid){
+   // if(this.gastosForm.valid){
     if(this.editarCategoria==false){
       console.log("Categoria Grupal");
         console.log(this.grupo.id_grupo);
@@ -111,16 +114,17 @@ export class GruposGastosComponent {
           });
         }
       );
-    /*}else{
-      Swal.fire({
-        title: 'Error',
-        text: 'Por favor, complete todos los campos',
-        icon: 'error'
-      });
-    }*/
-    }/*else if(this.editarCategoria==true){
-      this.catGpoSvc.(
-        this.selectedCategoria.ID,
+    //}else{
+      //Swal.fire({
+        //title: 'Error',
+        //text: 'Por favor, complete todos los campos',
+        //icon: 'error'
+      //});
+    //}
+    }else if(this.editarCategoria==true){
+      this.catGpoSvc.editCategoriaGrupal(
+        this.selectedCategoria.id_categoria,
+        this.grupo.id_grupo,
         this.gastosForm.get('nombre')?.value,
         this.gastosForm.get('presupuesto')?.value
       ).subscribe(
@@ -143,6 +147,7 @@ export class GruposGastosComponent {
             icon: 'error'
           });
         }
-      )*/
+      )
+    }
   }
 }

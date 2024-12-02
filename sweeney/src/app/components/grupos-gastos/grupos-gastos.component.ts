@@ -42,6 +42,7 @@ export class GruposGastosComponent {
     });
     this.loadCategoriasActivas();
     this.loadCategoriasInactivas();
+    this.loadSelfData();
   }
 
   loadCategoriasActivas():void{

@@ -54,7 +54,7 @@ export class GraficasComponent {
       (response)=>{
         const dataPoints:DataPoint[] = [];
         this.categorias = response.categories;
-        this.totalSpent = response.totalSpent;
+        this.totalSpent = response.totalGastadoFixed;
         response.categories.forEach((category:any)=>{
           if(category.percentage>0){
             dataPoints.push({name:category.categoryNombre, y: category.percentage});

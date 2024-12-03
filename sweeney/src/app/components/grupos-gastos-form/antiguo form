@@ -1,0 +1,27 @@
+<form [formGroup]="subcategoriaForm" (ngSubmit)="submit()" class="gap-2">
+            <label for="rubros">Rubros</label>
+            <select name="rubros" id="rubros" formControlName="rubros" (change)="loadNegocios($event)">
+                @if(rubros&&rubros.length>0){
+                    @for (rubro of rubros; track $index) {
+                        <option value={{rubro.id_tiponegocio}}>{{ rubro.tipo_negocio }}</option>
+                    }
+                }
+            </select>
+            <label for="negocios">Negocios</label>
+            <select name="negocios" id="negocios" formControlName="negocios">
+                @if(negocios&&negocios.length>0){
+                    @for (negocio of negocios; track $index) {
+                        <option value={{negocio.id_negocio}}>{{negocio.nombre}}</option>
+                    }
+                }
+            </select>
+            <mat-radio-group formControlName="addNegocio">
+                <label for="addNegocio">¿Desea agregar un negocio?</label>
+                <mat-radio-button value="si">Si</mat-radio-button>
+                <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+            <label for="newNewgocio">Nuevo Negocio</label>
+            <input type="text" formControlName="newNewgocio">
+
+            <button type="submit">Registrar</button>
+        </form>

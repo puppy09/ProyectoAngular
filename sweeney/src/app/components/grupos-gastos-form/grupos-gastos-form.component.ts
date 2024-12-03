@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-grupos-gastos-form',
   standalone: true,
@@ -28,7 +29,7 @@ export class GruposGastosFormComponent {
   rubros:any;
   negocios:any;
   subcategoriaForm: FormGroup = new FormGroup({});
-  constructor(private dataSvc:DataServiceService, private subSvc:GruposSubcategoriasService, private negSvc:NegociosService){}
+  constructor(private dataSvc:DataServiceService, private subSvc:GruposSubcategoriasService, private negSvc:NegociosService, private router:Router){}
 
   ngOnInit(): void{
     this.selectedCategoria = this.dataSvc.getCategoriaGrupalData();
@@ -38,7 +39,7 @@ export class GruposGastosFormComponent {
     this.subcategoriaForm = new FormGroup({
       rubros: new FormControl('', Validators.required),
       negocios: new FormControl('', Validators.required),
-      addNegocio: new FormControl('', Validators.required),
+      addNegocio: new FormControl('no', Validators.required),
       newNewgocio: new FormControl({value: '', disabled: true}, Validators.required)
     });
     this.subcategoriaForm.get('addNegocio')?.valueChanges.subscribe(value=>{
@@ -93,6 +94,9 @@ export class GruposGastosFormComponent {
         timer: 1500
       })
     })
+  }
+  cancel(){
+    this.router.navigate(['/grupos/gastos']);
   }
   deleteSubcategoria(subcategoria:any){
     this.subSvc.deleteSubcategoria(this.selectedCategoria.id_grupo, this.selectedCategoria.id_categoria, subcategoria.id_negocio).subscribe((data)=>{

@@ -141,6 +141,7 @@ export class GastosFormComponent {
         this.loadSubcategorias(this.selectedCategoria);
       }, (error)=>{
         const errorMessage = error.error?.message;
+        console.log(errorMessage);
         Swal.fire({
           icon: 'error',
           title: 'Error al registrar la subcategoria',

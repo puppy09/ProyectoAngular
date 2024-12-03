@@ -34,6 +34,7 @@ import { GruposFormPagoProComponent } from './components/grupos-form-pago-pro/gr
 import { GruposFormPagoComponent } from './components/grupos-form-pago/grupos-form-pago.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
 import { GruposGastosComponent } from './components/grupos-gastos/grupos-gastos.component';
+import { GruposGastosFormComponent } from './components/grupos-gastos-form/grupos-gastos-form.component';
 
 export const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -98,6 +99,7 @@ export const routes: Routes = [
     {path: 'grupos/movimientos/programados/modificar/:id', component: GruposFormMovProComponent},
     {path: 'grupos/pagos/programados/modificar/:id', component: GruposFormPagoProComponent},
     {path: 'grupos/pagos/modificar/:id', component: GruposFormPagoComponent},
+    {path: 'grupos/categorias/agregar', component: GruposGastosFormComponent},
     {path: 'gastos',component:GastosComponent},
     {path: 'grupos/gastos',component:GruposGastosComponent},
     {path: 'gastos/agregar', component: GastosFormComponent},

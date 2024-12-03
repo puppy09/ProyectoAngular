@@ -25,7 +25,7 @@
                                     <button mat-menu-item (click)="desactivarCategoria(activa)">Desactivar Categoria</button>
                                     <button mat-menu-item (click)="editCategoria(activa)">Editar Categoria</button>
                                 }
-                                    <button mat-menu-item>Gestionar Subcategorias</button>
+                                    <button mat-menu-item (click)="setCategoriaData(activa)">Gestionar Subcategorias</button>
                               </mat-menu>
                           </div>
 
@@ -67,9 +67,11 @@
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item (click)="activarCategoria(inactiva)">Activar Categoria</button>
-                                    <button mat-menu-item (click)="editCategoria(inactiva)">Editar Categoria</button>
-                                    <button mat-menu-item>Gestionar Subcategorias</button>
+                                    @if(user.ID===inactiva.id_creador){
+                                        <button mat-menu-item (click)="activarCategoria(inactiva)">Activar Categoria</button>
+                                        <button mat-menu-item (click)="editCategoria(inactiva)">Editar Categoria</button>
+                                    }
+                                    <button mat-menu-item (click)="setCategoriaData(inactiva)">Gestionar Subcategorias</button>
                                 </mat-menu>
                             </div>
   

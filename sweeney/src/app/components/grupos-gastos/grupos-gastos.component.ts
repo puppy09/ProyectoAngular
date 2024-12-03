@@ -80,6 +80,8 @@ export class GruposGastosComponent {
   }
 
   setCategoriaData(categoria:any){
+    this.dataSvc.setCategoriaGrupalData(categoria);
+    this.router.navigate(['grupos/categorias/agregar']);
     //this.dataSvc.setCategoriaData(categoria);
     //this.router.navigate(['gastos/agregar']);
   }
@@ -98,6 +100,8 @@ export class GruposGastosComponent {
       this.loadCategoriasInactivas();
     });
   }
+
+
 
   submit(){
    // if(this.gastosForm.valid){

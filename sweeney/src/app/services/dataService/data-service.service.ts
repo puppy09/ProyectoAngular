@@ -13,6 +13,7 @@ export class DataServiceService {
   private pagoProgramado:any
   private pagoGrupal:any
   private categoriaData:any
+  private categoriaGrupalData:any
   constructor() { }
 
   //Servicios de Pagos
@@ -117,5 +118,18 @@ export class DataServiceService {
 
   clearCategoriaData(){
     this.categoriaData=null;
+  }
+
+  //SERVICIOS DE CATEGORIAS GRUPALES
+  setCategoriaGrupalData(data:any){
+    this.categoriaGrupalData=data;
+  }
+
+  getCategoriaGrupalData(){
+    return this.categoriaGrupalData;
+  }
+
+  clearCategoriaGrupalData(){
+    this.categoriaGrupalData=null;
   }
 }

@@ -6,6 +6,7 @@ import { DataServiceService } from '../../services/dataService/data-service.serv
 import { MovimientosProgService } from '../../services/movimientosProg/movimientos-prog.service';
 import { ReactiveFormsModule, FormControl, FormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-mov-pro-upd-form',
   standalone: true,
@@ -18,7 +19,7 @@ export class MovProUpdFormComponent {
   movimientoProForm:FormGroup = new FormGroup({});
   movimientoPro: any;
 
-  constructor(private dataSvc: DataServiceService, private movProSvc: MovimientosProgService, private fb: FormBuilder){
+  constructor(private dataSvc: DataServiceService, private movProSvc: MovimientosProgService, private fb: FormBuilder, private router: Router){
     this.movimientoProForm = this.fb.group({
       no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
       descripcion: new FormControl('', Validators.required),
@@ -38,7 +39,7 @@ export class MovProUpdFormComponent {
     }
   }
   cancelar(){
-
+    this.router.navigate(['/movimientos/single/movimientosProgramados']);
   }
   submitForm(movProId: number){
     const formData = this.movimientoProForm.value;
@@ -55,7 +56,9 @@ export class MovProUpdFormComponent {
         title: 'Movimiento actualizado con exito',
         showConfirmButton: false,
         timer: 1500
-      })}, error=>{
+      })
+      this.router.navigate(['/movimientos/single/movimientosProgramados']);
+    }, error=>{
         const errorMessage = error.error?.message || 'Error al actualizar cuenta';
         Swal.fire({
           position: "top-end",

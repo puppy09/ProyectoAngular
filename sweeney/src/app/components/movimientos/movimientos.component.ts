@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-movimientos',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, CurrencyPipe, RouterModule,MatMenuModule, MatIconModule, MatButtonModule],
+  imports: [SidebarComponent, RouterModule,MatMenuModule, MatIconModule, MatButtonModule],
   templateUrl: './movimientos.component.html',
   styleUrl: './movimientos.component.css'
 })

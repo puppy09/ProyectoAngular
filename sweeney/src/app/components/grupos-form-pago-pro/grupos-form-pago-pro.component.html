@@ -3,52 +3,69 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="upd-pago">
-        <form [formGroup]="movimientoProForm" (ngSubmit)="submitForm()">
-            <label for="cuenta">Cuenta:</label>
-            <select name="" id="cuenta" formControlName="no_cuenta">
-                @if(cuentas){
-                    @for (cuenta of cuentas; track $index) {
-                        <option value={{cuenta.no_cuenta}}>{{ cuenta.nombre }}</option>
-                    }
+        <h4 class="poppins-bold">Registra un nuevo Pago Grupal</h4>
+        <form class="max-w-md mx-auto" [formGroup]="movimientoProForm" (ngSubmit)="submitForm()">
+            <label for="cuenta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Cuenta</label>
+            <select id="cuenta" formControlName="no_cuenta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            @if(cuentas){
+                @for (cuenta of cuentas; track $index) {
+                    <option value={{cuenta.no_cuenta}}>{{ cuenta.nombre }}</option>
                 }
-                @else {
-                    <option value="">No hay cuentas activas</option>
-                }                
-            </select>
-            <label for="descripcion">Descripcion:</label>
-            <input type="text" formControlName="descripcion">
-            <label for="categoria">Categoria:</label>
-            <select name="" id="categoria" formControlName="categoria" (change)="loadSubcategorias($event)">
-                @if(categorias){
-                    @for (categoria of categorias; track $index) {
-                        <option value={{categoria.id_categoria}}>{{ categoria.categoria }}</option>
-                    }
-                }
-                @else {
-                    <option value="">No hay categorias activas</option>
-                }  
-            </select>
-            <label for="subcategoria">Subcategoria:</label>
-            <select name="" id="subcategoria" formControlName="subcategoria">
-                @if(subcategorias){
-                    @for (subcategoria of subcategorias; track $index) {
-                        <option value={{subcategoria.id_negocio}}>{{ subcategoria.negocio.nombre }}</option>
-                    }
-                }
-                @if(!subcategorias) {
-                    <option value="">No hay subcategorias</option>
-                }
+            }
+            @else {
+                <option value="">No hay cuentas activas</option>
+            }             
+          </select>
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="text" formControlName="descripcion" name="descripcion" id="descripcion" class="block mt-3 py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                <label for="descripcion" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Descripcion</label>
+            </div>
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="block">
+                    <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona una categoria</label>
+                    <select id="categoria" formControlName="categoria" (change)="loadSubcategorias($event)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        @if(categorias&&categorias.length>0){
+                            @for (categoria of categorias; track $index) {
+                                <option value={{categoria.id_categoria}}>{{ categoria.categoria }}</option>
+                            }
+                        }
+                        @else {
+                            <option value="">No hay categorias activas</option>
+                        }  
+                    </select>
+                </div>
                 
-            </select>
-            <label for="monto">Monto:</label>
-            <input type="number" formControlName="monto" min="0">
-            <label for="dia_programado">Dia Programado: </label>
-            <input type="number" formControlName="dia_programado" min="1" max="31">
-            <label for="total_pagos">Total de Pagos: </label>
-            <input type="number" formControlName="total_pagos" min="2">
-            <button>Cancelar</button>
-        <button type="submit">Actualizar Pago</button>
-        </form>        
+                <div class="block">
+                    <label for="subcategoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona una subcategoria</label>
+                    <select id="subcategoria" formControlName="subcategoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        @if(subcategorias&&subcategorias.length>0){
+                            @for (subcategoria of subcategorias; track $index) {
+                                <option value={{subcategoria.id_negocio}}>{{ subcategoria.negocio.nombre }}</option>
+                            }
+                        }
+                        @if(subcategorias.length==0) {
+                            <option value="">No hay subcategorias</option>
+                        }
+                    </select>
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="number" min="1" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="monto" id="monto" formControlName="monto" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="monto" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Monto</label>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 md:gap-6">
+              <div class="relative z-0 w-full mb-5 group">
+                  <input type="number" min="1" max="31" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="dia_programado" id="dia_programado" formControlName="dia_programado" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                  <label for="diaPago" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Día de pago</label>
+              </div>
+              <div class="relative z-0 w-full mb-5 group">
+                  <input type="number" min="2" name="total_pagos" id="total_pagos" formControlName="total_pagos" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                  <label for="total_pagos" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Número de pagos</label>
+              </div>
+            </div>
+            <button type="submit" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#ff8a3d] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#ffbb3d]">Registrar Pago</button>
+            <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#ff8a3d] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#ffbb3d]" (click)="cancel()">Cancelar</button>
+          </form>  
     </div>
 </div>
 

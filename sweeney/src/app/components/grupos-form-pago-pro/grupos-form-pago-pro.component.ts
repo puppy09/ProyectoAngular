@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { GruposSubcategoriasService } from '../../services/gruposSubcategorias/grupos-subcategorias.service';
 import { CuentasService } from '../../services/cuentas/cuentas.service';
 import { GruposPagosService } from '../../services/gruposPagos/grupos-pagos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-grupos-form-pago-pro',
@@ -25,7 +26,7 @@ export class GruposFormPagoProComponent {
   selectedCategory:any;
   subcategorias:any;
   cuentas:any;
-  constructor(private cueSvc: CuentasService,  private dataSvc: DataServiceService, private pagoGpoSvc: GruposPagosService, private fb: FormBuilder, private catSvc: GruposCategoriasService, private subSvc: GruposSubcategoriasService){
+  constructor(private router: Router, private cueSvc: CuentasService,  private dataSvc: DataServiceService, private pagoGpoSvc: GruposPagosService, private fb: FormBuilder, private catSvc: GruposCategoriasService, private subSvc: GruposSubcategoriasService){
     this.movimientoProForm = this.fb.group({
         no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
         categoria: new FormControl('', Validators.required),
@@ -61,9 +62,9 @@ export class GruposFormPagoProComponent {
     this.catSvc.getCategoriaGrupalActiva(this.pagoPro.id_grupo).subscribe(data => {
       this.categorias = data;
       const defaultCategory = this.categorias[0];
-      this.movimientoProForm.controls['categoria'].setValue(defaultCategory.ID);
+      this.movimientoProForm.controls['categoria'].setValue(defaultCategory.id_categoria);
         // Trigger subcategories load for the single category
-        this.loadSubcategorias({ target: { value: defaultCategory.ID } });
+        this.loadSubcategorias({ target: { value: defaultCategory.id_categoria } });
     }, (error) => {
       console.log(error);
     });
@@ -78,7 +79,11 @@ export class GruposFormPagoProComponent {
       });
   }
 
+  cancel():void{
+    this.router.navigate(['/grupos/main']);
+  }
   loadSubcategorias(event: any){
+    this.subcategorias = [];
     this.selectedCategory = event.target.value;
     console.log(this.selectedCategory);
     this.subSvc.getSubcategoriasCategoria(this.pagoPro.id_grupo, this.selectedCategory).subscribe(
@@ -110,6 +115,7 @@ export class GruposFormPagoProComponent {
           confirmButtonText: 'Aceptar',
           timer: 1500
         });
+        this.router.navigate(['/grupos/main']);
       },
       (error)=>{
         const errorMessage = error.error?.message;

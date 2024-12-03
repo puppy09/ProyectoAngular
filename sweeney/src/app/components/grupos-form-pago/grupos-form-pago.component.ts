@@ -8,6 +8,7 @@ import { GruposSubcategoriasService } from '../../services/gruposSubcategorias/g
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-grupos-form-pago',
@@ -24,7 +25,7 @@ export class GruposFormPagoComponent {
   categorias:any;
   selectedCategory:any;
   subcategorias:any;
-  constructor(private cueSvc: CuentasService,  private dataSvc: DataServiceService, private pagoGpoSvc: GruposPagosService, private fb: FormBuilder, private catSvc: GruposCategoriasService, private subSvc: GruposSubcategoriasService){
+  constructor(private router: Router, private cueSvc: CuentasService,  private dataSvc: DataServiceService, private pagoGpoSvc: GruposPagosService, private fb: FormBuilder, private catSvc: GruposCategoriasService, private subSvc: GruposSubcategoriasService){
     this.pagoForm = this.fb.group({
         no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
         categoria: new FormControl('', Validators.required),
@@ -56,6 +57,8 @@ export class GruposFormPagoComponent {
     this.cueSvc.getCuentasActivas().subscribe(
       (data)=>{
         this.cuentas = data;
+        const defaultCuenta = this.cuentas[0];
+        this.pagoForm.controls['no_cuenta'].setValue(defaultCuenta.no_cuenta);
       },
       (error)=>{
         console.error('Error fetching cuentas: ', error);
@@ -65,13 +68,18 @@ export class GruposFormPagoComponent {
   loadCategorias():void{
     this.catSvc.getCategoriaGrupalActiva(this.pagoPro.id_grupo).subscribe(data => {
       this.categorias = data;
+      console.log("categorias "+this.categorias);
       const defaultCategory = this.categorias[0];
-      this.pagoForm.controls['categoria'].setValue(defaultCategory.ID);
+      this.pagoForm.controls['categoria'].setValue(defaultCategory.id_categoria);
         // Trigger subcategories load for the single category
-        this.loadSubcategorias({ target: { value: defaultCategory.ID } });
+        this.loadSubcategorias({ target: { value: defaultCategory.id_categoria } });
     }, error => {
       console.error('Error fetching categorias: ', error);
     });
+  }
+
+  cancel():void{
+    this.router.navigate(['/grupos/main']);
   }
 
   loadSubcategorias(event:any):void{
@@ -86,12 +94,6 @@ export class GruposFormPagoComponent {
   }
   submitForm(){
     const formData = this.pagoForm.value;
-    console.log("ELEMENTOS FORM");
-    console.log(this.pagoForm.get('no_cuenta')?.value);
-    console.log(this.pagoForm.get('descripcion')?.value);
-    console.log(this.pagoForm.get('monto')?.value);
-    console.log(this.pagoForm.get('categoria')?.value);
-    console.log(this.pagoForm.get('subcategoria')?.value);
     this.pagoGpoSvc.updatePagoGrupal(
       this.pagoPro.id_grupo, 
       this.pagoPro.id_pago, 
@@ -107,6 +109,7 @@ export class GruposFormPagoComponent {
         confirmButtonText: 'Aceptar',
         timer: 1500
       });
+      this.router.navigate(['/grupos/main']);
     }, error => {
       const errorMessage = error.error?.message;
       Swal.fire({

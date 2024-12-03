@@ -5,6 +5,7 @@ import { gruposMovimientos } from '../../interfaces/gruposPagos.interface';
 import { GruposMovimientosService } from '../../services/gruposMovimientos/grupos-movimientos.service';
 import Swal from 'sweetalert2';
 import { SidebarComponent } from '../sidebar/sidebar.component';  
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-grupos-form-mov-pro',
@@ -17,7 +18,7 @@ export class GruposFormMovProComponent {
 
   movimientoProForm:FormGroup = new FormGroup({});
   movimientoPro: any;
-  constructor(private dataSvc: DataServiceService, private movProSvc: GruposMovimientosService, private fb: FormBuilder){
+  constructor(private router: Router, private dataSvc: DataServiceService, private movProSvc: GruposMovimientosService, private fb: FormBuilder){
     this.movimientoProForm = this.fb.group({
       no_cuenta: new FormControl({value:'', disabled: true},[Validators.required, Validators.pattern(/^\d{16}$/)]),
       descripcion: new FormControl('', Validators.required),
@@ -36,7 +37,9 @@ export class GruposFormMovProComponent {
       });
     }
   }
-
+  cancel(){
+    this.router.navigate(['/grupos/main']);
+  }
   submitForm(movProId: string){
     const formData = this.movimientoProForm.value;
     this.movProSvc.updMovimientoProgramado(
@@ -52,7 +55,9 @@ export class GruposFormMovProComponent {
         title: 'Movimiento actualizado con exito',
         showConfirmButton: false,
         timer: 1500
-      })}, error=>{
+      })
+      this.router.navigate(['/grupos/main']);
+    }, error=>{
         const errorMessage = error.error?.message || 'Error al actualizar cuenta';
         Swal.fire({
           position: "top-end",

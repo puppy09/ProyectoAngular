@@ -25,7 +25,7 @@ constructor(private router: Router, private movService: MovimientosService, priv
     no_cuenta: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
     monto: new FormControl('', [Validators.required, Validators.min(0)]),
-    tipoMovimiento: new FormControl('', Validators.required),
+    tipoMovimiento: new FormControl('unica', Validators.required),
     diaPago: new FormControl({ value:'', disabled:true}),
   })
 
@@ -36,7 +36,9 @@ constructor(private router: Router, private movService: MovimientosService, priv
     });
   }
 }
-
+cancel(){
+  this.router.navigate(['/cuentas']);
+}
 ngOnInit(){
   this.loadActiveCuentas();
   this.movimientoForm.get('tipoMovimiento')?.valueChanges.subscribe(value=>{
@@ -62,7 +64,7 @@ ngOnInit(){
   }
 
   submitForm(){
-    if(this.movimientoForm.valid){
+    //if(this.movimientoForm.valid){
       const formData = this.movimientoForm.value;
       if(formData.tipoMovimiento==='unica'){
         this.movService.postFondos(
@@ -112,4 +114,4 @@ ngOnInit(){
             timer: 1500
           });
         })}
-    }}}
+    }}//}

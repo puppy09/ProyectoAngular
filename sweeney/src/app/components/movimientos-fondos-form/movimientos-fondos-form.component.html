@@ -3,33 +3,47 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="fondosForm">
-        <form [formGroup]="movimientoForm" (ngSubmit)="submitForm()" action="">
-            <label for="cuenta">Cuenta:</label>
-            <select name="" id="cuenta" formControlName="no_cuenta">
-                @if(cuentas){
-                    @for (cuenta of cuentas; track $index) {
-                        <option value={{cuenta.no_cuenta}}>{{ cuenta.nombre }}</option>
-                    }
+
+        <h4 class="poppins-bold">Registra un nuevo Movimiento</h4>
+        <form class="max-w-md mx-auto" [formGroup]="movimientoForm" (ngSubmit)="submitForm()">
+            <label for="cuenta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona una cuenta</label>
+          <select id="cuenta" formControlName="no_cuenta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            @if(cuentas){
+                @for (cuenta of cuentas; track $index) {
+                    <option value={{cuenta.no_cuenta}}>{{ cuenta.nombre }}</option>
                 }
-                @else {
-                    <option value="">No hay cuentas activas</option>
-                }  
-            </select>
-            <label for="descripcion">Descripcion:</label>
-            <input type="text" formControlName="descripcion">
-            <label for="monto">Monto:</label>
-            <input type="text" formControlName="monto">
-            <div>
-                <mat-radio-group formControlName="tipoMovimiento">
-                    <label for="">¿Desea Programar este Movimiento?</label>
+            }
+            @else {
+                <option value="">No hay cuentas activas</option>
+            }             
+          </select>
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="text" formControlName="descripcion" name="descripcion" id="descripcion" class="block mt-3 py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                <label for="descripcion" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Descripcion</label>
+            </div>
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="number" min="0" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="monto" id="monto" formControlName="monto" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="monto" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Monto</label>
+                </div>
+        <fieldset>
+            <mat-radio-group formControlName="tipoMovimiento">
+                <label for="tipoMovimiento">¿Desea Programar este Movimiento?</label>
+                <div class="flex flex-row">
                     <mat-radio-button value="unica">No</mat-radio-button>
                     <mat-radio-button value="programado">Sí</mat-radio-button>
-                </mat-radio-group>
+                </div>
+            </mat-radio-group>
+            </fieldset>
             </div>
-            <label for="diaPago">Dia de Pago:</label>
-            <input type="number" formControlName="diaPago">
-            <button type="submit">Registrar Movimiento</button>
-        </form>
-        
+            <div class="grid md:grid-cols-2 md:gap-6">
+              <div class="relative z-0 w-full mb-5 group">
+                  <input type="number" min="1" max="31" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="diaPago" id="diaPago" formControlName="diaPago" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                  <label for="diaPago" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Día de pago</label>
+              </div>
+            </div>
+            <button type="submit" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#ff8a3d] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#ffbb3d]">Registrar Movimiento</button>
+            <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#ff8a3d] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#ffbb3d]" (click)="cancel()">Cancelar</button>
+        </form> 
     </div>
 </div>

@@ -7,8 +7,8 @@
         <h4 class="poppins-bold">Registra un nuevo Movimiento</h4>
         <form class="max-w-md mx-auto" [formGroup]="movimientoForm" (ngSubmit)="submitForm()">
             <label for="cuenta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona una cuenta</label>
-          <select id="cuenta" formControlName="no_cuenta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            @if(cuentas){
+          <select id="no_cuenta" name="no_cuenta" formControlName="no_cuenta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            @if(cuentas&&cuentas.length>0){
                 @for (cuenta of cuentas; track $index) {
                     <option value={{cuenta.no_cuenta}}>{{ cuenta.nombre }}</option>
                 }

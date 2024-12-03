@@ -6,6 +6,7 @@ import { GruposMovimientosService } from '../../services/gruposMovimientos/grupo
 import Swal from 'sweetalert2';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-grupos-post-fondos',
   standalone: true,
@@ -17,16 +18,17 @@ export class GruposPostFondosComponent {
 movimientoForm: FormGroup = new FormGroup({});
 cuentas: any;
 grupo: any;
-constructor(private fb: FormBuilder, private cuenSrv: CuentasService, private dataSvc: DataServiceService, private movSrv: GruposMovimientosService){
+constructor(private router: Router, private fb: FormBuilder, private cuenSrv: CuentasService, private dataSvc: DataServiceService, private movSrv: GruposMovimientosService){
   this.movimientoForm = this.fb.group({
     no_cuenta: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
     monto: new FormControl('', [Validators.required, Validators.min(0)]),
-    tipoMovimiento: new FormControl('', Validators.required),
+    tipoMovimiento: new FormControl('unica', Validators.required),
     dia_depo: new FormControl('', Validators.required),
   })
 
   this.grupo=this.dataSvc.getGrupoData();
+  console.log("Grupo", this.grupo);
 }
 
 ngOnInit(){
@@ -40,11 +42,15 @@ ngOnInit(){
     }
   });
 }
-
+cancel(){
+  this.router.navigate(['/grupos/main']);
+}
 loadActiveCuentas():void{
   this.cuenSrv.getCuentasActivas().subscribe(
     (data)=>{
       this.cuentas=data;
+      const defaultCuenta = this.cuentas[0];
+      this.movimientoForm.controls['no_cuenta'].setValue(defaultCuenta.no_cuenta);
     },(error)=>{
       console.log("Error al cargar las cuentas activas"+ error);
     }
@@ -55,12 +61,13 @@ submitForm(){
   //if(this.movimientoForm.valid){
   console.log("ENTRO A SUBMIT");
     const formData = this.movimientoForm.value;
+    //console.log("FormData", formData);
     if(formData.tipoMovimiento === 'unica'){
      this.movSrv.postMovimientosGrupales(
         this.grupo.id_grupo, 
-        formData.no_cuenta, 
-        formData.descripcion, 
-        formData.monto
+        this.movimientoForm.get('no_cuenta')?.value, 
+        this.movimientoForm.get('descripcion')?.value, 
+        this.movimientoForm.get('monto')?.value
       ).subscribe(
       (data)=>{
         Swal.fire({
@@ -70,6 +77,7 @@ submitForm(){
           showConfirmButton: false,
           timer: 1500
         })
+        this.router.navigate(['/grupos/main']);
       },
       (error)=>{
         console.log("Error al añadir fondos al grupo"+ error);

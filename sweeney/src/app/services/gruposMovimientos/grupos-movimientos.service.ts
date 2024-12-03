@@ -21,6 +21,8 @@ export class GruposMovimientosService {
   }
 
   postMovimientosGrupales(id_grupo:number, no_cuenta:string, descripcion:string, monto:number):Observable<gruposMovimientos>{
+    console.log("Servicio", no_cuenta, descripcion, monto);
+
     return this.http.post<gruposMovimientos>(`${this.apiURL}/add/${id_grupo}`,{no_cuenta, descripcion, monto});
   }
 

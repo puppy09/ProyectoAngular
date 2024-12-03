@@ -38,7 +38,7 @@ export class MovimientosFormComponent implements OnInit{
       subcategoria: new FormControl('', Validators.required),
       descripcion: new FormControl('', Validators.required),
       monto: new FormControl('', [Validators.required, Validators.min(0)]),
-      tipoMovimiento: new FormControl('', Validators.required),
+      tipoMovimiento: new FormControl('unica', Validators.required),
       diaPago: new FormControl({ value:'', disabled:true}),
       totalPagos: new FormControl({value:'', disabled: true})
     });
@@ -104,7 +104,6 @@ export class MovimientosFormComponent implements OnInit{
     this.router.navigate(['/movimientos']);
   }
   submitForm(){
-    if(this.pagosForm.valid){
       const formData = this.pagosForm.value;
       console.log("Monto:"+formData.monto);
       if(formData.tipoMovimiento ===  'unica'){
@@ -157,14 +156,5 @@ export class MovimientosFormComponent implements OnInit{
               timer: 1500
             })
       })}
-  }else{
-    Swal.fire({
-      position: "top-end",
-      icon: "error",
-      title: 'Formulario invalido',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  }
   }
 }

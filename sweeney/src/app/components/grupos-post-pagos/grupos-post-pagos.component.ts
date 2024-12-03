@@ -60,6 +60,9 @@ export class GruposPostPagosComponent {
     this.cuenSrv.getCuentasActivas().subscribe(
       (data)=>{
         this.cuentas = data;
+        console.log("Cuentas", this.cuentas);
+        const defaultCuenta = this.cuentas[0];
+        this.pagosForm.controls['no_cuenta'].setValue(defaultCuenta.no_cuenta);
       },
       (error)=>{
         console.error('Error fetching cuentas: ', error);
@@ -69,12 +72,11 @@ export class GruposPostPagosComponent {
   loadActiveCategorias():void{
     this.catSrv.getCategoriaGrupalActiva(this.grupo.id_grupo).subscribe(
       (data)=>{
-        console.log(data);
         this.categorias = data;
+        console.log("Categorias", this.categorias);
         const defaultCategory = this.categorias[0];
-      this.pagosForm.controls['categoria'].setValue(defaultCategory.ID);
-        // Trigger subcategories load for the single category
-        this.loadSubcategorias({ target: { value: defaultCategory.ID } });
+      this.pagosForm.controls['categoria'].setValue(defaultCategory.id_categoria);
+        this.loadSubcategorias({ target: { value: defaultCategory.id_categoria } });
       },
       (error)=>{
         console.error('Error fetching categorias: ', error);
@@ -82,6 +84,7 @@ export class GruposPostPagosComponent {
   }
 
   loadSubcategorias(event: any):void{
+    this.subcategorias = [];
     this.selectedCategory = event.target.value;
     console.log("selectedCategory: "+this.selectedCategory);
     console.log("grupo.id_grupo: "+this.grupo.id_grupo);
@@ -97,6 +100,10 @@ export class GruposPostPagosComponent {
         console.error('Error fetching subcategorias: ', error);
       }
     )
+  }
+
+  cancel(){
+    this.router.navigate(['/grupos/main']);
   }
   submitForm(){
     //if(this.pagosForm.valid){

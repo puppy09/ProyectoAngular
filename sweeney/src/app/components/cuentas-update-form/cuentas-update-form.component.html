@@ -3,20 +3,29 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="upd-cuenta">
-        <form [formGroup]="cuentasForm" (ngSubmit)="submitForm(cuenta.ID)">
-            <label for="no_cuenta">Número de Cuenta:</label>
-            <input type="text" placeholder="Ingrese numero de cuenta" formControlName="no_cuenta">
-
-            <label for="fecha_venci">Fecha de Vencimiento:</label>
-            <input type="text" placeholder="MM/YY" formControlName="fecha_venci" maxlength="5" (input)="formatFechaVencimiento($event)">
-
-            <label for="alias">Alias:</label>
-            <input type="text" placeholder="Alias" formControlName="alias">
-
-            <label for="saldo">Saldo:</label>
-            <input type="number" formControlName="saldo" min="0">
-            <button (click)="cancel()">Cancelar</button>
-            <button type="submit">Actualizar Cuenta</button>
-        </form>
+        <h4 class="poppins-bold">Actualizar Cuenta</h4>
+        <form class="max-w-md mx-auto" [formGroup]="cuentasForm" (ngSubmit)="submitForm(cuenta.ID)">
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="block">
+                    <label for="no_cuenta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">No. Cuenta</label>
+                    <input type="text" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="no_cuenta" id="no_cuenta" formControlName="no_cuenta" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />                         
+                </div>
+                <div class="block">
+                    <label for="fecha_venci" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Fecha de Vencimiento</label>
+                    <input type="text" maxlength="16" (input)="formatFechaVencimiento($event)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="fecha_venci" id="fecha_venci" formControlName="fecha_venci" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                </div>
+                <div class="block">
+                    <label for="alias" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Alias</label>
+                    <input type="text" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="alias" id="alias" formControlName="alias" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />     
+                </div>
+                <div class=""lass="block">
+                    <label for="alias" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Saldo</label>
+                    <input type="number" min="1" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="saldo" id="saldo" formControlName="saldo" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />     
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#ff8a3d] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#ffbb3d]">Registrar Cuenta</button>
+            <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#ff8a3d] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#ffbb3d]" (click)="cancel()">Cancelar</button>
+          </form>      
     </div>
 </div>

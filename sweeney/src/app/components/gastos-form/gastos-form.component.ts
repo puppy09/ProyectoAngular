@@ -10,6 +10,7 @@ import { DataServiceService } from '../../services/dataService/data-service.serv
 import { SubcategoriasService } from '../../services/subcategorias/subcategorias.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-gastos-form',
   standalone: true,
@@ -26,7 +27,7 @@ export class GastosFormComponent {
   subcategorias:any;
   subcategoriaForm: FormGroup = new FormGroup({});
 
-  constructor(private gasSvc: CategoriasService, private negSvc: NegociosService, private dataSvc:DataServiceService, private subSvc:SubcategoriasService){}
+  constructor(private router: Router, private gasSvc: CategoriasService, private negSvc: NegociosService, private dataSvc:DataServiceService, private subSvc:SubcategoriasService){}
 
   ngOnInit(): void{
     this.selectedCategoria = this.dataSvc.getCategoriaData();
@@ -36,7 +37,7 @@ export class GastosFormComponent {
     this.subcategoriaForm = new FormGroup({
       rubros: new FormControl('', Validators.required),
       negocios: new FormControl('', Validators.required),
-      addNegocio: new FormControl('', Validators.required),
+      addNegocio: new FormControl('no', Validators.required),
       newNewgocio: new FormControl({value: '', disabled: true}, Validators.required)
     });
     this.subcategoriaForm.get('addNegocio')?.valueChanges.subscribe(value=>{
@@ -49,6 +50,9 @@ export class GastosFormComponent {
     });
   }
 
+  cancel():void{
+    this.router.navigate(['/gastos']);
+  }
   loadSubcategorias(categoria:any){
     this.subSvc.getSubcategoriasByCat(categoria.ID).subscribe((data)=>{
       this.subcategorias = data;

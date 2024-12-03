@@ -55,7 +55,7 @@ export class CuentasUpdateFormComponent {
     this.router.navigate(['/cuentas']);
   }
   submitForm(cuentaId:number){
-    if(this.cuentasForm.valid){
+    //if(this.cuentasForm.valid){
       const formData=this.cuentasForm.value;
       this.cuentaSvc.updCuenta(
         cuentaId,
@@ -70,6 +70,7 @@ export class CuentasUpdateFormComponent {
           showConfirmButton: false,
           timer: 1500
         })
+        this.router.navigate(['/cuentas']);
         }, error=>{
           Swal.fire({
             position: "top-end",
@@ -80,7 +81,7 @@ export class CuentasUpdateFormComponent {
           })
         }
       )
-    }
+    /*}
     else{
       Swal.fire({
         position: "top-end",
@@ -89,6 +90,6 @@ export class CuentasUpdateFormComponent {
         showConfirmButton: false,
         timer: 1500
       })
-    }
+    }*/
   }
 }

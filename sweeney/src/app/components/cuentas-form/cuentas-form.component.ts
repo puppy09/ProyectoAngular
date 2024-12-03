@@ -25,7 +25,7 @@ export class CuentasFormComponent {
       ),
       fecha_venci: new FormControl('', Validators.required),
       alias: new FormControl('', Validators.required),
-      addSaldo: new FormControl('', Validators.required),
+      addSaldo: new FormControl('no', Validators.required),
       saldo: new FormControl({value: '', disabled: true})
     });
 
@@ -53,7 +53,6 @@ export class CuentasFormComponent {
     this.router.navigate(['/cuentas']);
   }
   submitForm(): void{
-    if(this.cuentasForm.valid){
       const formData = this.cuentasForm.value;
       if(formData.addSaldo === 'si'){
           this.cuenSvc.postCuentas(
@@ -69,6 +68,7 @@ export class CuentasFormComponent {
                 showConfirmButton: false,
                 timer: 1500
               })  
+              this.router.navigate(['/cuentas']);
             }, error =>{
               Swal.fire({
                 position: "top-end",
@@ -103,14 +103,5 @@ export class CuentasFormComponent {
             })
       });
         }
-    }else{
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: 'Formulario Invalido',
-        showConfirmButton: false,
-        timer: 1500
-      })
-  }
   }
 }

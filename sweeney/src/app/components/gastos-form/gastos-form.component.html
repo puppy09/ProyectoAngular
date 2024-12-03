@@ -3,37 +3,49 @@
         <app-sidebar></app-sidebar>
     </div>
     <div class="gastosForm">
-        <form [formGroup]="subcategoriaForm" (ngSubmit)="submit()">
-            <label for="rubros">Rubros</label>
-            <select name="rubros" id="rubros" formControlName="rubros" (change)="loadNegocios($event)">
-                @if(rubros&&rubros.length>0){
-                    @for (rubro of rubros; track $index) {
-                        <option value={{rubro.id_tiponegocio}}>{{ rubro.tipo_negocio }}</option>
-                    }
-                }
-            </select>
-            <label for="negocios">Negocios</label>
-            <select name="negocios" id="negocios" formControlName="negocios">
-                @if(negocios&&negocios.length>0){
-                    @for (negocio of negocios; track $index) {
-                        <option value={{negocio.id_negocio}}>{{negocio.nombre}}</option>
-                    }
-                    
-                }
-            </select>
-            <mat-radio-group formControlName="addNegocio">
-                <label for="addNegocio">¿Desea agregar un negocio?</label>
-                <mat-radio-button value="si">Si</mat-radio-button>
-                <mat-radio-button value="no">No</mat-radio-button>
-            </mat-radio-group>
-            <label for="newNewgocio">Nuevo Negocio</label>
-            <input type="text" formControlName="newNewgocio">
-
-            <button type="submit">Registrar</button>
-        </form>
+        <h4 class="poppins-bold">Registrar Subcategoria</h4>
+        <form class="max-w-md mx-auto" [formGroup]="subcategoriaForm" (ngSubmit)="submit()">
+            <div class="flex gap-5">
+                <div class="block">
+                    <label for="rubros" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona un rubro</label>
+                    <select id="rubros" formControlName="rubros"  (change)="loadNegocios($event)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        @if(rubros&&rubros.length>0){
+                            @for (rubro of rubros; track $index) {
+                                <option value={{rubro.id_tiponegocio}}>{{ rubro.tipo_negocio }}</option>
+                            }
+                        }   
+                    </select>
+                </div>
+                <div class="block">
+                    <label for="negocios" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona un negocio</label>
+                    <select id="negocios" formControlName="negocios" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        @if(negocios&&negocios.length>0){
+                            @for (negocio of negocios; track $index) {
+                                <option value={{negocio.id_negocio}}>{{negocio.nombre}}</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <fieldset>
+                    <mat-radio-group formControlName="addNegocio">
+                        <label for="addNegocio">¿Desea agregar un negocio?</label>
+                        <mat-radio-button value="si">Sí</mat-radio-button>
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </mat-radio-group>
+                </fieldset>
+            </div>
+            <div class="grid md:grid-cols-2 md:gap-6">
+              <div class="relative z-0 w-full mb-5 group">
+                  <input type="text" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="newNewgocio" id="newNewgocio" formControlName="newNewgocio" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                  <label for="newNewgocio" class="mt-2 peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nuevo Negocio</label>
+              </div>
+            </div>
+            <button type="submit" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#ff8a3d] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#ffbb3d]">Registrar Subcategoria</button>
+            <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-100 focus:outline-none bg-gray-800 rounded-full border border-gray-500 hover:bg-gray-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-100 dark:bg-[#ff8a3d] dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#ffbb3d]" (click)="cancel()">Finalizar</button>
+          </form>  
         <br>
         <h4 class="poppins-bold">Subcategorias Registradas</h4>
-        <div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[100%] sm:max-h-[350px]">
+        <div class="custom-scroll relative overflow-y-auto shadow-md sm:rounded-lg sm:w-[250%] sm:max-h-[290px]">
             <table class="w-full text-sm text-left rtl:text-right text-[#5D9DA8] dark:text-[#000000]">
                 <thead class="sticky top-0 text-xs text-[#00AD13] uppercase bg-[#a8685d] dark:bg-[#ebf3f4] dark:text-[#5D9DA8]">
                     <tr>

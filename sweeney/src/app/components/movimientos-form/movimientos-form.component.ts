@@ -147,7 +147,9 @@ export class MovimientosFormComponent implements OnInit{
             title: 'Pago programado exitosamente',
             showConfirmButton: false,
             timer: 1500
-          })}, error=>{
+          })
+          this.router.navigate(['/movimientos']);
+        }, error=>{
             Swal.fire({
               position: "top-end",
               icon: "error",

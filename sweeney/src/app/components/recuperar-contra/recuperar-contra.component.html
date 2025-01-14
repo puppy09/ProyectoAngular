@@ -13,12 +13,12 @@
       </div>
     </div>
 
-    <div class="form-section" formGroupName="forgotPassword" >
+    <div class="form-section">
       <h2 class="poppins-semibold">¿Olvidaste tú contraseña?</h2>
       <h5 class="poppins-thin">No te preocupes. Podemos ayudarte.</h5>
 
       <form>
-        <div class="form-group">
+        <div class="form-group" [formGroup]="emailForm">
           <input class="poppins-thin text-[#000000]" type="email" formControlName="email" name="email"
                  placeholder="Por favor ingresa tu correo" style="width: 50%;">
         </div>

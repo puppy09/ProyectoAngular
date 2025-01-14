@@ -76,10 +76,10 @@ export class PagosProUpdFormComponent {
     this.catSvc.getCategoriasActivas().subscribe(
       (data)=>{
         this.categorias = data;
-        const defaultCategory = this.categorias[0];
-        this.pagosProForms.controls['categoria'].setValue(defaultCategory.ID);
+        //const defaultCategory = this.categorias[0];
+        //this.pagosProForms.controls['categoria'].setValue(defaultCategory.ID);
         // Trigger subcategories load for the single category
-        this.loadSubcategorias({ target: { value: defaultCategory.ID } });
+        //this.loadSubcategorias({ target: { value: defaultCategory.ID } });
       },
       (error)=>{
         console.error('Error fetching categorias: ', error);
@@ -92,8 +92,8 @@ export class PagosProUpdFormComponent {
     this.subSvc.getSubcategoriasByCat(this.selectedCategory).subscribe(
       (data)=>{
         this.subcategorias=data;
-        const defaultSubcategory = this.subcategorias[0];
-          this.pagosProForms.controls['subcategoria'].setValue(defaultSubcategory.id_negocio);
+        //const defaultSubcategory = this.subcategorias[0];
+          //this.pagosProForms.controls['subcategoria'].setValue(defaultSubcategory.id_negocio);
       },
       (error)=>{
         console.error('Error fetching subcategorias: ', error);

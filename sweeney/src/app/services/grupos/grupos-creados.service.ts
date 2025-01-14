@@ -29,4 +29,8 @@ export class GruposCreadosService {
   crearGrupo(nombre:string, descripcion:string):Observable<gruposCreados>{
     return this.http.post<gruposCreados>(`${this.apiUrl}`,{nombre, descripcion});
   }
+
+  getFondos(grupo:number):Observable<gruposCreados[]>{
+    return this.http.get<gruposCreados[]>(`${this.apiUrl}/fondos/${grupo}`);
+  }
 }

@@ -18,6 +18,7 @@ import { CurrencyPipe } from '@angular/common';
 export class GrupoMainComponent {
   grupo: any;
   pagos:any;
+  grupoFondos:any;
   constructor(private route: ActivatedRoute, private router:Router, private dataSvc: DataServiceService, private gpoSvc: GruposCreadosService){
     this.grupo = this.dataSvc.getGrupoData();
     console.log(this.grupo);
@@ -25,6 +26,7 @@ export class GrupoMainComponent {
   }
   ngOnInit(){
     this.navigateToMovimientosGrupos();
+    this.getFondos();
   }
   navigateToPagosGrupos(): void{
     this.router.navigate(['single/pagos'], {relativeTo: this.route});
@@ -40,5 +42,11 @@ export class GrupoMainComponent {
   }
   navigateToGastos():void{
     this.router.navigate(['grupos/gastos']);
+  }
+
+  getFondos(){
+    this.gpoSvc.getFondos(this.grupo.id_grupo).subscribe(data=>{
+      this.grupoFondos = data;
+    });
   }
 }

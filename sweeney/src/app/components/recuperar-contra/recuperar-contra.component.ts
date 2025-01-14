@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';import { AuthService } from '../../services/auth/auth.service';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-recuperar-contra',
@@ -13,12 +13,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class RecuperarContraComponent {
 
 
-  email: string = '';
+  //email: string = '';
   emailForm: FormGroup = new FormGroup({});
-  constructor(private router: Router, private authSrv: AuthService) {}
+  constructor(private router: Router, private authSrv: AuthService, private fb: FormBuilder) {
+    this.emailForm = this.fb.group({
+      email: new FormControl('', [Validators.required, Validators.email])
+    });
+  }
 
   recuperarContra(): void {
-    this.authSrv.recuperarContra(this.email).subscribe(
+    console.log(this.emailForm.get('email')?.value);
+    this.authSrv.recuperarContra(this.emailForm.get('email')?.value).subscribe(
       (data)=>{
           Swal.fire({
           position: "top-end", 

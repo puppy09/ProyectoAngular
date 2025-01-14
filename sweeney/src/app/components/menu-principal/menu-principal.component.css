@@ -14,7 +14,7 @@
 }
 .table-container {
     width: 100%;  /* Fixed width for the container */
-    height: 20%; /* Fixed height for the container to create a square */
+    height: 300px; /* Fixed height for the container to create a square */
     
     overflow: auto; /* Add scrollbar if content overflows */
     border: 1px solid #ccc; /* Optional: Add a border to the box */
@@ -45,7 +45,7 @@
     margin-bottom: 20px;
   }
   .infoContainer2{
-    margin-top: 15%;
+    margin-top: 3%;
     display: flex;
     gap: 10px;
     margin-bottom: 20px;

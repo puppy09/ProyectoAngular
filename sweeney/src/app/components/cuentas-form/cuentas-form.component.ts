@@ -68,7 +68,7 @@ export class CuentasFormComponent {
                 showConfirmButton: false,
                 timer: 1500
               })  
-              this.router.navigate(['/cuentas']);
+              this.router.navigate(['cuentas']);
             }, error =>{
               Swal.fire({
                 position: "top-end",
